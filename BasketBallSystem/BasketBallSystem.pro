@@ -14,11 +14,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    dbmanager.cpp \
-    fe.cpp
+    dbmanager.cpp
 
 HEADERS  += mainwindow.h \
-    dbmanager.h \
-    fe.h
+    dbmanager.h
 
 FORMS    += mainwindow.ui
