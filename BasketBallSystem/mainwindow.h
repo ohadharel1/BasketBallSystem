@@ -21,16 +21,20 @@ public:
 
 public slots:
     void slotHandleQuery(QSqlQueryModel*);
+    void slotHandleTable(QSqlTableModel*);
 
 signals:
     void signalQueryTest1();
+    void signalTableTest1();
 
 private slots:
     void on_pushButton_released();
 
+    void on_pushButton_2_released();
+
 private:
-    Ui::MainWindow *ui;
-    DBManager *dbManager;
+    Ui::MainWindow *m_ui;
+    DBManager *m_dbManager;
 };
 
 #endif // MAINWINDOW_H

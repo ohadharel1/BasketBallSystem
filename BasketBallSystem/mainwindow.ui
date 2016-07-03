@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Query</string>
     </property>
    </widget>
    <widget class="QTableView" name="tableView">
@@ -35,6 +35,19 @@
       <width>401</width>
       <height>231</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>50</y>
+      <width>112</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Table</string>
     </property>
    </widget>
   </widget>

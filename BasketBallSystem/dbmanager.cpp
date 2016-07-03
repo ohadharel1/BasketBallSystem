@@ -1,5 +1,13 @@
 #include "dbmanager.h"
 
+DBManager::DBManager(QObject *parent) : QObject(parent)
+{
+    this->m_db = QSqlDatabase::addDatabase("QODBC");
+    this->m_queryModel = new QSqlQueryModel(this);
+    this->m_tableModel = new QSqlTableModel(this, this->m_db);
+    this->init();
+}
+
 const DBManager& DBManager::getInstance()
 {
     static DBManager instance;
@@ -16,18 +24,18 @@ void DBManager::initDBLink()
 {
     QString serverName = "LOCALHOST\\SQLEXPRESS";
     QString dbName = "BasketBallSystemDB";
-    this->db = QSqlDatabase::addDatabase("QODBC");
-    this->db.setConnectOptions();
-    QString dsn = QString("DRIVER={SQL Server};Server=%1;Database=%2;Trusted_Conction=Yes;").arg(serverName).arg(dbName);
-    this->db.setDatabaseName(dsn);
 
-    if(this->db.open())
+    this->m_db.setConnectOptions();
+    QString dsn = QString("DRIVER={SQL Server};Server=%1;Database=%2;Trusted_Conction=Yes;").arg(serverName).arg(dbName);
+    this->m_db.setDatabaseName(dsn);
+
+    if(this->m_db.open())
     {
         qDebug() << "DB open!!";
     }
     else
     {
-        qDebug() << "Error = " << this->db.lastError().text();
+        qDebug() << "Error = " << this->m_db.lastError().text();
     }
 }
 
@@ -36,27 +44,23 @@ void DBManager::initConnections()
 
 }
 
-DBManager::DBManager(QObject *parent) : QObject(parent)
-{
-    this->init();
-}
-
 DBManager::~DBManager()
 {
-    this->db.close();
+    this->m_db.close();
 }
 
 void DBManager::slotQuery1()
 {
-    QStringList results;
-    this->queryModel = new QSqlQueryModel();
-    this->query = db.exec("test1");
-    while(query.next())
-    {
-      QString result = query.record().value(1).toString();
-      results.append(result);
-    }
-    qDebug() << results;
-    this->queryModel->setQuery(this->query);
-    emit signalQueryResult(this->queryModel);
+    this->m_query.setForwardOnly(true);
+    this->m_query = this->m_db.exec("exec test1");
+    this->m_queryModel->setQuery(this->m_query);
+    emit signalQueryResult(this->m_queryModel);
+}
+
+void DBManager::slotTable1()
+{
+    this->m_tableModel->setTable("Team");
+    this->m_tableModel->select();
+    qDebug() << m_tableModel->lastError().text();
+    emit signalTableResult(this->m_tableModel);
 }

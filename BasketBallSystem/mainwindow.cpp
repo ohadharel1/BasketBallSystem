@@ -3,11 +3,11 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    dbManager(NULL)
+    m_ui(new Ui::MainWindow),
+    m_dbManager(NULL)
 {
-    ui->setupUi(this);
-    dbManager->getInstance();
+    m_ui->setupUi(this);
+    m_dbManager->getInstance();
     init();
 }
 
@@ -18,23 +18,33 @@ void MainWindow::init()
 
 void MainWindow::initConnections()
 {
-    connect(this, SIGNAL(signalQueryTest1()), &dbManager->getInstance(), SLOT(slotQuery1()));
-    connect(&dbManager->getInstance(), SIGNAL(signalQueryResult(QSqlQueryModel *)), this, SLOT(slotHandleQuery(QSqlQueryModel*)));
+    connect(this, SIGNAL(signalQueryTest1()), &m_dbManager->getInstance(), SLOT(slotQuery1()));
+    connect(&m_dbManager->getInstance(), SIGNAL(signalQueryResult(QSqlQueryModel *)), this, SLOT(slotHandleQuery(QSqlQueryModel*)));
+    connect(this, SIGNAL(signalTableTest1()), &m_dbManager->getInstance(), SLOT(slotTable1()));
+    connect(&m_dbManager->getInstance(), SIGNAL(signalTableResult(QSqlTableModel *)), this, SLOT(slotHandleTable(QSqlTableModel*)));
 }
 
 void MainWindow::slotHandleQuery(QSqlQueryModel *model)
 {
-    ui->tableView->setModel(model);
+    m_ui->tableView->setModel(model);
+}
+
+void MainWindow::slotHandleTable(QSqlTableModel *model)
+{
+    m_ui->tableView->setModel(model);
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+    delete m_ui;
 }
-
-
 
 void MainWindow::on_pushButton_released()
 {
     emit(signalQueryTest1());
+}
+
+void MainWindow::on_pushButton_2_released()
+{
+    emit(signalTableTest1());
 }
