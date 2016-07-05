@@ -73,5 +73,5 @@ void MainWindow::on_pushDelete_released()
     model->select();
     model->insertRows(model->rowCount(), 1);
     m_ui->tableView->setModel(model);
-
+//44556
 }
