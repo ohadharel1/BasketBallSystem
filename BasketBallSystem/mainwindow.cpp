@@ -41,16 +41,6 @@ MainWindow::~MainWindow()
     delete m_ui;
 }
 
-//void MainWindow::on_pushButton_released()
-//{
-//    emit(signalQueryTest1());
-//}
-
-//void MainWindow::on_pushButton_2_released()
-//{
-//    emit(signalTableTest1());
-//}
-
 void MainWindow::on_tableComboBox_currentIndexChanged(const QString &tableName)
 {
     this->m_curTable = tableName;
