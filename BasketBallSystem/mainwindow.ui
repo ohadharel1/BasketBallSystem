@@ -6,25 +6,25 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>568</width>
-    <height>317</height>
+    <width>1272</width>
+    <height>657</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="pushSubmit">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>10</y>
+      <x>1040</x>
+      <y>190</y>
       <width>112</width>
       <height>34</height>
      </rect>
     </property>
     <property name="text">
-     <string>Query</string>
+     <string>Submit</string>
     </property>
    </widget>
    <widget class="QTableView" name="tableView">
@@ -32,22 +32,165 @@
      <rect>
       <x>25</x>
       <y>20</y>
-      <width>401</width>
-      <height>231</height>
+      <width>971</width>
+      <height>551</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="pushUndo">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>50</y>
+      <x>1150</x>
+      <y>190</y>
       <width>112</width>
       <height>34</height>
      </rect>
     </property>
     <property name="text">
-     <string>Table</string>
+     <string>Undo</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="tableComboBox">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>130</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>AssistanceTrainer</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Cheerleaders</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Game</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>League</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>MainTrainer</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Player</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>PlayesIn</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Position</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Season</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>SeasonCycle</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>SecondaryPosition</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Statistic</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Team</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>TeamInLeague</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Trainer</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="queryComboBox">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>70</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Query1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Query2</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Query3</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Query4</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Query5</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Query6</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Query7</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="pushDelete">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>220</y>
+      <width>112</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Delete</string>
     </property>
    </widget>
   </widget>
@@ -56,8 +199,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>568</width>
-     <height>21</height>
+     <width>1272</width>
+     <height>31</height>
     </rect>
    </property>
   </widget>

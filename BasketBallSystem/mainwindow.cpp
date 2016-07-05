@@ -18,10 +18,11 @@ void MainWindow::init()
 
 void MainWindow::initConnections()
 {
-    connect(this, SIGNAL(signalQueryTest1()), &m_dbManager->getInstance(), SLOT(slotQuery1()));
+    connect(this, SIGNAL(signalDisplayQuery(const QString)), &m_dbManager->getInstance(), SLOT(slotDisplayQuery(const QString)));
     connect(&m_dbManager->getInstance(), SIGNAL(signalQueryResult(QSqlQueryModel *)), this, SLOT(slotHandleQuery(QSqlQueryModel*)));
-    connect(this, SIGNAL(signalTableTest1()), &m_dbManager->getInstance(), SLOT(slotTable1()));
+    connect(this, SIGNAL(signalDisplayTable(const QString)), &m_dbManager->getInstance(), SLOT(slotDisplayTable(const QString)));
     connect(&m_dbManager->getInstance(), SIGNAL(signalTableResult(QSqlTableModel *)), this, SLOT(slotHandleTable(QSqlTableModel*)));
+    connect(this, SIGNAL(signalSubmitReq()), &m_dbManager->getInstance(), SLOT(slotHandleRequest()));
 }
 
 void MainWindow::slotHandleQuery(QSqlQueryModel *model)
@@ -31,6 +32,7 @@ void MainWindow::slotHandleQuery(QSqlQueryModel *model)
 
 void MainWindow::slotHandleTable(QSqlTableModel *model)
 {
+    model->insertRows(model->rowCount(), 1);
     m_ui->tableView->setModel(model);
 }
 
@@ -39,12 +41,47 @@ MainWindow::~MainWindow()
     delete m_ui;
 }
 
-void MainWindow::on_pushButton_released()
+//void MainWindow::on_pushButton_released()
+//{
+//    emit(signalQueryTest1());
+//}
+
+//void MainWindow::on_pushButton_2_released()
+//{
+//    emit(signalTableTest1());
+//}
+
+void MainWindow::on_tableComboBox_currentIndexChanged(const QString &tableName)
 {
-    emit(signalQueryTest1());
+    this->m_curTable = tableName;
+    emit(signalDisplayTable(tableName));
 }
 
-void MainWindow::on_pushButton_2_released()
+void MainWindow::on_queryComboBox_currentIndexChanged(const QString &queryName)
 {
-    emit(signalTableTest1());
+    this->m_curQuery = queryName;
+    emit(signalDisplayQuery(queryName));
+}
+
+void MainWindow::on_pushSubmit_released()
+{
+    emit(signalSubmitReq());
+    emit(signalDisplayTable(m_curTable));
+}
+
+void MainWindow::on_pushUndo_released()
+{
+    emit(signalDisplayTable(m_curTable));
+}
+
+void MainWindow::on_pushDelete_released()
+{
+    QSqlTableModel *model = m_dbManager->getInstance().getTableModel();
+    model->removeRow(this->m_ui->tableView->currentIndex().row());
+    model->submitAll();
+    model->database().commit();
+    model->select();
+    model->insertRows(model->rowCount(), 1);
+    m_ui->tableView->setModel(model);
+
 }

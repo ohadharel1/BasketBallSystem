@@ -24,17 +24,27 @@ public slots:
     void slotHandleTable(QSqlTableModel*);
 
 signals:
-    void signalQueryTest1();
-    void signalTableTest1();
+    void signalDisplayQuery(const QString &queryName);
+    void signalDisplayTable(const QString &tableName);
+    void signalSubmitReq();
 
 private slots:
-    void on_pushButton_released();
 
-    void on_pushButton_2_released();
+    void on_tableComboBox_currentIndexChanged(const QString &arg1);
+
+    void on_queryComboBox_currentIndexChanged(const QString &arg1);
+
+    void on_pushSubmit_released();
+
+    void on_pushUndo_released();
+
+    void on_pushDelete_released();
 
 private:
     Ui::MainWindow *m_ui;
     DBManager *m_dbManager;
+    QString m_curTable;
+    QString m_curQuery;
 };
 
 #endif // MAINWINDOW_H

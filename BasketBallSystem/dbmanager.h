@@ -3,20 +3,23 @@
 
 #include <QObject>
 #include <QtSql>
+#include <QTableView>
 
 class DBManager : public QObject
 {
     Q_OBJECT
 public:
-    const DBManager& getInstance();
+    const DBManager& getInstance() const;
     void init();
     void initDBLink();
     void initConnections();
+    QSqlTableModel* getTableModel() const;
     ~DBManager();
 
 public slots:
-    void slotQuery1();
-    void slotTable1();
+    void slotDisplayQuery(const QString);
+    void slotDisplayTable(const QString);
+    void slotHandleRequest();
 
 signals:
     void signalQueryResult(QSqlQueryModel*);
