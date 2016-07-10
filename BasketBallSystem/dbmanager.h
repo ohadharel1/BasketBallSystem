@@ -10,16 +10,18 @@ class DBManager : public QObject
     Q_OBJECT
 public:
     const DBManager& getInstance() const;
+    ~DBManager();
     void init();
     void initDBLink();
     void initConnections();
     QSqlTableModel* getTableModel() const;
-    ~DBManager();
+    void processLineFromCSV(QString line);
 
 public slots:
     void slotDisplayQuery(const QString);
     void slotDisplayTable(const QString);
     void slotHandleRequest();
+    void slotHandleCSVProccessRequest(const QString&);
 
 signals:
     void signalQueryResult(QSqlQueryModel*);

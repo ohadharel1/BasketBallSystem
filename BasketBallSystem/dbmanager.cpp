@@ -1,4 +1,5 @@
 #include "dbmanager.h"
+#include <QFile>
 
 DBManager::DBManager(QObject *parent) : QObject(parent)
 {
@@ -50,6 +51,32 @@ QSqlTableModel* DBManager::getTableModel() const
     return m_tableModel;
 }
 
+void DBManager::processLineFromCSV(QString line)
+{
+    QStringList strings = line.split(",");
+    m_tableModel->setTable("TeamInLeague");
+    QSqlRecord record = m_tableModel->record();
+    for (int i = 0; i < strings.size(); ++i)
+    {
+        QVariant var = strings.at(i);
+        record.setValue(i, var);
+    }
+    m_tableModel->insertRecord(-1, record);
+    if(m_tableModel->submitAll())
+    {
+        m_tableModel->database().commit();
+
+    }
+    else
+    {
+        m_tableModel->database().rollback();
+        qDebug() << "Database Write Error" <<
+                         "The database reported an error: " <<
+                           this->m_tableModel->lastError().text();
+    }
+}
+
+
 DBManager::~DBManager()
 {
     this->m_db.close();
@@ -85,5 +112,32 @@ void DBManager::slotHandleRequest()
         qDebug() << "Database Write Error" <<
                          "The database reported an error: " <<
                            this->m_tableModel->lastError().text();
+    }
+}
+
+void DBManager::slotHandleCSVProccessRequest(const QString &path)
+{
+    QFile file(path);
+    if(file.open(QIODevice::ReadOnly))
+    {
+        qDebug() << "file is open";
+        m_tableModel->setTable("TeamInLeague");
+        m_tableModel->database().transaction();
+        m_tableModel->clear();
+        m_tableModel->select();
+        while(file.atEnd() == false)
+        {
+            QString line = file.readLine();
+            line.remove(QRegExp("\r"));
+            line.remove(QRegExp("\n"));
+            processLineFromCSV(line);
+        }
+        file.close();
+        m_tableModel->select();
+
+    }
+    else
+    {
+        qDebug() << "can't open file";
     }
 }

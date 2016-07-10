@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     m_ui(new Ui::MainWindow),
@@ -9,6 +10,11 @@ MainWindow::MainWindow(QWidget *parent) :
     m_ui->setupUi(this);
     m_dbManager->getInstance();
     init();
+}
+
+MainWindow::~MainWindow()
+{
+    delete m_ui;
 }
 
 void MainWindow::init()
@@ -23,6 +29,8 @@ void MainWindow::initConnections()
     connect(this, SIGNAL(signalDisplayTable(const QString)), &m_dbManager->getInstance(), SLOT(slotDisplayTable(const QString)));
     connect(&m_dbManager->getInstance(), SIGNAL(signalTableResult(QSqlTableModel *)), this, SLOT(slotHandleTable(QSqlTableModel*)));
     connect(this, SIGNAL(signalSubmitReq()), &m_dbManager->getInstance(), SLOT(slotHandleRequest()));
+    connect(&m_fileExplorer, SIGNAL(signalPublishFilePath(QString)), this, SLOT(slotHandleFilePath(QString)));
+    connect(this, SIGNAL(signalProccessCSV(QString)), &m_dbManager->getInstance(), SLOT(slotHandleCSVProccessRequest(QString)));
 }
 
 void MainWindow::slotHandleQuery(QSqlQueryModel *model)
@@ -36,10 +44,11 @@ void MainWindow::slotHandleTable(QSqlTableModel *model)
     m_ui->tableView->setModel(model);
 }
 
-MainWindow::~MainWindow()
+void MainWindow::slotHandleFilePath(const QString &path)
 {
-    delete m_ui;
+    m_ui->filePathTextBox->setText(path);
 }
+
 
 void MainWindow::on_tableComboBox_currentIndexChanged(const QString &tableName)
 {
@@ -73,5 +82,23 @@ void MainWindow::on_pushDelete_released()
     model->select();
     model->insertRows(model->rowCount(), 1);
     m_ui->tableView->setModel(model);
-//44556
+}
+
+void MainWindow::on_browseFileBtn_released()
+{
+    m_fileExplorer.setModal(true);
+    m_fileExplorer.exec();
+}
+
+void MainWindow::on_uploadFileBtn_released()
+{
+//    if(m_ui->filePathTextBox->hasSelectedText() == false)
+//    {
+//        //do popup error message
+//        //qDebug() << "You must fill in file path";
+//    }
+//    else
+//    {
+        emit signalProccessCSV(m_ui->filePathTextBox->text());
+//    }
 }

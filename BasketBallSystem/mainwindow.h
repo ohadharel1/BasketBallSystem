@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "dbmanager.h"
+#include "fileexplorer.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,11 +23,13 @@ public:
 public slots:
     void slotHandleQuery(QSqlQueryModel*);
     void slotHandleTable(QSqlTableModel*);
+    void slotHandleFilePath(const QString&);
 
 signals:
     void signalDisplayQuery(const QString &queryName);
     void signalDisplayTable(const QString &tableName);
     void signalSubmitReq();
+    void signalProccessCSV(const QString&);
 
 private slots:
 
@@ -40,9 +43,14 @@ private slots:
 
     void on_pushDelete_released();
 
+    void on_browseFileBtn_released();
+
+    void on_uploadFileBtn_released();
+
 private:
     Ui::MainWindow *m_ui;
     DBManager *m_dbManager;
+    fileExplorer m_fileExplorer;
     QString m_curTable;
     QString m_curQuery;
 };

@@ -6,7 +6,10 @@
 
 QT       += core gui sql
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4):
+QT += widgets
+
+
 
 TARGET = BasketBallSystem
 TEMPLATE = app
@@ -14,9 +17,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    dbmanager.cpp
+    dbmanager.cpp \
+    fileexplorer.cpp
 
 HEADERS  += mainwindow.h \
-    dbmanager.h
+    dbmanager.h \
+    fileexplorer.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    fileexplorer.ui
+
+RESOURCES += \
+    resources.qrc
