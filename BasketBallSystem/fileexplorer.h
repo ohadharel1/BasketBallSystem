@@ -24,6 +24,10 @@ private slots:
     void on_fileExplorerTreeView_clicked(const QModelIndex &index);
     void on_fileExplorerListView_clicked(const QModelIndex &index);
 
+    void on_fileExplorerSelectBtn_released();
+
+    void on_fileExplorerListView_doubleClicked(const QModelIndex &index);
+
 signals:
     void signalPublishFilePath(const QString&);
 
@@ -32,6 +36,7 @@ private:
 
     QFileSystemModel *m_dirModel;
     QFileSystemModel *m_fileModel;
+    QModelIndex m_currentIndex;
 };
 
 #endif // FILEEXPLORER_H

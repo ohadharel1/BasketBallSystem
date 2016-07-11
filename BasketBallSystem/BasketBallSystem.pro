@@ -27,5 +27,4 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     fileexplorer.ui
 
-RESOURCES += \
-    resources.qrc
+RESOURCES +=

@@ -56,6 +56,17 @@ void fileExplorer::on_fileExplorerTreeView_clicked(const QModelIndex &index)
 
 void fileExplorer::on_fileExplorerListView_clicked(const QModelIndex &index)
 {
-    emit(signalPublishFilePath(this->m_fileModel->fileInfo(index).absoluteFilePath()));
+    this->m_currentIndex = index;
+}
+
+void fileExplorer::on_fileExplorerSelectBtn_released()
+{
+    emit signalPublishFilePath(this->m_fileModel->fileInfo(m_currentIndex).absoluteFilePath());
+    this->close();
+}
+
+void fileExplorer::on_fileExplorerListView_doubleClicked(const QModelIndex &index)
+{
+    emit signalPublishFilePath(this->m_fileModel->fileInfo(index).absoluteFilePath());
     this->close();
 }
