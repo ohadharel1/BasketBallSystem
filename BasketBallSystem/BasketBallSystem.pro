@@ -18,13 +18,19 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     dbmanager.cpp \
-    fileexplorer.cpp
+    fileexplorer.cpp \
+    mainwindowlayout.cpp \
+    guiformmanager.cpp
 
 HEADERS  += mainwindow.h \
     dbmanager.h \
-    fileexplorer.h
+    fileexplorer.h \
+    mainwindowlayout.h \
+    guiformmanager.h
 
 FORMS    += mainwindow.ui \
-    fileexplorer.ui
+    fileexplorer.ui \
+    mainwindowlayout.ui
 
-RESOURCES +=
+RESOURCES += \
+    resources.qrc

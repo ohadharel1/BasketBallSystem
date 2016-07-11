@@ -10,7 +10,7 @@ DBManager::DBManager(QObject *parent) : QObject(parent)
     this->init();
 }
 
-const DBManager& DBManager::getInstance() const
+const DBManager& DBManager::getInstance()
 {
     static DBManager instance;
     return instance;

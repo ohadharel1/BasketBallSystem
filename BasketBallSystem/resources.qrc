@@ -1,3 +1,6 @@
 <RCC>
-    <qresource prefix="/Resources"/>
+    <qresource prefix="/Resources">
+        <file>Resources/basketBallCourtFullBlue1.jpg</file>
+        <file>Resources/backGroundOrange.png</file>
+    </qresource>
 </RCC>
