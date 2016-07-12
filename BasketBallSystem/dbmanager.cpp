@@ -1,6 +1,8 @@
 #include "dbmanager.h"
 #include <QFile>
 
+DBManager *DBManager::m_instance = NULL;
+
 DBManager::DBManager(QObject *parent) : QObject(parent)
 {
     this->m_db = QSqlDatabase::addDatabase("QODBC");
@@ -10,10 +12,13 @@ DBManager::DBManager(QObject *parent) : QObject(parent)
     this->init();
 }
 
-const DBManager& DBManager::getInstance()
+const DBManager* DBManager::getInstance()
 {
-    static DBManager instance;
-    return instance;
+    if(m_instance == NULL)
+    {
+        m_instance = new DBManager();
+    }
+    return m_instance;
 }
 
 void DBManager::init()
@@ -84,10 +89,10 @@ DBManager::~DBManager()
 
 void DBManager::slotDisplayQuery(const QString queryName)
 {
-    this->m_query.setForwardOnly(true);
+    //this->m_query.setForwardOnly(true);
     this->m_query = this->m_db.exec("exec " + queryName);
     this->m_queryModel->setQuery(this->m_query);
-    emit signalQueryResult(this->m_queryModel);
+    emit signalQueryResult(m_queryModel);
 }
 
 void DBManager::slotDisplayTable(QString tableName)

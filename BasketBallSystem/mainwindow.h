@@ -2,8 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSqlQueryModel>
+#include <QStackedWidget>
 #include "dbmanager.h"
-#include "fileexplorer.h"
+#include "guiformmanager.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,42 +19,28 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void init();
-    void initConnections();
+private slots:
+    void slotPopulateComboBox(QSqlQueryModel*);
+    void slotChangeForm(GuiForms);
+    void updateCaption();
 
-public slots:
-    void slotHandleQuery(QSqlQueryModel*);
-    void slotHandleTable(QSqlTableModel*);
-    void slotHandleFilePath(const QString&);
+    void on_MainWindowTeamSelectionSelectBtn_released();
+
+    void on_MainWindowTeamSelectionEditDataBtn_released();
+
+    void on_MainWindowTeamSelectionGameManagmentBtn_released();
+
+    void on_MainWindowTeamSelectionComboBox_currentIndexChanged(const QString &arg1);
 
 signals:
-    void signalDisplayQuery(const QString &queryName);
-    void signalDisplayTable(const QString &tableName);
-    void signalSubmitReq();
-    void signalProccessCSV(const QString&);
-
-private slots:
-
-    void on_tableComboBox_currentIndexChanged(const QString &arg1);
-
-    void on_queryComboBox_currentIndexChanged(const QString &arg1);
-
-    void on_pushSubmit_released();
-
-    void on_pushUndo_released();
-
-    void on_pushDelete_released();
-
-    void on_browseFileBtn_released();
-
-    void on_uploadFileBtn_released();
+    void signalPoulateComboBox(const QString&);
 
 private:
-    Ui::MainWindow *m_ui;
-    DBManager *m_dbManager;
-    fileExplorer m_fileExplorer;
-    QString m_curTable;
-    QString m_curQuery;
+    Ui::MainWindow *ui;
+    void init();
+    void initLayOut();
+    void initConnections();
+
 };
 
 #endif // MAINWINDOW_H

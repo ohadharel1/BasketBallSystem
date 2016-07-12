@@ -9,7 +9,7 @@ class DBManager : public QObject
 {
     Q_OBJECT
 public:
-    const DBManager& getInstance();
+    const static DBManager* getInstance();
     ~DBManager();
     void init();
     void initDBLink();
@@ -32,6 +32,7 @@ private:
     DBManager(const DBManager &other);
     DBManager& operator=(const DBManager &other);
 
+    static DBManager* m_instance;
     QSqlDatabase m_db;
     QSqlQuery m_query;
     QSqlQueryModel *m_queryModel;

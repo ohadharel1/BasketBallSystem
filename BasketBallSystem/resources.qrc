@@ -2,5 +2,12 @@
     <qresource prefix="/Resources">
         <file>Resources/basketBallCourtFullBlue1.jpg</file>
         <file>Resources/backGroundOrange.png</file>
+        <file>Resources/addBtn.png</file>
+        <file>Resources/editBtn.png</file>
+        <file>Resources/gameManagmentBtn.png</file>
+        <file>Resources/selectBtn.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>Resources/editBtn.png</file>
     </qresource>
 </RCC>
