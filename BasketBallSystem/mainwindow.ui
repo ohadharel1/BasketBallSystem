@@ -13,227 +13,325 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:/Resources/Resources/greenTeam/face1.jpg);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QStackedWidget" name="MainWindowStackedWidget">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1280</width>
-      <height>720</height>
-     </rect>
-    </property>
-    <widget class="QWidget" name="MainWindowEntrance">
-     <property name="styleSheet">
-      <string notr="true">background-image: url(:/Resources/Resources/basketBallCourtFullBlue1.jpg);</string>
-     </property>
-    </widget>
-    <widget class="QWidget" name="MainWindowTeamSelection">
-     <property name="styleSheet">
-      <string notr="true">QWidget
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QStackedWidget" name="MainWindowStackedWidget">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="currentIndex">
+       <number>3</number>
+      </property>
+      <widget class="QWidget" name="MainWindowEntrance">
+       <property name="styleSheet">
+        <string notr="true">background-image: url(:/Resources/Resources/basketBallCourtFullBlue1.jpg);</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="MainWindowTeamSelection">
+       <property name="styleSheet">
+        <string notr="true">#MainWindowTeamSelection
 {
 	background-image: url(:/Resources/Resources/backGroundOrange.png);
 }
+</string>
+       </property>
+       <widget class="QComboBox" name="MainWindowTeamSelectionComboBox">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>140</y>
+          <width>211</width>
+          <height>41</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="MainWindowTeamSelectionSelectBtn">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>520</x>
+          <y>120</y>
+          <width>131</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton
+{ 
+	background-image: url(:/Resources/Resources/selectBtn.png);
+	border: 0px solid #000000;
+}
+QPushButton:disabled
+{ 
+	background-image: url(:/Resources/Resources/selectBtn.png);
+border: 0px solid #000000;
+}
+QPushButton:pressed
+{ 
+	background-image: url(:/Resources/Resources/selectBtn.png);
+border: 0px solid #000000;
+}
+QPushButton:focus:pressed
+{ 
+	background-image: url(:/Resources/Resources/selectBtn.png);
+border: 0px solid #000000;
+}
 
-QWidget:QPushButton
+
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="MainWindowTeamSelectionEditDataBtn">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>130</y>
+          <width>131</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton
+{ 
+	background-image: url(:/Resources/Resources/editBtn.png);
+	border: 0px solid #000000;
+}
+QPushButton:disabled
+{ 
+	background-image: url(:/Resources/Resources/editBtn1.png);
+border: 0px solid #000000;
+}
+QPushButton:pressed
+{ 
+	background-image: url(:/Resources/Resources/editBtn.png);
+border: 0px solid #000000;
+}
+QPushButton:focus:pressed
+{ 
+	background-image: url(:/Resources/Resources/editBtn.png);
+border: 0px solid #000000;
+}
+
+
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="MainWindowTeamSelectionGameManagmentBtn">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>230</y>
+          <width>131</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton
+{ 
+	background-image: url(:/Resources/Resources/gameManagmentBtn.png);
+	border: 0px solid #000000;
+}
+QPushButton:disabled
+{ 
+	background-image: url(:/Resources/Resources/editBtn1.png);
+border: 0px solid #000000;
+}
+QPushButton:pressed
+{ 
+	background-image: url(:/Resources/Resources/gameManagmentBtn.png);
+border: 0px solid #000000;
+}
+QPushButton:focus:pressed
+{ 
+	background-image: url(:/Resources/Resources/gameManagmentBtn.png);
+border: 0px solid #000000;
+}
+
+
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="MainWindowGameManagment"/>
+      <widget class="QWidget" name="MainWindowPlayerSelection">
+       <property name="styleSheet">
+        <string notr="true">#MainWindowPlayerSelection
 {
-	Background-image: none
-}
-
-
-
-
-</string>
-     </property>
-     <widget class="QComboBox" name="MainWindowTeamSelectionComboBox">
-      <property name="geometry">
-       <rect>
-        <x>700</x>
-        <y>140</y>
-        <width>211</width>
-        <height>41</height>
-       </rect>
-      </property>
+background-image: url(:/Resources/Resources/backGroundOrange.png);
+}</string>
+       </property>
+       <widget class="QWidget" name="gridLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>10</y>
+          <width>931</width>
+          <height>661</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="MainWindowPlayerSelectionGridLayout">
+         <property name="horizontalSpacing">
+          <number>50</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>250</number>
+         </property>
+        </layout>
+       </widget>
+       <widget class="QFrame" name="MainWindowPlayerSelectionVLayout">
+        <property name="geometry">
+         <rect>
+          <x>1030</x>
+          <y>10</y>
+          <width>191</width>
+          <height>271</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: transparent</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QPushButton" name="MainWindowPlayerSelectionAllBtn">
+           <property name="text">
+            <string>הצג את כל השחקנים</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="MainWindowPlayerSelectionPoinGaurdBtn">
+           <property name="text">
+            <string>הצג רכזים בלבד</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="MainWindowPlayerSelectionShootingGaurdBtn">
+           <property name="text">
+            <string>הצג קלעים בלבד</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="MainWindowPlayerSelectionSmallForwardBtn">
+           <property name="text">
+            <string>הצג סמול- פורוורד בלבד</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="MainWindowPlayerSelectionPowerForwardBtn">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>הצג פאוור- פורוורד בלבד</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="MainWindowPlayerSelectionCenterBtn">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>הצג סנטרים בלבד</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
      </widget>
-     <widget class="QPushButton" name="MainWindowTeamSelectionSelectBtn">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>520</x>
-        <y>120</y>
-        <width>131</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton
-{ 
-	background-image: url(:/Resources/Resources/selectBtn.png);
-	border: 0px solid #000000;
-}
-QPushButton:disabled
-{ 
-	background-image: url(:/Resources/Resources/selectBtn.png);
-border: 0px solid #000000;
-}
-QPushButton:pressed
-{ 
-	background-image: url(:/Resources/Resources/selectBtn.png);
-border: 0px solid #000000;
-}
-QPushButton:focus:pressed
-{ 
-	background-image: url(:/Resources/Resources/selectBtn.png);
-border: 0px solid #000000;
-}
-
-
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="checkable">
-       <bool>false</bool>
-      </property>
-      <property name="checked">
-       <bool>false</bool>
-      </property>
-      <property name="autoDefault">
-       <bool>false</bool>
-      </property>
-      <property name="default">
-       <bool>false</bool>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="MainWindowTeamSelectionEditDataBtn">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>130</y>
-        <width>131</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton
-{ 
-	background-image: url(:/Resources/Resources/editBtn.png);
-	border: 0px solid #000000;
-}
-QPushButton:disabled
-{ 
-	background-image: url(:/Resources/Resources/editBtn1.png);
-border: 0px solid #000000;
-}
-QPushButton:pressed
-{ 
-	background-image: url(:/Resources/Resources/editBtn.png);
-border: 0px solid #000000;
-}
-QPushButton:focus:pressed
-{ 
-	background-image: url(:/Resources/Resources/editBtn.png);
-border: 0px solid #000000;
-}
-
-
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="checkable">
-       <bool>false</bool>
-      </property>
-      <property name="checked">
-       <bool>false</bool>
-      </property>
-      <property name="autoDefault">
-       <bool>false</bool>
-      </property>
-      <property name="default">
-       <bool>false</bool>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="MainWindowTeamSelectionGameManagmentBtn">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>230</y>
-        <width>131</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton
-{ 
-	background-image: url(:/Resources/Resources/gameManagmentBtn.png);
-	border: 0px solid #000000;
-}
-QPushButton:disabled
-{ 
-	background-image: url(:/Resources/Resources/editBtn1.png);
-border: 0px solid #000000;
-}
-QPushButton:pressed
-{ 
-	background-image: url(:/Resources/Resources/gameManagmentBtn.png);
-border: 0px solid #000000;
-}
-QPushButton:focus:pressed
-{ 
-	background-image: url(:/Resources/Resources/gameManagmentBtn.png);
-border: 0px solid #000000;
-}
-
-
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="checkable">
-       <bool>false</bool>
-      </property>
-      <property name="checked">
-       <bool>false</bool>
-      </property>
-      <property name="autoDefault">
-       <bool>false</bool>
-      </property>
-      <property name="default">
-       <bool>false</bool>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-   </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

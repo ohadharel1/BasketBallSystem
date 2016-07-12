@@ -20,17 +20,20 @@ SOURCES += main.cpp\
     dbmanager.cpp \
     fileexplorer.cpp \
     mainwindowlayout.cpp \
-    guiformmanager.cpp
+    guiformmanager.cpp \
+    player.cpp
 
 HEADERS  += mainwindow.h \
     dbmanager.h \
     fileexplorer.h \
     mainwindowlayout.h \
-    guiformmanager.h
+    guiformmanager.h \
+    player.h
 
 FORMS    += mainwindow.ui \
     fileexplorer.ui \
-    mainwindowlayout.ui
+    mainwindowlayout.ui \
+    player.ui
 
 RESOURCES += \
     resources.qrc

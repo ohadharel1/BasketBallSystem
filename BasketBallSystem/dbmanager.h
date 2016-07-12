@@ -19,6 +19,7 @@ public:
 
 public slots:
     void slotDisplayQuery(const QString);
+    void slotDisplayQueryWithArg(const QString proc, const QString arg);
     void slotDisplayTable(const QString);
     void slotHandleRequest();
     void slotHandleCSVProccessRequest(const QString&);
@@ -26,6 +27,7 @@ public slots:
 signals:
     void signalQueryResult(QSqlQueryModel*);
     void signalTableResult(QSqlTableModel*);
+    void signalParameterQueryResult(QSqlQuery*);
 
 private:
     explicit DBManager(QObject *parent = 0);

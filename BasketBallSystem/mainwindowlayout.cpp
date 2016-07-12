@@ -100,5 +100,5 @@ void MainWindowLayout::on_uploadFileBtn_released()
 //    else
 //    {
         emit signalProccessCSV(m_ui->filePathTextBox->text());
-//    }
+    //    }
 }

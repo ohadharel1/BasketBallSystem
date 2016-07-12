@@ -9,6 +9,7 @@ enum GuiForms
     GUI_FORM_ENTRANCE,
     GUI_FORM_TEAM_SELECTION,
     GUI_FORM_GAME_MANAGMENT,
+    GUI_FORM_PLAYER_SELECTION,
 
     GUI_FORM_SIZE
 };
@@ -26,13 +27,18 @@ public:
 
 signals:
     void signalChangeForm(GuiForms);
-    void signalOnEnterForm(GuiForms);
-    void signalOnExitForm(GuiForms);
+    void signalEntrance(bool);
+    void signalTeamSelection(bool);
+    void signalGameManagment(bool);
+    void signalPlayerSelection(bool);
 public slots:
 
 private:
     explicit GuiFormManager(QObject *parent = 0);
     ~GuiFormManager();
+
+    void exitForm();
+    void enterForm(GuiForms);
 
     static GuiFormManager* m_instance;
     GuiForms m_currentForm;

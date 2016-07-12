@@ -6,6 +6,22 @@
         <file>Resources/editBtn.png</file>
         <file>Resources/gameManagmentBtn.png</file>
         <file>Resources/selectBtn.png</file>
+        <file>Resources/greenTeam/face1.png</file>
+        <file>Resources/greenTeam/face2.png</file>
+        <file>Resources/greenTeam/face3.png</file>
+        <file>Resources/greenTeam/face4.png</file>
+        <file>Resources/greenTeam/face5.png</file>
+        <file>Resources/greenTeam/face6.png</file>
+        <file>Resources/greenTeam/face7.png</file>
+        <file>Resources/greenTeam/face8.png</file>
+        <file>Resources/redTeam/face1.png</file>
+        <file>Resources/redTeam/face2.png</file>
+        <file>Resources/redTeam/face3.png</file>
+        <file>Resources/redTeam/face4.png</file>
+        <file>Resources/redTeam/face5.png</file>
+        <file>Resources/redTeam/face6.png</file>
+        <file>Resources/redTeam/face7.png</file>
+        <file>Resources/redTeam/face8.png</file>
     </qresource>
     <qresource prefix="/">
         <file>Resources/editBtn.png</file>

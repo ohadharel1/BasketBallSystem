@@ -2,8 +2,10 @@
 #define MAINWINDOWLAYOUT_H
 
 #include <QMainWindow>
+#include <QVector>
 #include "dbmanager.h"
 #include "fileexplorer.h"
+#include "player.h"
 
 namespace Ui {
 class MainWindowLayout;
@@ -48,6 +50,8 @@ private slots:
     void on_uploadFileBtn_released();
 
 private:
+    void deletePlayers();
+
     Ui::MainWindowLayout *m_ui;
     DBManager *m_dbManager;
     fileExplorer m_fileExplorer;
