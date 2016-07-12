@@ -94,7 +94,7 @@ void MainWindow::insertPlayersToSelection(QVector<player *> vector)
     {
         if(vector[i] != NULL)
         {
-            if(col == 2)
+            if(col == 3)
             {
                 row++;
                 col = 0;
