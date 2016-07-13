@@ -81,13 +81,8 @@ player* MainWindow::getPlayer(int id)
     return NULL;
 }
 
-void MainWindow::insertPlayersToSelection(QVector<player *> vector)
+void MainWindow::insertPlayersToSelection(QVector<player *> vector, QGridLayout* layout)
 {
-    QLayoutItem *item;
-    while((item = ui->MainWindowPlayerSelectionGridLayout->takeAt(0)) != 0)
-    {
-        ui->MainWindowPlayerSelectionGridLayout->removeItem(item);
-    }
     int row = 0;
     int col = 0;
     for(int i = 0; i < vector.size(); ++i)
@@ -99,7 +94,8 @@ void MainWindow::insertPlayersToSelection(QVector<player *> vector)
                 row++;
                 col = 0;
             }
-            ui->MainWindowPlayerSelectionGridLayout->addWidget(vector[i], row, col, 100, 3);
+            player* p = vector[i]->copyPlayer();
+            layout->addWidget(p, row, col, 100, 3);
             col++;
         }
     }
@@ -128,6 +124,10 @@ void MainWindow::slotReceivePlayearsInTeam(QSqlQuery *query)
     QString teamColor;
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
+    if(m_players.size() != 0)
+    {
+        this->deletePlayers();
+    }
     switch(qrand() % 2 + 0)
     {
         case 0:
@@ -161,6 +161,7 @@ void MainWindow::slotReceivePlayearsInTeam(QSqlQuery *query)
             m_players.append(p);
         }
     }
+    qDebug() << "all players: " << m_players;
     emit signalSortPlayers();
 }
 
@@ -189,6 +190,12 @@ void MainWindow::slotSortPlayers()
             m_centers.append(m_players[i]);
         }
     }
+    this->insertPlayersToSelection(m_players, ui->MainWindowPlayerSelectionAllPlayersLayout);
+    this->insertPlayersToSelection(m_pointGaurds, ui->MainWindowPlayerSelectionPointGaurdsLayout);
+    this->insertPlayersToSelection(m_smallForward, ui->MainWindowPlayerSelectionSmallForwardLayout);
+    this->insertPlayersToSelection(m_powerForward, ui->MainWindowPlayerSelectionPowerForwardLayout);
+    this->insertPlayersToSelection(m_shootingGaurd, ui->MainWindowPlayerSelectionShootingGaurdLayout);
+    this->insertPlayersToSelection(m_centers, ui->MainWindowPlayerSelectionCentersLayout);
 //    qDebug() << "all players: " << m_players;
 //    qDebug() << "point: " << m_pointGaurds;
 //    qDebug() << "shot: " << m_shootingGaurd;
@@ -222,30 +229,30 @@ void MainWindow::on_MainWindowTeamSelectionComboBox_currentIndexChanged(const QS
 
 void MainWindow::on_MainWindowPlayerSelectionAllBtn_released()
 {
-    this->insertPlayersToSelection(m_players);
+    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_ALL_PLAYERS);
 }
 
 void MainWindow::on_MainWindowPlayerSelectionPoinGaurdBtn_released()
 {
-    this->insertPlayersToSelection(m_pointGaurds);
+    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_POINT_GAURDS);
 }
 
 void MainWindow::on_MainWindowPlayerSelectionShootingGaurdBtn_released()
 {
-    this->insertPlayersToSelection(m_shootingGaurd);
+    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_SHOOTING_GAURD);
 }
 
 void MainWindow::on_MainWindowPlayerSelectionSmallForwardBtn_released()
 {
-    this->insertPlayersToSelection(m_smallForward);
+    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_SMALL_FORWARD);
 }
 
 void MainWindow::on_MainWindowPlayerSelectionPowerForwardBtn_released()
 {
-    this->insertPlayersToSelection(m_powerForward);
+    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_POWER_FORWARD);
 }
 
 void MainWindow::on_MainWindowPlayerSelectionCenterBtn_released()
 {
-    this->insertPlayersToSelection(m_centers);
+    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_CENTERS);
 }

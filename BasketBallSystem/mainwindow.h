@@ -4,10 +4,23 @@
 #include <QMainWindow>
 #include <QSqlQueryModel>
 #include <QStackedWidget>
+#include <QGridLayout>
 #include <QVector>
 #include "player.h"
 #include "dbmanager.h"
 #include "guiformmanager.h"
+
+enum positionLayout
+{
+    POSITION_LAYOUT_ALL_PLAYERS,
+    POSITION_LAYOUT_POINT_GAURDS,
+    POSITION_LAYOUT_SHOOTING_GAURD,
+    POSITION_LAYOUT_SMALL_FORWARD,
+    POSITION_LAYOUT_POWER_FORWARD,
+    POSITION_LAYOUT_CENTERS,
+
+    POSITION_LAYOUT_SIZE
+};
 
 namespace Ui {
 class MainWindow;
@@ -60,7 +73,7 @@ private:
     void deletePlayers();
     bool containID(int id);
     player* getPlayer(int id);
-    void insertPlayersToSelection(QVector<player*> vector);
+    void insertPlayersToSelection(QVector<player*> vector, QGridLayout* layout);
 
     Ui::MainWindow *ui;
     QVector<player*> m_players;

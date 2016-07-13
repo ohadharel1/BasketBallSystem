@@ -235,24 +235,6 @@ border: 0px solid #000000;
 background-image: url(:/Resources/Resources/backGroundOrange.png);
 }</string>
        </property>
-       <widget class="QWidget" name="gridLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>10</y>
-          <width>931</width>
-          <height>661</height>
-         </rect>
-        </property>
-        <layout class="QGridLayout" name="MainWindowPlayerSelectionGridLayout">
-         <property name="horizontalSpacing">
-          <number>50</number>
-         </property>
-         <property name="verticalSpacing">
-          <number>250</number>
-         </property>
-        </layout>
-       </widget>
        <widget class="QFrame" name="MainWindowPlayerSelectionVLayout">
         <property name="geometry">
          <rect>
@@ -327,6 +309,139 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
           </widget>
          </item>
         </layout>
+       </widget>
+       <widget class="QStackedWidget" name="MainWindowPlayerSelectionStackedWidget">
+        <property name="geometry">
+         <rect>
+          <x>19</x>
+          <y>10</y>
+          <width>931</width>
+          <height>641</height>
+         </rect>
+        </property>
+        <widget class="QWidget" name="MainWindowPlayerSelectionAllPlayersPage">
+         <widget class="QWidget" name="gridLayoutWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>-1</x>
+            <y>0</y>
+            <width>931</width>
+            <height>641</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="MainWindowPlayerSelectionAllPlayersLayout">
+           <property name="sizeConstraint">
+            <enum>QLayout::SetNoConstraint</enum>
+           </property>
+           <property name="horizontalSpacing">
+            <number>50</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>250</number>
+           </property>
+          </layout>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="MainWindowPlayerSelectionPointGaurdsPage">
+         <widget class="QWidget" name="gridLayoutWidget_3">
+          <property name="geometry">
+           <rect>
+            <x>-1</x>
+            <y>0</y>
+            <width>931</width>
+            <height>641</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="MainWindowPlayerSelectionPointGaurdsLayout">
+           <property name="sizeConstraint">
+            <enum>QLayout::SetNoConstraint</enum>
+           </property>
+           <property name="horizontalSpacing">
+            <number>50</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>250</number>
+           </property>
+          </layout>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="MainWindowPlayerSelectionShootingGaurdPage">
+         <widget class="QWidget" name="gridLayoutWidget_5">
+          <property name="geometry">
+           <rect>
+            <x>-1</x>
+            <y>0</y>
+            <width>931</width>
+            <height>641</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="MainWindowPlayerSelectionShootingGaurdLayout">
+           <property name="horizontalSpacing">
+            <number>50</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>250</number>
+           </property>
+          </layout>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="MainWindowPlayerSelectionSmallForwardPage">
+         <widget class="QWidget" name="gridLayoutWidget_4">
+          <property name="geometry">
+           <rect>
+            <x>-1</x>
+            <y>0</y>
+            <width>931</width>
+            <height>641</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="MainWindowPlayerSelectionSmallForwardLayout">
+           <property name="horizontalSpacing">
+            <number>50</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>250</number>
+           </property>
+          </layout>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="MainWindowPlayerSelectionPowerForwardPage">
+         <widget class="QWidget" name="gridLayoutWidget_6">
+          <property name="geometry">
+           <rect>
+            <x>-1</x>
+            <y>0</y>
+            <width>931</width>
+            <height>641</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="MainWindowPlayerSelectionPowerForwardLayout">
+           <property name="horizontalSpacing">
+            <number>50</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>250</number>
+           </property>
+          </layout>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="MainWindowPlayerSelectionCentersPage">
+         <widget class="QWidget" name="gridLayoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>-1</x>
+            <y>0</y>
+            <width>931</width>
+            <height>641</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="MainWindowPlayerSelectionCentersLayout">
+           <property name="horizontalSpacing">
+            <number>50</number>
+           </property>
+          </layout>
+         </widget>
+        </widget>
        </widget>
       </widget>
      </widget>

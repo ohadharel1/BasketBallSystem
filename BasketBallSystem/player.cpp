@@ -22,6 +22,12 @@ player::~player()
     delete ui;
 }
 
+player *player::copyPlayer()
+{
+    player *p = new player(m_id, m_firstName, m_surName, m_teamColor);
+    return p;
+}
+
 void player::init()
 {
     for(int i = 0; i < POSITION_SIZE; ++i)

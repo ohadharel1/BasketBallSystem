@@ -25,6 +25,7 @@ class player : public QWidget
 public:
     explicit player(int id, QString firstName, QString surName, QString teamColor, QWidget *parent = 0);
     ~player();
+    player* copyPlayer();
 
     void init();
     void playerDelete();
