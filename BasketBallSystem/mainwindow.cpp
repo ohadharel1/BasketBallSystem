@@ -340,3 +340,8 @@ void MainWindow::on_MainWindowGameManagmentCortImageCB_released()
     GuiFormManager::getInstance()->changeForm(GUI_FORM_PLAYER_SELECTION);
     ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_CENTERS);
 }
+
+void MainWindow::on_returnBtn_released()
+{
+    GuiFormManager::getInstance()->goBack();
+}
