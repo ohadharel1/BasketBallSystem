@@ -6,6 +6,7 @@
         <file>Resources/editBtn.png</file>
         <file>Resources/gameManagmentBtn.png</file>
         <file>Resources/selectBtn.png</file>
+        <file>Resources/halfCourt.png</file>
         <file>Resources/greenTeam/face1.png</file>
         <file>Resources/greenTeam/face2.png</file>
         <file>Resources/greenTeam/face3.png</file>
@@ -22,7 +23,6 @@
         <file>Resources/redTeam/face6.png</file>
         <file>Resources/redTeam/face7.png</file>
         <file>Resources/redTeam/face8.png</file>
-        <file>Resources/halfCourt.png</file>
     </qresource>
     <qresource prefix="/">
         <file>Resources/editBtn.png</file>

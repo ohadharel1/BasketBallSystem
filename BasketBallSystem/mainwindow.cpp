@@ -224,10 +224,8 @@ void MainWindow::slotHandelePlayerPress(int id)
     switch(position)
     {
         case POSITION_LAYOUT_POINT_GAURDS:
-
-        ui->MainWindowGameManagmentCortImagePG->addWidget(p);
-        ui->MainWindowGameManagmentCortImagePG->setCurrentWidget(p);
-
+            ui->MainWindowGameManagmentCortImagePG->addWidget(p);
+            ui->MainWindowGameManagmentCortImagePG->setCurrentWidget(p);
             break;
         case POSITION_LAYOUT_CENTERS:
 
