@@ -63,6 +63,8 @@ private slots:
 
     void on_MainWindowGameManagmentCB_released();
 
+    void on_pushButton_released();
+
 signals:
     void signalPoulateComboBox(const QString&);
     void signalGetPlayersInTeam(const QString&, const QString&);

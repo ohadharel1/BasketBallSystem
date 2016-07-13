@@ -224,24 +224,22 @@ void MainWindow::slotHandelePlayerPress(int id)
     switch(position)
     {
         case POSITION_LAYOUT_POINT_GAURDS:
-            ui->MainWindowGameManagmentPG = p;
-            ui->MainWindowGameManagmentPGL->setVisible(false);
+
             break;
         case POSITION_LAYOUT_CENTERS:
-            ui->MainWindowGameManagmentC = p;
-            ui->MainWindowGameManagmentCL->setVisible(false);
+
+            ui->stackedWidget->addWidget(p);
+            ui->stackedWidget->setCurrentWidget(p);
+
             break;
         case POSITION_LAYOUT_POWER_FORWARD:
-            ui->MainWindowGameManagmentPF = p;
-            ui->MainWindowGameManagmentPFL->setVisible(false);
+
             break;
         case POSITION_LAYOUT_SHOOTING_GAURD:
-            ui->MainWindowGameManagmentSG = p;
-            ui->MainWindowGameManagmentSGL->setVisible(false);
+
             break;
         case POSITION_LAYOUT_SMALL_FORWARD:
-            ui->MainWindowGameManagmentSF = p;
-            ui->MainWindowGameManagmentSFL->setVisible(false);
+
             break;
         default:
             qDebug() << "bad input at player selection " << position;
@@ -303,6 +301,12 @@ void MainWindow::on_MainWindowPlayerSelectionCenterBtn_released()
 }
 
 void MainWindow::on_MainWindowGameManagmentCB_released()
+{
+    GuiFormManager::getInstance()->changeForm(GUI_FORM_PLAYER_SELECTION);
+    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_CENTERS);
+}
+
+void MainWindow::on_pushButton_released()
 {
     GuiFormManager::getInstance()->changeForm(GUI_FORM_PLAYER_SELECTION);
     ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_CENTERS);
