@@ -24,12 +24,126 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="MainWindowEntrance">
        <property name="styleSheet">
-        <string notr="true">background-image: url(:/Resources/Resources/basketBallCourtFullBlue1.jpg);</string>
+        <string notr="true">#MainWindowEntrance
+{
+background-image: url(:/Resources/Resources/basketBallCourtFullBlue1.jpg);
+}</string>
        </property>
+       <widget class="QLabel" name="MainWindowEntranceText">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>120</y>
+          <width>1121</width>
+          <height>461</height>
+         </rect>
+        </property>
+        <property name="palette">
+         <palette>
+          <active>
+           <colorrole role="WindowText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="ButtonText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </active>
+          <inactive>
+           <colorrole role="WindowText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="ButtonText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </inactive>
+          <disabled>
+           <colorrole role="WindowText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="ButtonText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </disabled>
+         </palette>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 75 72pt &quot;Kristen ITC&quot;;
+color: white</string>
+        </property>
+        <property name="text">
+         <string>BasketBall app</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="MainWindowTeamSelection">
        <property name="styleSheet">
@@ -240,7 +354,7 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
          <rect>
           <x>1030</x>
           <y>10</y>
-          <width>191</width>
+          <width>231</width>
           <height>271</height>
          </rect>
         </property>
@@ -329,7 +443,7 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
             <height>641</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="MainWindowPlayerSelectionAllPlayersLayout">
+          <layout class="QGridLayout" name="MainWindowPlayerSelectionAllPlayersLayout" rowstretch="0" columnstretch="0" rowminimumheight="0">
            <property name="sizeConstraint">
             <enum>QLayout::SetNoConstraint</enum>
            </property>
@@ -337,7 +451,7 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
             <number>50</number>
            </property>
            <property name="verticalSpacing">
-            <number>250</number>
+            <number>210</number>
            </property>
           </layout>
          </widget>
@@ -438,6 +552,9 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
           <layout class="QGridLayout" name="MainWindowPlayerSelectionCentersLayout">
            <property name="horizontalSpacing">
             <number>50</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>250</number>
            </property>
           </layout>
          </widget>

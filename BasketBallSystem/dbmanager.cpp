@@ -100,7 +100,7 @@ void DBManager::slotDisplayQueryWithArg(const QString proc, const QString arg)
     this->m_query.prepare("{CALL " + proc + " (:arg)}");
     this->m_query.bindValue(":arg", arg);
     this->m_query.exec();
-    this->m_query.lastError();
+    //this->m_query.lastError();
     emit signalParameterQueryResult(&m_query);
 }
 
@@ -108,7 +108,7 @@ void DBManager::slotDisplayTable(QString tableName)
 {
     this->m_tableModel->setTable(tableName);
     this->m_tableModel->select();
-    qDebug() << m_tableModel->lastError().text();
+    //qDebug() << m_tableModel->lastError().text();
     emit signalTableResult(this->m_tableModel);
 }
 
