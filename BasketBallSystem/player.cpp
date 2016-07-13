@@ -2,6 +2,7 @@
 #include "ui_player.h"
 #include <QDebug>
 #include <QTime>
+#include "mainwindow.h"
 
 
 player::player(int id, QString firstName, QString surName, QString teamColor, QString face, QWidget *parent) :
@@ -31,6 +32,7 @@ player *player::copyPlayer()
 
 void player::init()
 {
+    connect(this, SIGNAL(signalPlayerPress(int)), MainWindow::getInstance(), SLOT(slotHandelePlayerPress(int)));
     for(int i = 0; i < POSITION_SIZE; ++i)
     {
         m_playerPositions[i] = false;
@@ -136,3 +138,8 @@ bool player::getPlayerPosition(positions pos)
 //}
 
 
+
+void player::on_playerPushButton_released()
+{
+    emit signalPlayerPress(this->m_id);
+}

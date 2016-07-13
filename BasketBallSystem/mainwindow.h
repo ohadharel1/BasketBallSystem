@@ -31,8 +31,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    static MainWindow* getInstance();
 
 private slots:
     void slotPopulateComboBox(QSqlQueryModel*);
@@ -40,6 +39,7 @@ private slots:
     void slotTime();
     void slotReceivePlayearsInTeam(QSqlQuery*);
     void slotSortPlayers();
+    void slotHandelePlayerPress(int id);
 
     void on_MainWindowTeamSelectionSelectBtn_released();
 
@@ -61,12 +61,16 @@ private slots:
 
     void on_MainWindowPlayerSelectionCenterBtn_released();
 
+    void on_MainWindowGameManagmentCB_released();
+
 signals:
     void signalPoulateComboBox(const QString&);
     void signalGetPlayersInTeam(const QString&, const QString&);
     void signalSortPlayers();
 
 private:
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
     void init();
     void initLayOut();
     void initConnections();
@@ -75,6 +79,7 @@ private:
     player* getPlayer(int id);
     void insertPlayersToSelection(QVector<player*> vector, QGridLayout* layout);
 
+    static MainWindow* m_instance;
     Ui::MainWindow *ui;
     QVector<player*> m_players;
     QVector<player*> m_pointGaurds;

@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <QWidget>
+#include <QMainWindow>
 
 enum positions
 {
@@ -37,6 +38,13 @@ public:
 //    QString imagePath() const;
     void setPosition(const QString&);
     bool getPlayerPosition(positions);
+
+private slots:
+    void on_playerPushButton_released();
+
+signals:
+    void signalPlayerPress(int id);
+
 
 private:
     Ui::player *ui;

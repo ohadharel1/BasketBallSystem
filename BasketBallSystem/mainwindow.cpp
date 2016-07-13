@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+MainWindow *MainWindow::m_instance = NULL;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -100,6 +102,15 @@ void MainWindow::insertPlayersToSelection(QVector<player *> vector, QGridLayout*
             col++;
         }
     }
+}
+
+MainWindow* MainWindow::getInstance()
+{
+    if(m_instance == NULL)
+    {
+        m_instance = new MainWindow();
+    }
+    return m_instance;
 }
 
 void MainWindow::slotPopulateComboBox(QSqlQueryModel *model)
@@ -203,7 +214,39 @@ void MainWindow::slotSortPlayers()
 //    qDebug() << "shot: " << m_shootingGaurd;
 //    qDebug() << "small: " << m_smallForward;
 //    qDebug() << "power: " << m_powerForward;
-//    qDebug() << "center: " << m_centers;
+    //    qDebug() << "center: " << m_centers;
+}
+
+void MainWindow::slotHandelePlayerPress(int id)
+{
+    player* p = this->getPlayer(id);
+    positionLayout position = (positionLayout)ui->MainWindowPlayerSelectionStackedWidget->currentIndex();
+    switch(position)
+    {
+        case POSITION_LAYOUT_POINT_GAURDS:
+            ui->MainWindowGameManagmentPG = p;
+            ui->MainWindowGameManagmentPGL->setVisible(false);
+            break;
+        case POSITION_LAYOUT_CENTERS:
+            ui->MainWindowGameManagmentC = p;
+            ui->MainWindowGameManagmentCL->setVisible(false);
+            break;
+        case POSITION_LAYOUT_POWER_FORWARD:
+            ui->MainWindowGameManagmentPF = p;
+            ui->MainWindowGameManagmentPFL->setVisible(false);
+            break;
+        case POSITION_LAYOUT_SHOOTING_GAURD:
+            ui->MainWindowGameManagmentSG = p;
+            ui->MainWindowGameManagmentSGL->setVisible(false);
+            break;
+        case POSITION_LAYOUT_SMALL_FORWARD:
+            ui->MainWindowGameManagmentSF = p;
+            ui->MainWindowGameManagmentSFL->setVisible(false);
+            break;
+        default:
+            qDebug() << "bad input at player selection " << position;
+    }
+    GuiFormManager::getInstance()->changeForm( GUI_FORM_GAME_MANAGMENT);
 }
 
 void MainWindow::on_MainWindowTeamSelectionSelectBtn_released()
@@ -220,7 +263,7 @@ void MainWindow::on_MainWindowTeamSelectionEditDataBtn_released()
 
 void MainWindow::on_MainWindowTeamSelectionGameManagmentBtn_released()
 {
-    GuiFormManager::getInstance()->changeForm(GUI_FORM_PLAYER_SELECTION);
+    GuiFormManager::getInstance()->changeForm(GUI_FORM_GAME_MANAGMENT);
 }
 
 
@@ -256,5 +299,11 @@ void MainWindow::on_MainWindowPlayerSelectionPowerForwardBtn_released()
 
 void MainWindow::on_MainWindowPlayerSelectionCenterBtn_released()
 {
+    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_CENTERS);
+}
+
+void MainWindow::on_MainWindowGameManagmentCB_released()
+{
+    GuiFormManager::getInstance()->changeForm(GUI_FORM_PLAYER_SELECTION);
     ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_CENTERS);
 }
