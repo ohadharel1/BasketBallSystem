@@ -23,7 +23,7 @@ class player : public QWidget
     Q_OBJECT
 
 public:
-    explicit player(int id, QString firstName, QString surName, QString teamColor, QWidget *parent = 0);
+    explicit player(int id, QString firstName, QString surName, QString teamColor, QString m_face = NULL, QWidget *parent = 0);
     ~player();
     player* copyPlayer();
 
@@ -46,6 +46,7 @@ private:
     QString m_surName;
     QString m_teamColor;
     QString m_imagePath;
+    QString m_face;
     bool m_playerPositions[POSITION_SIZE];
 };
 

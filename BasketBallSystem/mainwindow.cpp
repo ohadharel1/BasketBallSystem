@@ -61,7 +61,8 @@ bool MainWindow::containID(int id)
 {
     for(int i = 0; i < m_players.size(); ++i)
     {
-        if(m_players[i]->id() == id)
+        int _id = m_players[i]->id();
+        if(_id == id)
         {
             return true;
         }
@@ -122,6 +123,7 @@ void MainWindow::slotReceivePlayearsInTeam(QSqlQuery *query)
     QString firstName;
     QString surName;
     QString teamColor;
+    QString face = NULL;
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
     if(m_players.size() != 0)
@@ -152,7 +154,7 @@ void MainWindow::slotReceivePlayearsInTeam(QSqlQuery *query)
         {
             firstName = query->value(1).toString();
             surName = query->value(2).toString();
-            p = new player(id, firstName, surName, teamColor, this);
+            p = new player(id, firstName, surName, teamColor, face, this);
             p->setPosition(query->value(3).toString());
             if(query->value(4).isValid())
             {

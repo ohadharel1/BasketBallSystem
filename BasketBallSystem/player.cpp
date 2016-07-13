@@ -4,13 +4,14 @@
 #include <QTime>
 
 
-player::player(int id, QString firstName, QString surName, QString teamColor, QWidget *parent) :
+player::player(int id, QString firstName, QString surName, QString teamColor, QString face, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::player),
     m_id(id),
     m_firstName(firstName),
     m_surName(surName),
-    m_teamColor(teamColor)
+    m_teamColor(teamColor),
+    m_face(face)
 {
     ui->setupUi(this);
     init();
@@ -24,7 +25,7 @@ player::~player()
 
 player *player::copyPlayer()
 {
-    player *p = new player(m_id, m_firstName, m_surName, m_teamColor);
+    player *p = new player(m_id, m_firstName, m_surName, m_teamColor, m_face);
     return p;
 }
 
@@ -34,39 +35,41 @@ void player::init()
     {
         m_playerPositions[i] = false;
     }
-    QString face;
-    QTime time = QTime::currentTime();
-    qsrand((uint)time.msec());
-    switch(qrand() % 8 + 0)
+    if(m_face == NULL)
     {
-        case 0:
-            face = "face1";
-            break;
-        case 1:
-            face = "face2";
-            break;
-        case 2:
-            face = "face3";
-            break;
-        case 3:
-            face = "face4";
-            break;
-        case 4:
-            face = "face5";
-            break;
-        case 5:
-            face = "face6";
-            break;
-        case 6:
-            face = "face7";
-            break;
-        case 7:
-            face = "face8";
-            break;
-        default:
-            qDebug() << "face not good";
+        QTime time = QTime::currentTime();
+        qsrand((uint)time.msec());
+        switch(qrand() % 8 + 0)
+        {
+            case 0:
+                m_face = "face1";
+                break;
+            case 1:
+                m_face = "face2";
+                break;
+            case 2:
+                m_face = "face3";
+                break;
+            case 3:
+                m_face = "face4";
+                break;
+            case 4:
+                m_face = "face5";
+                break;
+            case 5:
+                m_face = "face6";
+                break;
+            case 6:
+                m_face = "face7";
+                break;
+            case 7:
+                m_face = "face8";
+                break;
+            default:
+                qDebug() << "face not good";
+        }
     }
-    m_imagePath = "background-image: url(:/Resources/Resources/" + m_teamColor + "/" + face + ".png);";
+    m_imagePath = "background-image: url(:/Resources/Resources/" + m_teamColor + "/" + m_face + ".png);";
     qDebug() << m_imagePath;
     ui->playerPushButton->setStyleSheet(m_imagePath);
     this->setFixedHeight(200);
