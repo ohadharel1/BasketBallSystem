@@ -61,9 +61,18 @@ private slots:
 
     void on_MainWindowPlayerSelectionCenterBtn_released();
 
-    void on_MainWindowGameManagmentCB_released();
 
-    void on_pushButton_released();
+
+
+    void on_MainWindowGameManagmentCortImageSFB_released();
+
+    void on_MainWindowGameManagmentCortImagePGB_released();
+
+    void on_MainWindowGameManagmentCortImageSGB_released();
+
+    void on_MainWindowGameManagmentCortImagePFB_released();
+
+    void on_MainWindowGameManagmentCortImageCB_released();
 
 signals:
     void signalPoulateComboBox(const QString&);

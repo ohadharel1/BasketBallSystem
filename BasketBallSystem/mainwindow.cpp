@@ -225,20 +225,32 @@ void MainWindow::slotHandelePlayerPress(int id)
     {
         case POSITION_LAYOUT_POINT_GAURDS:
 
+        ui->MainWindowGameManagmentCortImagePG->addWidget(p);
+        ui->MainWindowGameManagmentCortImagePG->setCurrentWidget(p);
+
             break;
         case POSITION_LAYOUT_CENTERS:
 
-            ui->stackedWidget->addWidget(p);
-            ui->stackedWidget->setCurrentWidget(p);
+            ui->MainWindowGameManagmentCortImageC->addWidget(p);
+            ui->MainWindowGameManagmentCortImageC->setCurrentWidget(p);
 
             break;
         case POSITION_LAYOUT_POWER_FORWARD:
 
+        ui->MainWindowGameManagmentCortImagePF->addWidget(p);
+        ui->MainWindowGameManagmentCortImagePF->setCurrentWidget(p);
+
             break;
         case POSITION_LAYOUT_SHOOTING_GAURD:
 
+        ui->MainWindowGameManagmentCortImageSG->addWidget(p);
+        ui->MainWindowGameManagmentCortImageSG->setCurrentWidget(p);
+
             break;
         case POSITION_LAYOUT_SMALL_FORWARD:
+
+        ui->MainWindowGameManagmentCortImageSF->addWidget(p);
+        ui->MainWindowGameManagmentCortImageSF->setCurrentWidget(p);
 
             break;
         default:
@@ -300,13 +312,32 @@ void MainWindow::on_MainWindowPlayerSelectionCenterBtn_released()
     ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_CENTERS);
 }
 
-void MainWindow::on_MainWindowGameManagmentCB_released()
+
+void MainWindow::on_MainWindowGameManagmentCortImageSFB_released()
 {
     GuiFormManager::getInstance()->changeForm(GUI_FORM_PLAYER_SELECTION);
-    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_CENTERS);
+    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_SMALL_FORWARD);
 }
 
-void MainWindow::on_pushButton_released()
+void MainWindow::on_MainWindowGameManagmentCortImagePGB_released()
+{
+    GuiFormManager::getInstance()->changeForm(GUI_FORM_PLAYER_SELECTION);
+    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_POINT_GAURDS);
+}
+
+void MainWindow::on_MainWindowGameManagmentCortImageSGB_released()
+{
+    GuiFormManager::getInstance()->changeForm(GUI_FORM_PLAYER_SELECTION);
+    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_SHOOTING_GAURD);
+}
+
+void MainWindow::on_MainWindowGameManagmentCortImagePFB_released()
+{
+    GuiFormManager::getInstance()->changeForm(GUI_FORM_PLAYER_SELECTION);
+    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_POWER_FORWARD);
+}
+
+void MainWindow::on_MainWindowGameManagmentCortImageCB_released()
 {
     GuiFormManager::getInstance()->changeForm(GUI_FORM_PLAYER_SELECTION);
     ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_CENTERS);
