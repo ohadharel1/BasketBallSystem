@@ -23,6 +23,38 @@ enum positionLayout
     POSITION_LAYOUT_SIZE
 };
 
+enum Querys
+{
+    Query_1,
+    Query_2,
+    Query_3,
+    Query_4,
+    Query_5,
+    Query_6,
+    Query_7,
+    Query_size
+};
+
+enum Tables
+{
+    Table_1,
+    Table_2,
+    Table_3,
+    Table_4,
+    Table_5,
+    Table_6,
+    Table_7,
+    Table_8,
+    Table_9,
+    Table_10,
+    Table_11,
+    Table_12,
+    Table_13,
+    Table_14,
+    Table_15
+
+};
+
 namespace Ui {
 class MainWindow;
 }
@@ -42,6 +74,8 @@ private slots:
     void slotSortPlayers();
     void slotHandelePlayerPress(int id);
     void slotEntranceForm(bool);
+    void slotHandleQuery(QSqlQueryModel *model);
+    void slotHandleTable(QSqlTableModel*);
 
     void on_MainWindowTeamSelectionSelectBtn_released();
 
@@ -80,10 +114,18 @@ private slots:
 
     void on_MainWindowBottomToolbarHomeBtn_released();
 
+    void on_MainWindowEditPlayersQCB_currentIndexChanged(int index);
+
+
+
+    void on_MainWindowEditPlayersTCB_currentIndexChanged(int index);
+
 signals:
     void signalPoulateComboBox(const QString&);
     void signalGetPlayersInTeam(const QString&, const QString&);
     void signalSortPlayers();
+    void signalDisplayQuery(const QString&);
+    void signalDisplayTable(const QString &tableName);
 
 private:
     explicit MainWindow(QWidget *parent = 0);

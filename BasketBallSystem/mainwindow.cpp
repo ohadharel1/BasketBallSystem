@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "tabledelegate.h"
 
 MainWindow *MainWindow::m_instance = NULL;
 
@@ -42,6 +41,10 @@ void MainWindow::initConnections()
     connect(DBManager::getInstance(), SIGNAL(signalParameterQueryResult(QSqlQuery*)), this, SLOT(slotReceivePlayearsInTeam(QSqlQuery *)));
     connect(this, SIGNAL(signalSortPlayers()), this, SLOT(slotSortPlayers()));
     connect(GuiFormManager::getInstance(), SIGNAL(signalEntrance(bool)), this, SLOT(slotEntranceForm(bool)));
+    connect(this, SIGNAL(signalDisplayQuery(const QString)), DBManager::getInstance(), SLOT(slotDisplayQuery(const QString)));
+    connect(DBManager::getInstance(), SIGNAL(signalQueryResult(QSqlQueryModel *)), this, SLOT(slotHandleQuery(QSqlQueryModel*)));
+    connect(this, SIGNAL(signalDisplayTable(const QString)), DBManager::getInstance(), SLOT(slotDisplayTable(const QString)));
+    connect(DBManager::getInstance(), SIGNAL(signalTableResult(QSqlTableModel *)), this, SLOT(slotHandleTable(QSqlTableModel*)));
 
 }
 
@@ -290,7 +293,7 @@ void MainWindow::on_MainWindowTeamSelectionSelectBtn_released()
 
 void MainWindow::on_MainWindowTeamSelectionEditDataBtn_released()
 {
-
+   GuiFormManager::getInstance()->changeForm(GUI_FORM_EDIT_PLAYERS);
 }
 
 void MainWindow::on_MainWindowTeamSelectionGameManagmentBtn_released()
@@ -373,4 +376,119 @@ void MainWindow::on_MainWindowBottomToolbarReturnBtn_released()
 void MainWindow::on_MainWindowBottomToolbarHomeBtn_released()
 {
     GuiFormManager::getInstance()->goHome();
+}
+
+void MainWindow::on_MainWindowEditPlayersQCB_currentIndexChanged(int index)
+{
+    switch (index)
+     {
+       case Query_1:
+         emit(signalDisplayQuery("Query1"));
+        break;
+
+       case Query_2:
+         emit(signalDisplayQuery("Query2"));
+        break;
+
+       case Query_3:
+        emit(signalDisplayQuery("Query3"));
+        break;
+
+       case Query_4:
+         emit(signalDisplayQuery("Query4"));
+        break;
+
+    case Query_5:
+      emit(signalDisplayQuery("Query5"));
+     break;
+
+    case Query_6:
+     emit(signalDisplayQuery("Query6"));
+     break;
+
+    case Query_7:
+      emit(signalDisplayQuery("Query7"));
+     break;
+    default:
+        qDebug() << "bad query number" ;
+
+    }
+
+}
+void MainWindow::slotHandleQuery(QSqlQueryModel *model)
+{
+    ui->MainWindowEditPlayersQTV->setModel(model);
+}
+
+
+
+void MainWindow::on_MainWindowEditPlayersTCB_currentIndexChanged(int index)
+{
+   switch (index)
+   {
+    case Table_1:
+       emit(signalDisplayTable("AssistanceTrainer"));
+       break;
+
+   case Table_2:
+      emit(signalDisplayTable("Cheerleaders"));
+      break;
+
+   case Table_3:
+      emit(signalDisplayTable("Game"));
+      break;
+
+   case Table_4:
+      emit(signalDisplayTable("League"));
+      break;
+
+   case Table_5:
+      emit(signalDisplayTable("MainTrainer"));
+      break;
+
+   case Table_6:
+      emit(signalDisplayTable("Player"));
+      break;
+
+   case Table_7:
+      emit(signalDisplayTable("PlayesIn"));
+      break;
+
+   case Table_8:
+      emit(signalDisplayTable("Position"));
+      break;
+
+   case Table_9:
+      emit(signalDisplayTable("Season"));
+      break;
+
+   case Table_10:
+      emit(signalDisplayTable("SeasonCycle"));
+      break;
+
+   case Table_11:
+      emit(signalDisplayTable("SecondaryPosition"));
+      break;
+
+   case Table_12:
+      emit(signalDisplayTable("Statistic"));
+      break;
+
+   case Table_13:
+      emit(signalDisplayTable("Team"));
+      break;
+
+   case Table_14:
+      emit(signalDisplayTable("TeamInLeague"));
+      break;
+
+   case Table_15:
+      emit(signalDisplayTable("Trainer"));
+      break;
+   }
+}
+void MainWindow::slotHandleTable(QSqlTableModel *model)
+{
+    model->insertRows(model->rowCount(), 1);
+    ui->MainWindowEditPlayersQTV->setModel(model);
 }

@@ -54,10 +54,13 @@ background-image: url(:/Resources/Resources/basketBallCourtFullBlue1.jpg);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">#MainWindowEditPlayers
+{
+background-image: url(:/Resources/Resources/backGroundOrange.png);
+}</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="MainWindowEntrance">
      <property name="styleSheet">
@@ -933,6 +936,207 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
         </attribute>
        </widget>
       </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="MainWindowEditPlayers">
+     <property name="styleSheet">
+      <string notr="true">MainWindowEditPlayers
+{
+background-image: url(:/Resources/Resources/backGroundOrange.png);
+}</string>
+     </property>
+     <widget class="QComboBox" name="MainWindowEditPlayersQCB">
+      <property name="geometry">
+       <rect>
+        <x>754</x>
+        <y>100</y>
+        <width>461</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג מאמנים ראשיים חדשים</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג שחקנים בעלי כמות ריבאונדים שגדולה מכמות אסיסטים </string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג כמות נצחונות והפסדים במשחקי בית עבור כל שחקן </string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג שחקנים נאמנים </string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג שחקנים שמשחקים בקבוצה בעלת אותה חברה מנהלת  של קבוצת המעודדות  , שיחקו בעשר קבוצות שונות בקריירה ובנוסף יכולים לשחק בלפחות 3 עמדות משניות</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג ניקוד קבוצות</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג ציון של הקבוצות בכל משחק </string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="MainWindowEditPlayersQL">
+      <property name="geometry">
+       <rect>
+        <x>1044</x>
+        <y>70</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>אנא בחר שאילתה :</string>
+      </property>
+     </widget>
+     <widget class="QTableView" name="MainWindowEditPlayersQTV">
+      <property name="geometry">
+       <rect>
+        <x>35</x>
+        <y>31</y>
+        <width>701</width>
+        <height>621</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTableView {background-color: transparent;}
+              QHeaderView::section {background-color: transparent;}
+              QHeaderView {background-color: transparent;}
+              QTableCornerButton::section {background-color: transparent;}</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="MainWindowEditPlayersTCB">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>240</y>
+        <width>451</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>הצג עוזרי מאמן</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג מעודדות</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג משחקים</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג ליגות </string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג מאמנים ראשיים</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג שחקנים</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג משחקים בקבוצה</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג עמדות</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג עונות</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג מחזורים</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג עמדות משניות</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג סטטיסטיקות</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג קבוצות</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג קבוצות בליגה</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג מאמנים</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="MainWindowEditPlayersTL">
+      <property name="geometry">
+       <rect>
+        <x>1044</x>
+        <y>210</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>אנא בחר טבלה :</string>
+      </property>
      </widget>
     </widget>
    </widget>
