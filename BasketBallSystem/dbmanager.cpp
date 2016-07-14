@@ -1,5 +1,6 @@
 #include "dbmanager.h"
 #include <QFile>
+#include "popupmessagedialog.h"
 
 DBManager *DBManager::m_instance = NULL;
 
@@ -56,7 +57,7 @@ QSqlTableModel* DBManager::getTableModel() const
     return m_tableModel;
 }
 
-void DBManager::processLineFromCSV(QString line)
+bool DBManager::processLineFromCSV(QString line)
 {
     QStringList strings = line.split(",");
     m_tableModel->setTable("TeamInLeague");
@@ -70,15 +71,19 @@ void DBManager::processLineFromCSV(QString line)
     if(m_tableModel->submitAll())
     {
         m_tableModel->database().commit();
+        return true;
 
     }
     else
     {
         m_tableModel->database().rollback();
+        QString error = "Database Write Error. The database reported an error: " + this->m_tableModel->lastError().text();
+        popupMessageDialog::getInstance()->addText(error);
         qDebug() << "Database Write Error" <<
                          "The database reported an error: " <<
                            this->m_tableModel->lastError().text();
     }
+    return false;
 }
 
 
@@ -131,6 +136,8 @@ void DBManager::slotHandleRequest()
 
 void DBManager::slotHandleCSVProccessRequest(const QString &path)
 {
+    int numOfLines = 0;
+    int numOfErrors = 0;
     QFile file(path);
     if(file.open(QIODevice::ReadOnly))
     {
@@ -141,14 +148,19 @@ void DBManager::slotHandleCSVProccessRequest(const QString &path)
         m_tableModel->select();
         while(file.atEnd() == false)
         {
+            ++numOfLines;
             QString line = file.readLine();
             line.remove(QRegExp("\r"));
             line.remove(QRegExp("\n"));
-            processLineFromCSV(line);
+            if(processLineFromCSV(line) == false)
+            {
+                ++numOfErrors;
+            }
         }
         file.close();
         m_tableModel->select();
-
+        popupMessageDialog::getInstance()->setCSVResult(numOfLines, numOfErrors);
+        popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_CSV_SUM);
     }
     else
     {

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "popupmessagedialog.h"
 
 MainWindow *MainWindow::m_instance = NULL;
 
@@ -21,7 +22,8 @@ void MainWindow::init()
 {
     initConnections();
     initLayOut();
-
+    //popupMessageDialog *p = new popupMessageDialog(this);
+    //p->show();
 }
 
 void MainWindow::initLayOut()

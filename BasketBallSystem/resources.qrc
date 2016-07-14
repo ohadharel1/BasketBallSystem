@@ -25,6 +25,10 @@
         <file>Resources/redTeam/face8.png</file>
         <file>Resources/backBtn.png</file>
         <file>Resources/homeBtn.png</file>
+        <file>Resources/detalesBtn.png</file>
+        <file>Resources/OKBtn.png</file>
+        <file>Resources/popupError.png</file>
+        <file>Resources/popupInfo.png</file>
     </qresource>
     <qresource prefix="/">
         <file>Resources/editBtn.png</file>

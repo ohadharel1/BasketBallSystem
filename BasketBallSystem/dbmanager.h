@@ -15,7 +15,7 @@ public:
     void initDBLink();
     void initConnections();
     QSqlTableModel* getTableModel() const;
-    void processLineFromCSV(QString line);
+    bool processLineFromCSV(QString line);
 
 public slots:
     void slotDisplayQuery(const QString);

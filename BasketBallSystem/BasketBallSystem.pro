@@ -21,19 +21,22 @@ SOURCES += main.cpp\
     fileexplorer.cpp \
     mainwindowlayout.cpp \
     guiformmanager.cpp \
-    player.cpp
+    player.cpp \
+    popupmessagedialog.cpp
 
 HEADERS  += mainwindow.h \
     dbmanager.h \
     fileexplorer.h \
     mainwindowlayout.h \
     guiformmanager.h \
-    player.h
+    player.h \
+    popupmessagedialog.h
 
 FORMS    += mainwindow.ui \
     fileexplorer.ui \
     mainwindowlayout.ui \
-    player.ui
+    player.ui \
+    popupmessagedialog.ui
 
 RESOURCES += \
     resources.qrc
