@@ -29,6 +29,7 @@ void MainWindow::initLayOut()
     ui->MainWindowStackedWidget->setCurrentIndex(GUI_FORM_ENTRANCE);
     QTimer::singleShot(3000, this, SLOT(slotTime()));
     emit signalPoulateComboBox("teamNames");
+    ui->MainWindowBottomToolbar->setVisible(false);
 }
 
 void MainWindow::initConnections()
@@ -39,6 +40,8 @@ void MainWindow::initConnections()
     connect(this, SIGNAL(signalGetPlayersInTeam(QString,QString)), DBManager::getInstance(), SLOT(slotDisplayQueryWithArg(QString,QString)));
     connect(DBManager::getInstance(), SIGNAL(signalParameterQueryResult(QSqlQuery*)), this, SLOT(slotReceivePlayearsInTeam(QSqlQuery *)));
     connect(this, SIGNAL(signalSortPlayers()), this, SLOT(slotSortPlayers()));
+    connect(GuiFormManager::getInstance(), SIGNAL(signalEntrance(bool)), this, SLOT(slotEntranceForm(bool)));
+
 }
 
 void MainWindow::deletePlayers()
@@ -257,6 +260,18 @@ void MainWindow::slotHandelePlayerPress(int id)
     GuiFormManager::getInstance()->changeForm( GUI_FORM_GAME_MANAGMENT);
 }
 
+void MainWindow::slotEntranceForm(bool enter)
+{
+    if(enter == true)
+    {
+        ui->MainWindowBottomToolbar->setVisible(false);
+    }
+    else
+    {
+        ui->MainWindowBottomToolbar->setVisible(true);
+    }
+}
+
 void MainWindow::on_MainWindowTeamSelectionSelectBtn_released()
 {
     ui->MainWindowTeamSelectionEditDataBtn->setEnabled(true);
@@ -341,7 +356,12 @@ void MainWindow::on_MainWindowGameManagmentCortImageCB_released()
     ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_CENTERS);
 }
 
-void MainWindow::on_returnBtn_released()
+void MainWindow::on_MainWindowBottomToolbarReturnBtn_released()
 {
     GuiFormManager::getInstance()->goBack();
+}
+
+void MainWindow::on_MainWindowBottomToolbarHomeBtn_released()
+{
+    GuiFormManager::getInstance()->goHome();
 }

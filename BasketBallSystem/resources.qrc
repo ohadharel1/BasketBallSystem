@@ -23,8 +23,12 @@
         <file>Resources/redTeam/face6.png</file>
         <file>Resources/redTeam/face7.png</file>
         <file>Resources/redTeam/face8.png</file>
+        <file>Resources/backBtn.png</file>
+        <file>Resources/homeBtn.png</file>
     </qresource>
     <qresource prefix="/">
         <file>Resources/editBtn.png</file>
+        <file>Resources/backBtn.png</file>
+        <file>Resources/homeBtn.png</file>
     </qresource>
 </RCC>

@@ -40,6 +40,7 @@ private slots:
     void slotReceivePlayearsInTeam(QSqlQuery*);
     void slotSortPlayers();
     void slotHandelePlayerPress(int id);
+    void slotEntranceForm(bool);
 
     void on_MainWindowTeamSelectionSelectBtn_released();
 
@@ -74,7 +75,9 @@ private slots:
 
     void on_MainWindowGameManagmentCortImageCB_released();
 
-    void on_returnBtn_released();
+    void on_MainWindowBottomToolbarReturnBtn_released();
+
+    void on_MainWindowBottomToolbarHomeBtn_released();
 
 signals:
     void signalPoulateComboBox(const QString&);

@@ -18,9 +18,10 @@ GuiFormManager::~GuiFormManager()
 
 void GuiFormManager::exitForm()
 {
-    switch(m_formStack.pop())
+    switch(m_formStack.top())
     {
         case GUI_FORM_ENTRANCE:
+            m_formStack.pop();
             emit signalEntrance(false);
             break;
         case GUI_FORM_PLAYER_SELECTION:
@@ -70,13 +71,17 @@ GuiFormManager *GuiFormManager::getInstance()
 
 void GuiFormManager::changeForm(GuiForms newForm)
 {
-    if(newForm != m_formStack.top())
+    if(m_formStack.size() > 0)
     {
+        if(newForm == m_formStack.top())
+        {
+            return;
+        }
         this->exitForm();
-        m_formStack.push(newForm);
-        emit signalChangeForm(newForm);
-        this->enterForm(newForm);
     }
+    m_formStack.push(newForm);
+    emit signalChangeForm(newForm);
+    this->enterForm(newForm);
 }
 
 GuiForms GuiFormManager::getCurrentForm()
@@ -92,9 +97,13 @@ void GuiFormManager::goHome()
 
 void GuiFormManager::goBack()
 {
-    this->exitForm();
-    emit signalChangeForm(m_formStack.top());
-    this->enterForm(m_formStack.top());
+    if(m_formStack.size() > 1)
+    {
+        exitForm();
+        m_formStack.pop();
+        emit signalChangeForm(m_formStack.top());
+        enterForm(m_formStack.top());
+    }
 }
 
 
