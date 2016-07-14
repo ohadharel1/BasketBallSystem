@@ -120,12 +120,15 @@ private slots:
 
     void on_MainWindowEditPlayersTCB_currentIndexChanged(int index);
 
+    void on_MainWindowEditPlayersAdd_released();
+
 signals:
     void signalPoulateComboBox(const QString&);
     void signalGetPlayersInTeam(const QString&, const QString&);
     void signalSortPlayers();
     void signalDisplayQuery(const QString&);
     void signalDisplayTable(const QString &tableName);
+     void signalSubmitReq();
 
 private:
     explicit MainWindow(QWidget *parent = 0);
@@ -146,6 +149,8 @@ private:
     QVector<player*> m_smallForward;
     QVector<player*> m_powerForward;
     QVector<player*> m_centers;
+    QString m_curTable;
+    QString m_curQuery;
 
 };
 

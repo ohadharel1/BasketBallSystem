@@ -47,6 +47,7 @@ void MainWindow::initConnections()
     connect(DBManager::getInstance(), SIGNAL(signalQueryResult(QSqlQueryModel *)), this, SLOT(slotHandleQuery(QSqlQueryModel*)));
     connect(this, SIGNAL(signalDisplayTable(const QString)), DBManager::getInstance(), SLOT(slotDisplayTable(const QString)));
     connect(DBManager::getInstance(), SIGNAL(signalTableResult(QSqlTableModel *)), this, SLOT(slotHandleTable(QSqlTableModel*)));
+       connect(this, SIGNAL(signalSubmitReq()), DBManager::getInstance(), SLOT(slotHandleRequest()));
 
 }
 
@@ -493,4 +494,10 @@ void MainWindow::slotHandleTable(QSqlTableModel *model)
 {
     model->insertRows(model->rowCount(), 1);
     ui->MainWindowEditPlayersQTV->setModel(model);
+}
+
+void MainWindow::on_MainWindowEditPlayersAdd_released()
+{
+    emit(signalSubmitReq());
+    emit(signalDisplayTable(m_curTable));
 }
