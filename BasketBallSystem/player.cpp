@@ -74,7 +74,8 @@ void player::init()
     m_imagePath = "background-image: url(:/Resources/Resources/" + m_teamColor + "/" + m_face + ".png);";
     qDebug() << m_imagePath;
     ui->playerPushButton->setStyleSheet(m_imagePath);
-    this->setFixedHeight(100);
+    ui->PlayerNameLabel->setText(m_firstName + "\n" + m_surName);
+    this->setFixedHeight(140);
     this->setFixedWidth(100);
 }
 

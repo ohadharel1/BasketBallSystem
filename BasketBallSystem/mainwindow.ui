@@ -57,7 +57,7 @@ background-image: url(:/Resources/Resources/basketBallCourtFullBlue1.jpg);
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="MainWindowEntrance">
      <property name="styleSheet">
@@ -400,7 +400,7 @@ background-image: url(:/Resources/Resources/halfCourt.png);
      <widget class="QPushButton" name="MainWindowGameManagmentCortImageCB">
       <property name="geometry">
        <rect>
-        <x>480</x>
+        <x>440</x>
         <y>170</y>
         <width>81</width>
         <height>21</height>
@@ -418,10 +418,10 @@ background-color: rgb(0, 0, 0);</string>
      <widget class="QStackedWidget" name="MainWindowGameManagmentCortImageC">
       <property name="geometry">
        <rect>
-        <x>470</x>
-        <y>60</y>
+        <x>430</x>
+        <y>30</y>
         <width>100</width>
-        <height>100</height>
+        <height>140</height>
        </rect>
       </property>
       <widget class="QWidget" name="page"/>
@@ -429,10 +429,10 @@ background-color: rgb(0, 0, 0);</string>
      <widget class="QStackedWidget" name="MainWindowGameManagmentCortImageSF">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>230</y>
+        <x>420</x>
+        <y>210</y>
         <width>100</width>
-        <height>100</height>
+        <height>140</height>
        </rect>
       </property>
       <widget class="QWidget" name="page_2"/>
@@ -441,8 +441,8 @@ background-color: rgb(0, 0, 0);</string>
      <widget class="QPushButton" name="MainWindowGameManagmentCortImageSFB">
       <property name="geometry">
        <rect>
-        <x>440</x>
-        <y>340</y>
+        <x>430</x>
+        <y>350</y>
         <width>81</width>
         <height>21</height>
        </rect>
@@ -458,10 +458,10 @@ color: rgb(255, 255, 255);</string>
      <widget class="QStackedWidget" name="MainWindowGameManagmentCortImagePG">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>310</y>
+        <x>260</x>
+        <y>260</y>
         <width>100</width>
-        <height>100</height>
+        <height>140</height>
        </rect>
       </property>
       <widget class="QWidget" name="page_4"/>
@@ -471,7 +471,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>270</x>
-        <y>415</y>
+        <y>400</y>
         <width>81</width>
         <height>21</height>
        </rect>
@@ -490,7 +490,7 @@ color: rgb(255, 255, 255);</string>
         <x>90</x>
         <y>230</y>
         <width>100</width>
-        <height>100</height>
+        <height>140</height>
        </rect>
       </property>
       <widget class="QWidget" name="page_6"/>
@@ -500,7 +500,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>100</x>
-        <y>340</y>
+        <y>370</y>
         <width>81</width>
         <height>21</height>
        </rect>
@@ -516,10 +516,10 @@ color: rgb(255, 255, 255);</string>
      <widget class="QStackedWidget" name="MainWindowGameManagmentCortImagePF">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>60</y>
+        <x>80</x>
+        <y>30</y>
         <width>100</width>
-        <height>100</height>
+        <height>140</height>
        </rect>
       </property>
       <widget class="QWidget" name="page_8"/>
@@ -528,7 +528,7 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="MainWindowGameManagmentCortImagePFB">
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>90</x>
         <y>170</y>
         <width>81</width>
         <height>21</height>
@@ -646,129 +646,291 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
        </rect>
       </property>
       <widget class="QWidget" name="MainWindowPlayerSelectionAllPlayersPage">
-       <widget class="QWidget" name="gridLayoutWidget_2">
+       <widget class="QTableWidget" name="MainWindowPlayerSelectionAllPlayersTable">
         <property name="geometry">
          <rect>
-          <x>-1</x>
-          <y>0</y>
-          <width>931</width>
-          <height>641</height>
+          <x>70</x>
+          <y>100</y>
+          <width>681</width>
+          <height>441</height>
          </rect>
         </property>
-        <layout class="QGridLayout" name="MainWindowPlayerSelectionAllPlayersLayout" rowstretch="0" columnstretch="0" rowminimumheight="0">
-         <property name="sizeConstraint">
-          <enum>QLayout::SetNoConstraint</enum>
-         </property>
-         <property name="horizontalSpacing">
-          <number>50</number>
-         </property>
-         <property name="verticalSpacing">
-          <number>210</number>
-         </property>
-        </layout>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTableWidget {background-color: transparent;}
+              QHeaderView::section {background-color: transparent;}
+              QHeaderView {background-color: transparent;}
+              QTableCornerButton::section {background-color: transparent;}</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="showGrid">
+         <bool>false</bool>
+        </property>
+        <property name="gridStyle">
+         <enum>Qt::NoPen</enum>
+        </property>
+        <attribute name="horizontalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="horizontalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
        </widget>
       </widget>
       <widget class="QWidget" name="MainWindowPlayerSelectionPointGaurdsPage">
-       <widget class="QWidget" name="gridLayoutWidget_3">
+       <widget class="QTableWidget" name="MainWindowPlayerSelectionPointGaurdsTable">
         <property name="geometry">
          <rect>
-          <x>-1</x>
-          <y>0</y>
-          <width>931</width>
-          <height>641</height>
+          <x>70</x>
+          <y>100</y>
+          <width>681</width>
+          <height>441</height>
          </rect>
         </property>
-        <layout class="QGridLayout" name="MainWindowPlayerSelectionPointGaurdsLayout">
-         <property name="sizeConstraint">
-          <enum>QLayout::SetNoConstraint</enum>
-         </property>
-         <property name="horizontalSpacing">
-          <number>50</number>
-         </property>
-         <property name="verticalSpacing">
-          <number>250</number>
-         </property>
-        </layout>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTableWidget {background-color: transparent;}
+              QHeaderView::section {background-color: transparent;}
+              QHeaderView {background-color: transparent;}
+              QTableCornerButton::section {background-color: transparent;}</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="showGrid">
+         <bool>false</bool>
+        </property>
+        <property name="gridStyle">
+         <enum>Qt::NoPen</enum>
+        </property>
+        <attribute name="horizontalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="horizontalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
        </widget>
       </widget>
       <widget class="QWidget" name="MainWindowPlayerSelectionShootingGaurdPage">
-       <widget class="QWidget" name="gridLayoutWidget_5">
+       <widget class="QTableWidget" name="MainWindowPlayerSelectionShootingGaurdTable">
         <property name="geometry">
          <rect>
-          <x>-1</x>
-          <y>0</y>
-          <width>931</width>
-          <height>641</height>
+          <x>70</x>
+          <y>100</y>
+          <width>681</width>
+          <height>441</height>
          </rect>
         </property>
-        <layout class="QGridLayout" name="MainWindowPlayerSelectionShootingGaurdLayout">
-         <property name="horizontalSpacing">
-          <number>50</number>
-         </property>
-         <property name="verticalSpacing">
-          <number>250</number>
-         </property>
-        </layout>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTableWidget {background-color: transparent;}
+              QHeaderView::section {background-color: transparent;}
+              QHeaderView {background-color: transparent;}
+              QTableCornerButton::section {background-color: transparent;}</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="showGrid">
+         <bool>false</bool>
+        </property>
+        <property name="gridStyle">
+         <enum>Qt::NoPen</enum>
+        </property>
+        <attribute name="horizontalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="horizontalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
        </widget>
       </widget>
       <widget class="QWidget" name="MainWindowPlayerSelectionSmallForwardPage">
-       <widget class="QWidget" name="gridLayoutWidget_4">
+       <widget class="QTableWidget" name="MainWindowPlayerSelectionSmallForwardTable">
         <property name="geometry">
          <rect>
-          <x>-1</x>
-          <y>0</y>
-          <width>931</width>
-          <height>641</height>
+          <x>70</x>
+          <y>100</y>
+          <width>681</width>
+          <height>441</height>
          </rect>
         </property>
-        <layout class="QGridLayout" name="MainWindowPlayerSelectionSmallForwardLayout">
-         <property name="horizontalSpacing">
-          <number>50</number>
-         </property>
-         <property name="verticalSpacing">
-          <number>250</number>
-         </property>
-        </layout>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTableWidget {background-color: transparent;}
+              QHeaderView::section {background-color: transparent;}
+              QHeaderView {background-color: transparent;}
+              QTableCornerButton::section {background-color: transparent;}</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="showGrid">
+         <bool>false</bool>
+        </property>
+        <property name="gridStyle">
+         <enum>Qt::NoPen</enum>
+        </property>
+        <attribute name="horizontalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="horizontalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
        </widget>
       </widget>
       <widget class="QWidget" name="MainWindowPlayerSelectionPowerForwardPage">
-       <widget class="QWidget" name="gridLayoutWidget_6">
+       <widget class="QTableWidget" name="MainWindowPlayerSelectionPowerForwardTable">
         <property name="geometry">
          <rect>
-          <x>-1</x>
-          <y>0</y>
-          <width>931</width>
-          <height>641</height>
+          <x>70</x>
+          <y>100</y>
+          <width>681</width>
+          <height>441</height>
          </rect>
         </property>
-        <layout class="QGridLayout" name="MainWindowPlayerSelectionPowerForwardLayout">
-         <property name="horizontalSpacing">
-          <number>50</number>
-         </property>
-         <property name="verticalSpacing">
-          <number>250</number>
-         </property>
-        </layout>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTableWidget {background-color: transparent;}
+              QHeaderView::section {background-color: transparent;}
+              QHeaderView {background-color: transparent;}
+              QTableCornerButton::section {background-color: transparent;}</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="showGrid">
+         <bool>false</bool>
+        </property>
+        <property name="gridStyle">
+         <enum>Qt::NoPen</enum>
+        </property>
+        <attribute name="horizontalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="horizontalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
        </widget>
       </widget>
       <widget class="QWidget" name="MainWindowPlayerSelectionCentersPage">
-       <widget class="QWidget" name="gridLayoutWidget">
+       <widget class="QTableWidget" name="MainWindowPlayerSelectionCentersTable">
         <property name="geometry">
          <rect>
-          <x>-1</x>
-          <y>0</y>
-          <width>931</width>
-          <height>641</height>
+          <x>70</x>
+          <y>100</y>
+          <width>681</width>
+          <height>441</height>
          </rect>
         </property>
-        <layout class="QGridLayout" name="MainWindowPlayerSelectionCentersLayout">
-         <property name="horizontalSpacing">
-          <number>50</number>
-         </property>
-         <property name="verticalSpacing">
-          <number>250</number>
-         </property>
-        </layout>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTableWidget {background-color: transparent;}
+              QHeaderView::section {background-color: transparent;}
+              QHeaderView {background-color: transparent;}
+              QTableCornerButton::section {background-color: transparent;}</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="showGrid">
+         <bool>false</bool>
+        </property>
+        <property name="gridStyle">
+         <enum>Qt::NoPen</enum>
+        </property>
+        <attribute name="horizontalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="horizontalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
        </widget>
       </widget>
      </widget>

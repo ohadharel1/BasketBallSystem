@@ -6,6 +6,7 @@
 #include <QStackedWidget>
 #include <QGridLayout>
 #include <QVector>
+#include <QTableWidget>
 #include "player.h"
 #include "dbmanager.h"
 #include "guiformmanager.h"
@@ -93,7 +94,7 @@ private:
     void deletePlayers();
     bool containID(int id);
     player* getPlayer(int id);
-    void insertPlayersToSelection(QVector<player*> vector, QGridLayout* layout);
+    void insertPlayersToSelection(QVector<player*> vector, QTableWidget *table);
 
     static MainWindow* m_instance;
     Ui::MainWindow *ui;

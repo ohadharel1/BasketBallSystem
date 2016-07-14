@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "tabledelegate.h"
 
 MainWindow *MainWindow::m_instance = NULL;
 
@@ -87,8 +88,14 @@ player* MainWindow::getPlayer(int id)
     return NULL;
 }
 
-void MainWindow::insertPlayersToSelection(QVector<player *> vector, QGridLayout* layout)
+void MainWindow::insertPlayersToSelection(QVector<player *> vector, QTableWidget *table)
 {
+    table->setColumnCount(3);
+    table->setColumnWidth(0, 200);
+    table->setColumnWidth(1, 200);
+    table->setColumnWidth(2, 200);
+    table->setRowCount(1);
+    table->setRowHeight(0, 170);
     int row = 0;
     int col = 0;
     for(int i = 0; i < vector.size(); ++i)
@@ -98,10 +105,12 @@ void MainWindow::insertPlayersToSelection(QVector<player *> vector, QGridLayout*
             if(col == 3)
             {
                 row++;
+                table->setRowCount(row + 1);
+                table->setRowHeight(row, 170);
                 col = 0;
             }
             player* p = vector[i]->copyPlayer();
-            layout->addWidget(p, row, col, 100, 3);
+            table->setCellWidget(row, col, p);
             col++;
         }
     }
@@ -206,12 +215,12 @@ void MainWindow::slotSortPlayers()
             m_centers.append(m_players[i]);
         }
     }
-    this->insertPlayersToSelection(m_players, ui->MainWindowPlayerSelectionAllPlayersLayout);
-    this->insertPlayersToSelection(m_pointGaurds, ui->MainWindowPlayerSelectionPointGaurdsLayout);
-    this->insertPlayersToSelection(m_smallForward, ui->MainWindowPlayerSelectionSmallForwardLayout);
-    this->insertPlayersToSelection(m_powerForward, ui->MainWindowPlayerSelectionPowerForwardLayout);
-    this->insertPlayersToSelection(m_shootingGaurd, ui->MainWindowPlayerSelectionShootingGaurdLayout);
-    this->insertPlayersToSelection(m_centers, ui->MainWindowPlayerSelectionCentersLayout);
+    this->insertPlayersToSelection(m_players, ui->MainWindowPlayerSelectionAllPlayersTable);
+    this->insertPlayersToSelection(m_pointGaurds, ui->MainWindowPlayerSelectionPointGaurdsTable);
+    this->insertPlayersToSelection(m_smallForward, ui->MainWindowPlayerSelectionSmallForwardTable);
+    this->insertPlayersToSelection(m_powerForward, ui->MainWindowPlayerSelectionPowerForwardTable);
+    this->insertPlayersToSelection(m_shootingGaurd, ui->MainWindowPlayerSelectionShootingGaurdTable);
+    this->insertPlayersToSelection(m_centers, ui->MainWindowPlayerSelectionCentersTable);
 //    qDebug() << "all players: " << m_players;
 //    qDebug() << "point: " << m_pointGaurds;
 //    qDebug() << "shot: " << m_shootingGaurd;
