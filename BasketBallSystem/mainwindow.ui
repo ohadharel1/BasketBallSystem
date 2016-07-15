@@ -1022,7 +1022,7 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
         <x>35</x>
         <y>31</y>
         <width>701</width>
-        <height>621</height>
+        <height>531</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1154,7 +1154,46 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Resources/Resources/addBtn.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="text">
-       <string>הוסף</string>
+       <string>הוסף רשומה</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="MainWindowEditPlayersDelete">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>390</y>
+        <width>112</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>מחק</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="MainWindowEditPlayersSave">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>430</y>
+        <width>112</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>שמור</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="MainWindowEditPlayersUndo">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>470</y>
+        <width>112</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>בטל</string>
       </property>
      </widget>
     </widget>

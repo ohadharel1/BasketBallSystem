@@ -37,6 +37,7 @@ void popupMessageDialog::addText(const QString &text)
 void popupMessageDialog::showPopupMessage(popupMessageType type)
 {
     ui->popupMessageDialogStackedWidget->setCurrentIndex(type);
+    ui->popupMessageDialogDetailBtn->setChecked(false);
     this->show();
 }
 

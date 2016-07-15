@@ -122,7 +122,13 @@ private slots:
 
     void on_MainWindowEditPlayersTCB_currentIndexChanged(int index);
 
-    void on_pushButton_released();
+    void on_MainWindowEditPlayersAdd_released();
+
+    void on_MainWindowEditPlayersDelete_released();
+
+    void on_MainWindowEditPlayersSave_released();
+
+    void on_MainWindowEditPlayersUndo_released();
 
 signals:
     void signalPoulateComboBox(const QString&);
@@ -130,6 +136,8 @@ signals:
     void signalSortPlayers();
     void signalDisplayQuery(const QString&);
     void signalDisplayTable(const QString &tableName);
+    void signalDisplatQueryWithArgs(const QString&, const QStringList&);
+    void signalSubmitReq();
 
 private:
     explicit MainWindow(QWidget *parent = 0);
@@ -141,7 +149,6 @@ private:
     bool containID(int id);
     player* getPlayer(int id);
     void insertPlayersToSelection(QVector<player*> vector, QTableWidget *table);
-    void insertComboBox(Tables table, QSqlTableModel* model);
 
     static MainWindow* m_instance;
     Ui::MainWindow *ui;
@@ -155,6 +162,8 @@ private:
     Querys m_curQueryEnum;
     QString m_curTable;
     QString m_curQuery;
+    QSqlTableModel *m_tableModel;
+    bool m_isNewRecord;
 
 };
 

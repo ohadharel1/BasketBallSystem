@@ -19,7 +19,7 @@ public:
 
 public slots:
     void slotDisplayQuery(const QString);
-    void slotDisplayQueryWithArg(const QString proc, const QString arg);
+    void slotDisplayQueryWithArgs(const QString proc, const QStringList args);
     void slotDisplayTable(const QString);
     void slotHandleRequest();
     void slotHandleCSVProccessRequest(const QString&);

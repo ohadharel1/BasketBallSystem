@@ -100,12 +100,34 @@ void DBManager::slotDisplayQuery(const QString queryName)
     emit signalQueryResult(m_queryModel);
 }
 
-void DBManager::slotDisplayQueryWithArg(const QString proc, const QString arg)
+void DBManager::slotDisplayQueryWithArgs(const QString proc, const QStringList args)
 {
-    this->m_query.prepare("{CALL " + proc + " (:arg)}");
-    this->m_query.bindValue(":arg", arg);
-    this->m_query.exec();
-    //this->m_query.lastError();
+    QString argsForPrepare;
+    int i = 0;
+    argsForPrepare = " (";
+    for(i = 0; i < args.size() - 1; ++i)
+    {
+        argsForPrepare = argsForPrepare + ":arg" + QString::number(i) + ",";
+    }
+    argsForPrepare = argsForPrepare + ":arg" + QString::number(i) + ")}";
+    qDebug() << "*********argsForPrepare************\n" << argsForPrepare << "\n***********************";
+    this->m_query.prepare("{CALL " + proc + argsForPrepare);
+    for(i = 0; i < args.size(); ++i)
+    {
+        if(args[i] == "")
+        {
+            continue;
+        }
+        else
+        {
+            this->m_query.bindValue(":arg" + QString::number(i), args[i]);
+        }
+    }
+    if(this->m_query.exec() == false)
+    {
+        popupMessageDialog::getInstance()->addText(m_query.lastError().text());
+        popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
+    }
     emit signalParameterQueryResult(&m_query);
 }
 

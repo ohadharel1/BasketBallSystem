@@ -39,7 +39,8 @@ void MainWindow::initConnections()
     connect(this, SIGNAL(signalPoulateComboBox(const QString)), DBManager::getInstance(), SLOT(slotDisplayQuery(const QString)));
     connect(DBManager::getInstance(), SIGNAL(signalQueryResult(QSqlQueryModel *)), this, SLOT(slotPopulateComboBox(QSqlQueryModel *)));
     connect(GuiFormManager::getInstance(), SIGNAL(signalChangeForm(GuiForms)), this, SLOT(slotChangeForm(GuiForms)));
-    connect(this, SIGNAL(signalGetPlayersInTeam(QString,QString)), DBManager::getInstance(), SLOT(slotDisplayQueryWithArg(QString,QString)));
+    connect(this, SIGNAL(signalGetPlayersInTeam(QString,QString)), DBManager::getInstance(), SLOT(slotDisplayQueryWithArgs(QString,QStringList)));
+    connect(this, SIGNAL(signalDisplatQueryWithArgs(QString,QStringList)), DBManager::getInstance(), SLOT(slotDisplayQueryWithArgs(QString,QStringList)));
     connect(DBManager::getInstance(), SIGNAL(signalParameterQueryResult(QSqlQuery*)), this, SLOT(slotReceivePlayearsInTeam(QSqlQuery *)));
     connect(this, SIGNAL(signalSortPlayers()), this, SLOT(slotSortPlayers()));
     connect(GuiFormManager::getInstance(), SIGNAL(signalEntrance(bool)), this, SLOT(slotEntranceForm(bool)));
@@ -119,91 +120,6 @@ void MainWindow::insertPlayersToSelection(QVector<player *> vector, QTableWidget
             col++;
         }
     }
-}
-
-void MainWindow::insertComboBox(Tables table, QSqlTableModel *model)
-{
-//    switch (table)
-//    {
-//        case TABLE_League:
-//        case TABLE_Player:
-//        case TABLE_Team:
-//        case TABLE_Trainer:
-//        case TABLE_Season:
-//        case TABLE_AssistanceTrainer:
-//        case TABLE_Cheerleaders:
-//            // do nothing
-//            break;
-//        case TABLE_MainTrainer:
-
-//            break;
-//        case TABLE_Game:
-//            emit(signalDisplayTable("Game"));
-//            m_curTable = TABLE_Game;
-//            break;
-
-
-//            emit(signalDisplayTable("League"));
-//            m_curTable = TABLE_League;
-//            break;
-
-
-//            emit(signalDisplayTable("MainTrainer"));
-//            m_curTable = TABLE_MainTrainer;
-//            break;
-
-//        case TABLE_Player:
-//            emit(signalDisplayTable("Player"));
-//            m_curTable = TABLE_Player;
-//            break;
-
-//        case TABLE_PlayesIn:
-//            emit(signalDisplayTable("PlayesIn"));
-//            m_curTable = TABLE_PlayesIn;
-//            break;
-
-//        case TABLE_Position:
-//            emit(signalDisplayTable("Position"));
-//            m_curTable = TABLE_PlayesIn;
-//            break;
-
-
-//            emit(signalDisplayTable("Season"));
-//            m_curTable = TABLE_Season;
-//            break;
-
-//        case TABLE_SeasonCycle:
-//            emit(signalDisplayTable("SeasonCycle"));
-//            m_curTable = TABLE_SeasonCycle;
-//            break;
-
-//        case TABLE_SecondaryPosition:
-//            emit(signalDisplayTable("SecondaryPosition"));
-//            m_curTable = TABLE_SecondaryPosition;
-//            break;
-
-//        case TABLE_Statistic:
-//            emit(signalDisplayTable("Statistic"));
-//            m_curTable = TABLE_Statistic;
-//            break;
-
-
-//            emit(signalDisplayTable("Team"));
-//            m_curTable = TABLE_Team;
-//            break;
-
-//        case TABLE_TeamInLeague:
-//            emit(signalDisplayTable("TeamInLeague"));
-//            m_curTable = TABLE_TeamInLeague;
-//            break;
-
-
-//            emit(signalDisplayTable("Trainer"));
-//            m_curTable = TABLE_Trainer;
-//            break;
-//        default:
-//            qDebug() << "wrong table selected";
-//    }
 }
 
 MainWindow* MainWindow::getInstance()
@@ -608,13 +524,42 @@ void MainWindow::on_MainWindowEditPlayersTCB_currentIndexChanged(int index)
 }
 void MainWindow::slotHandleTable(QSqlTableModel *model)
 {
-    model->insertRows(model->rowCount(), 1);
     ui->MainWindowEditPlayersQTV->setModel(model);
+    m_tableModel = model;
 }
 
-void MainWindow::on_pushButton_released()
+void MainWindow::on_MainWindowEditPlayersAdd_released()
 {
-//    QSqlTableModel *model = DBManager::getInstance()->getTableModel();
-//    model->insertRows(model->rowCount(), 1);
-//    this->insertComboBox(m_curTable, model);
+    m_tableModel->insertRows(m_tableModel->rowCount(), 1);
+    m_isNewRecord = true;
+}
+
+void MainWindow::on_MainWindowEditPlayersDelete_released()
+{
+
+}
+
+void MainWindow::on_MainWindowEditPlayersSave_released()
+{
+    if(m_isNewRecord == true)
+    {
+        QVariant content;
+        QStringList args;
+        for(int i = 0; i < m_tableModel->columnCount(); ++i)
+        {
+            content = m_tableModel->data(m_tableModel->index(m_tableModel->rowCount() - 1, i), Qt::DisplayRole);
+            args << content.toString();
+        }
+        emit signalDisplatQueryWithArgs("addRecordTo" + m_curTable, args);
+    }
+    emit signalSubmitReq();
+}
+
+void MainWindow::on_MainWindowEditPlayersUndo_released()
+{
+    if(m_isNewRecord == true)
+    {
+        m_isNewRecord = false;
+    }
+
 }
