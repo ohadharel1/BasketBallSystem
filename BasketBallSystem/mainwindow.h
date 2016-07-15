@@ -151,8 +151,10 @@ private:
     QVector<player*> m_smallForward;
     QVector<player*> m_powerForward;
     QVector<player*> m_centers;
-    Tables m_curTable;
-    Querys m_curQuery;
+    Tables m_curTableEnum;
+    Querys m_curQueryEnum;
+    QString m_curTable;
+    QString m_curQuery;
 
 };
 

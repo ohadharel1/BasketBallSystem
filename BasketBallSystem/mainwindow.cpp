@@ -123,87 +123,87 @@ void MainWindow::insertPlayersToSelection(QVector<player *> vector, QTableWidget
 
 void MainWindow::insertComboBox(Tables table, QSqlTableModel *model)
 {
-    switch (table)
-    {
-        case TABLE_League:
-        case TABLE_Player:
-        case TABLE_Team:
-        case TABLE_Trainer:
-        case TABLE_Season:
-        case TABLE_AssistanceTrainer:
-        case TABLE_Cheerleaders:
-            // do nothing
-            break;
-        case TABLE_MainTrainer:
+//    switch (table)
+//    {
+//        case TABLE_League:
+//        case TABLE_Player:
+//        case TABLE_Team:
+//        case TABLE_Trainer:
+//        case TABLE_Season:
+//        case TABLE_AssistanceTrainer:
+//        case TABLE_Cheerleaders:
+//            // do nothing
+//            break;
+//        case TABLE_MainTrainer:
 
-            break;
-        case TABLE_Game:
-            emit(signalDisplayTable("Game"));
-            m_curTable = TABLE_Game;
-            break;
-
-
-            emit(signalDisplayTable("League"));
-            m_curTable = TABLE_League;
-            break;
+//            break;
+//        case TABLE_Game:
+//            emit(signalDisplayTable("Game"));
+//            m_curTable = TABLE_Game;
+//            break;
 
 
-            emit(signalDisplayTable("MainTrainer"));
-            m_curTable = TABLE_MainTrainer;
-            break;
-
-        case TABLE_Player:
-            emit(signalDisplayTable("Player"));
-            m_curTable = TABLE_Player;
-            break;
-
-        case TABLE_PlayesIn:
-            emit(signalDisplayTable("PlayesIn"));
-            m_curTable = TABLE_PlayesIn;
-            break;
-
-        case TABLE_Position:
-            emit(signalDisplayTable("Position"));
-            m_curTable = TABLE_PlayesIn;
-            break;
+//            emit(signalDisplayTable("League"));
+//            m_curTable = TABLE_League;
+//            break;
 
 
-            emit(signalDisplayTable("Season"));
-            m_curTable = TABLE_Season;
-            break;
+//            emit(signalDisplayTable("MainTrainer"));
+//            m_curTable = TABLE_MainTrainer;
+//            break;
 
-        case TABLE_SeasonCycle:
-            emit(signalDisplayTable("SeasonCycle"));
-            m_curTable = TABLE_SeasonCycle;
-            break;
+//        case TABLE_Player:
+//            emit(signalDisplayTable("Player"));
+//            m_curTable = TABLE_Player;
+//            break;
 
-        case TABLE_SecondaryPosition:
-            emit(signalDisplayTable("SecondaryPosition"));
-            m_curTable = TABLE_SecondaryPosition;
-            break;
+//        case TABLE_PlayesIn:
+//            emit(signalDisplayTable("PlayesIn"));
+//            m_curTable = TABLE_PlayesIn;
+//            break;
 
-        case TABLE_Statistic:
-            emit(signalDisplayTable("Statistic"));
-            m_curTable = TABLE_Statistic;
-            break;
-
-
-            emit(signalDisplayTable("Team"));
-            m_curTable = TABLE_Team;
-            break;
-
-        case TABLE_TeamInLeague:
-            emit(signalDisplayTable("TeamInLeague"));
-            m_curTable = TABLE_TeamInLeague;
-            break;
+//        case TABLE_Position:
+//            emit(signalDisplayTable("Position"));
+//            m_curTable = TABLE_PlayesIn;
+//            break;
 
 
-            emit(signalDisplayTable("Trainer"));
-            m_curTable = TABLE_Trainer;
-            break;
-        default:
-            qDebug() << "wrong table selected";
-    }
+//            emit(signalDisplayTable("Season"));
+//            m_curTable = TABLE_Season;
+//            break;
+
+//        case TABLE_SeasonCycle:
+//            emit(signalDisplayTable("SeasonCycle"));
+//            m_curTable = TABLE_SeasonCycle;
+//            break;
+
+//        case TABLE_SecondaryPosition:
+//            emit(signalDisplayTable("SecondaryPosition"));
+//            m_curTable = TABLE_SecondaryPosition;
+//            break;
+
+//        case TABLE_Statistic:
+//            emit(signalDisplayTable("Statistic"));
+//            m_curTable = TABLE_Statistic;
+//            break;
+
+
+//            emit(signalDisplayTable("Team"));
+//            m_curTable = TABLE_Team;
+//            break;
+
+//        case TABLE_TeamInLeague:
+//            emit(signalDisplayTable("TeamInLeague"));
+//            m_curTable = TABLE_TeamInLeague;
+//            break;
+
+
+//            emit(signalDisplayTable("Trainer"));
+//            m_curTable = TABLE_Trainer;
+//            break;
+//        default:
+//            qDebug() << "wrong table selected";
+//    }
 }
 
 MainWindow* MainWindow::getInstance()
@@ -515,77 +515,92 @@ void MainWindow::on_MainWindowEditPlayersTCB_currentIndexChanged(int index)
    {
     case TABLE_AssistanceTrainer:
        emit(signalDisplayTable("AssistanceTrainer"));
-       m_curTable = TABLE_AssistanceTrainer;
+       m_curTableEnum = TABLE_AssistanceTrainer;
+       m_curTable = "AssistanceTrainer";
        break;
 
    case TABLE_Cheerleaders:
        emit(signalDisplayTable("Cheerleaders"));
-       m_curTable = TABLE_Cheerleaders;
+       m_curTableEnum = TABLE_Cheerleaders;
+       m_curTable = "Cheerleaders";
        break;
 
    case TABLE_Game:
       emit(signalDisplayTable("Game"));
-       m_curTable = TABLE_Game;
+       m_curTableEnum = TABLE_Game;
+       m_curTable = "Game";
       break;
 
    case TABLE_League:
       emit(signalDisplayTable("League"));
-       m_curTable = TABLE_League;
+       m_curTableEnum = TABLE_League;
+       m_curTable = "League";
       break;
 
    case TABLE_MainTrainer:
       emit(signalDisplayTable("MainTrainer"));
-       m_curTable = TABLE_MainTrainer;
+       m_curTableEnum = TABLE_MainTrainer;
+       m_curTable = "MainTrainer";
       break;
 
    case TABLE_Player:
       emit(signalDisplayTable("Player"));
-       m_curTable = TABLE_Player;
+       m_curTableEnum = TABLE_Player;
+       m_curTable = "Player";
       break;
 
    case TABLE_PlayesIn:
       emit(signalDisplayTable("PlayesIn"));
-       m_curTable = TABLE_PlayesIn;
+       m_curTableEnum = TABLE_PlayesIn;
+       m_curTable = "PlayesIn";
       break;
 
    case TABLE_Position:
       emit(signalDisplayTable("Position"));
-       m_curTable = TABLE_PlayesIn;
+       m_curTableEnum = TABLE_PlayesIn;
+       m_curTable = "Position";
       break;
 
    case TABLE_Season:
       emit(signalDisplayTable("Season"));
-       m_curTable = TABLE_Season;
+       m_curTableEnum = TABLE_Season;
+       m_curTable = "Season";
       break;
 
    case TABLE_SeasonCycle:
       emit(signalDisplayTable("SeasonCycle"));
-       m_curTable = TABLE_SeasonCycle;
+       m_curTableEnum = TABLE_SeasonCycle;
+       m_curTable = "SeasonCycle";
       break;
 
    case TABLE_SecondaryPosition:
       emit(signalDisplayTable("SecondaryPosition"));
-       m_curTable = TABLE_SecondaryPosition;
+       m_curTableEnum = TABLE_SecondaryPosition;
+       m_curTable = "SecondaryPosition";
       break;
 
    case TABLE_Statistic:
       emit(signalDisplayTable("Statistic"));
-       m_curTable = TABLE_Statistic;
+       m_curTableEnum = TABLE_Statistic;
+       m_curTable = "Statistic";
       break;
 
    case TABLE_Team:
       emit(signalDisplayTable("Team"));
-       m_curTable = TABLE_Team;
+       m_curTableEnum = TABLE_Team;
+       m_curTable = "Team";
       break;
 
    case TABLE_TeamInLeague:
       emit(signalDisplayTable("TeamInLeague"));
-       m_curTable = TABLE_TeamInLeague;
+       m_curTableEnum = TABLE_TeamInLeague;
+       m_curTable = "TeamInLeague";
       break;
 
    case TABLE_Trainer:
       emit(signalDisplayTable("Trainer"));
-       m_curTable = TABLE_Trainer;
+       m_curTableEnum = TABLE_Trainer;
+       m_curTable = "Trainer";
       break;
    default:
        qDebug() << "wrong table selected";
@@ -599,7 +614,7 @@ void MainWindow::slotHandleTable(QSqlTableModel *model)
 
 void MainWindow::on_pushButton_released()
 {
-    QSqlTableModel *model = DBManager::getInstance()->getTableModel();
-    model->insertRows(model->rowCount(), 1);
-    this->insertComboBox(m_curTable, model);
+//    QSqlTableModel *model = DBManager::getInstance()->getTableModel();
+//    model->insertRows(model->rowCount(), 1);
+//    this->insertComboBox(m_curTable, model);
 }
