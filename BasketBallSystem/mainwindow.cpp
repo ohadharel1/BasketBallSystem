@@ -48,7 +48,9 @@ void MainWindow::initConnections()
     connect(DBManager::getInstance(), SIGNAL(signalQueryResult(QSqlQueryModel *)), this, SLOT(slotHandleQuery(QSqlQueryModel*)));
     connect(this, SIGNAL(signalDisplayTable(const QString)), DBManager::getInstance(), SLOT(slotDisplayTable(const QString)));
     connect(DBManager::getInstance(), SIGNAL(signalTableResult(QSqlTableModel *)), this, SLOT(slotHandleTable(QSqlTableModel*)));
-
+    connect(this, SIGNAL(signalSubmitReq()), DBManager::getInstance(), SLOT(slotHandleRequest()));
+    connect(this, SIGNAL(signalProccessCSV(QString)), DBManager::getInstance(), SLOT(slotHandleCSVProccessRequest(QString)));
+    connect(&m_fileExplorer, SIGNAL(signalPublishFilePath(QString)), this, SLOT(slotHandleFilePath(QString)));
 }
 
 void MainWindow::deletePlayers()
@@ -528,16 +530,36 @@ void MainWindow::slotHandleTable(QSqlTableModel *model)
     m_tableModel = model;
 }
 
+void MainWindow::slotHandleFilePath(const QString &path)
+{
+    ui->filePathTextBox->setText(path);
+}
+
 void MainWindow::on_MainWindowEditPlayersAdd_released()
 {
-    m_tableModel->insertRows(m_tableModel->rowCount(), 1);
-    ui->MainWindowEditPlayersQTV->scrollToBottom();
-    m_isNewRecord = true;
+    if(m_isNewRecord == false)
+    {
+        m_tableModel->insertRows(m_tableModel->rowCount(), 1);
+        ui->MainWindowEditPlayersQTV->scrollToBottom();
+        m_isNewRecord = true;
+    }
 }
 
 void MainWindow::on_MainWindowEditPlayersDelete_released()
 {
-
+    QSqlTableModel *model = DBManager::getInstance()->getTableModel();
+    model->removeRow(this->ui->MainWindowEditPlayersQTV->currentIndex().row());
+    if(model->submitAll())
+    {
+        model->database().commit();
+    }
+    else
+    {
+        model->database().rollback();
+         popupMessageDialog::getInstance()->addText(model->lastError().text());
+         popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
+    }
+    model->select();
 }
 
 void MainWindow::on_MainWindowEditPlayersSave_released()
@@ -551,10 +573,11 @@ void MainWindow::on_MainWindowEditPlayersSave_released()
             content = m_tableModel->data(m_tableModel->index(m_tableModel->rowCount() - 1, i), Qt::DisplayRole);
             args << content.toString();
         }
-        emit signalDisplatQueryWithArgs("addRecordTo" + m_curTable, args);
+        DBManager::getInstance()->slotDisplayQueryWithArgs("addRecordTo" + m_curTable, args);
     }
     emit signalSubmitReq();
     m_tableModel->select();
+    m_isNewRecord = false;
 }
 
 void MainWindow::on_MainWindowEditPlayersUndo_released()
@@ -563,5 +586,17 @@ void MainWindow::on_MainWindowEditPlayersUndo_released()
     {
         m_isNewRecord = false;
     }
+    m_tableModel->select();
+}
 
+void MainWindow::on_MainWindowEditPlayersBrowesBtn_released()
+{
+    m_fileExplorer.setModal(true);
+    m_fileExplorer.exec();
+}
+
+void MainWindow::on_MainWindowEditPlayersUploadBtn_released()
+{
+    emit signalProccessCSV(ui->filePathTextBox->text());
+    this->on_MainWindowEditPlayersTCB_currentIndexChanged(TABLE_TeamInLeague);
 }

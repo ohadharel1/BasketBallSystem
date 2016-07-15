@@ -9,7 +9,7 @@ class DBManager : public QObject
 {
     Q_OBJECT
 public:
-    const static DBManager* getInstance();
+    static DBManager* getInstance();
     ~DBManager();
     void init();
     void initDBLink();

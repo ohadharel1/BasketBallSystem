@@ -10,6 +10,7 @@
 #include "player.h"
 #include "dbmanager.h"
 #include "guiformmanager.h"
+#include "fileexplorer.h"
 
 enum positionLayout
 {
@@ -78,6 +79,7 @@ private slots:
     void slotEntranceForm(bool);
     void slotHandleQuery(QSqlQueryModel *model);
     void slotHandleTable(QSqlTableModel*);
+    void slotHandleFilePath(const QString &path);
 
     void on_MainWindowTeamSelectionSelectBtn_released();
 
@@ -130,6 +132,10 @@ private slots:
 
     void on_MainWindowEditPlayersUndo_released();
 
+    void on_MainWindowEditPlayersBrowesBtn_released();
+
+    void on_MainWindowEditPlayersUploadBtn_released();
+
 signals:
     void signalPoulateComboBox(const QString&);
     void signalGetPlayersInTeam(const QString&, const QString&);
@@ -138,6 +144,7 @@ signals:
     void signalDisplayTable(const QString &tableName);
     void signalDisplatQueryWithArgs(const QString&, const QStringList&);
     void signalSubmitReq();
+    void signalProccessCSV(const QString&);
 
 private:
     explicit MainWindow(QWidget *parent = 0);
@@ -164,6 +171,7 @@ private:
     QString m_curQuery;
     QSqlTableModel *m_tableModel;
     bool m_isNewRecord;
+    fileExplorer m_fileExplorer;
 
 };
 

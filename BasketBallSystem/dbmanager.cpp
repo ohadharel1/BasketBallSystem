@@ -13,7 +13,7 @@ DBManager::DBManager(QObject *parent) : QObject(parent)
     this->init();
 }
 
-const DBManager* DBManager::getInstance()
+DBManager* DBManager::getInstance()
 {
     if(m_instance == NULL)
     {
@@ -110,7 +110,6 @@ void DBManager::slotDisplayQueryWithArgs(const QString proc, const QStringList a
         argsForPrepare = argsForPrepare + ":arg" + QString::number(i) + ",";
     }
     argsForPrepare = argsForPrepare + ":arg" + QString::number(i) + ")}";
-    qDebug() << "*********argsForPrepare************\n" << argsForPrepare << "\n***********************";
     this->m_query.prepare("{CALL " + proc + argsForPrepare);
     for(i = 0; i < args.size(); ++i)
     {
@@ -127,6 +126,10 @@ void DBManager::slotDisplayQueryWithArgs(const QString proc, const QStringList a
     {
         popupMessageDialog::getInstance()->addText(m_query.lastError().text());
         popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
+    }
+    else
+    {
+        m_db.commit();
     }
     emit signalParameterQueryResult(&m_query);
 }
@@ -150,9 +153,8 @@ void DBManager::slotHandleRequest()
     else
     {
         this->m_tableModel->database().rollback();
-        qDebug() << "Database Write Error" <<
-                         "The database reported an error: " <<
-                           this->m_tableModel->lastError().text();
+        popupMessageDialog::getInstance()->addText(m_tableModel->lastError().text());
+        popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
     }
 }
 

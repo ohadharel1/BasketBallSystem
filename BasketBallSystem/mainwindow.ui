@@ -1196,6 +1196,63 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
        <string>בטל</string>
       </property>
      </widget>
+     <widget class="QLabel" name="MainWindowEditPlayersCSVLabel">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>580</y>
+        <width>371</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>העלאה של קובץ CSV למערכת</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="filePathTextBox">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>570</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="MainWindowEditPlayersUploadBtn">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>620</y>
+        <width>112</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>אשר</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="MainWindowEditPlayersBrowesBtn">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>620</y>
+        <width>112</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>סייר</string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="MainWindowBottomToolbar" native="true">
