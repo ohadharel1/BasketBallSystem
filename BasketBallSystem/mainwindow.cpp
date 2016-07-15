@@ -531,6 +531,7 @@ void MainWindow::slotHandleTable(QSqlTableModel *model)
 void MainWindow::on_MainWindowEditPlayersAdd_released()
 {
     m_tableModel->insertRows(m_tableModel->rowCount(), 1);
+    ui->MainWindowEditPlayersQTV->scrollToBottom();
     m_isNewRecord = true;
 }
 
@@ -553,6 +554,7 @@ void MainWindow::on_MainWindowEditPlayersSave_released()
         emit signalDisplatQueryWithArgs("addRecordTo" + m_curTable, args);
     }
     emit signalSubmitReq();
+    m_tableModel->select();
 }
 
 void MainWindow::on_MainWindowEditPlayersUndo_released()
