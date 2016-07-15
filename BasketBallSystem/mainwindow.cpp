@@ -430,62 +430,77 @@ void MainWindow::on_MainWindowEditPlayersTCB_currentIndexChanged(int index)
    switch (index)
    {
     case Table_1:
+       this->m_curTable = "AssistanceTrainer";
        emit(signalDisplayTable("AssistanceTrainer"));
        break;
 
    case Table_2:
+         this->m_curTable = "Cheerleaders";
       emit(signalDisplayTable("Cheerleaders"));
       break;
 
    case Table_3:
+         this->m_curTable = "Game";
       emit(signalDisplayTable("Game"));
       break;
 
    case Table_4:
+         this->m_curTable = "League";
       emit(signalDisplayTable("League"));
       break;
 
    case Table_5:
+          this->m_curTable = "MainTrainer";
       emit(signalDisplayTable("MainTrainer"));
       break;
 
    case Table_6:
+         this->m_curTable = "Player";
       emit(signalDisplayTable("Player"));
       break;
 
    case Table_7:
+         this->m_curTable = "PlayesIn";
       emit(signalDisplayTable("PlayesIn"));
       break;
 
    case Table_8:
+         this->m_curTable = "Position";
       emit(signalDisplayTable("Position"));
       break;
 
    case Table_9:
+         this->m_curTable = "Season";
       emit(signalDisplayTable("Season"));
       break;
 
    case Table_10:
+         this->m_curTable = "SeasonCycle";
       emit(signalDisplayTable("SeasonCycle"));
       break;
 
    case Table_11:
+         this->m_curTable = "SecondaryPosition";
       emit(signalDisplayTable("SecondaryPosition"));
       break;
 
    case Table_12:
+         this->m_curTable = "Statistic";
       emit(signalDisplayTable("Statistic"));
       break;
 
    case Table_13:
+         this->m_curTable = "Team";
       emit(signalDisplayTable("Team"));
       break;
 
    case Table_14:
+         this->m_curTable = "TeamInLeague";
       emit(signalDisplayTable("TeamInLeague"));
       break;
 
    case Table_15:
+         this->m_curTable = "Trainer";
       emit(signalDisplayTable("Trainer"));
       break;
    }
