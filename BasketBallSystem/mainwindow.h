@@ -37,21 +37,23 @@ enum Querys
 
 enum Tables
 {
-    Table_1,
-    Table_2,
-    Table_3,
-    Table_4,
-    Table_5,
-    Table_6,
-    Table_7,
-    Table_8,
-    Table_9,
-    Table_10,
-    Table_11,
-    Table_12,
-    Table_13,
-    Table_14,
-    Table_15
+    TABLE_AssistanceTrainer,
+    TABLE_Cheerleaders,
+    TABLE_Game,
+    TABLE_League,
+    TABLE_MainTrainer,
+    TABLE_Player,
+    TABLE_PlayesIn,
+    TABLE_Position,
+    TABLE_Season,
+    TABLE_SeasonCycle,
+    TABLE_SecondaryPosition,
+    TABLE_Statistic,
+    TABLE_Team,
+    TABLE_TeamInLeague,
+    TABLE_Trainer,
+
+    TABLE_SIZE
 
 };
 
@@ -120,6 +122,8 @@ private slots:
 
     void on_MainWindowEditPlayersTCB_currentIndexChanged(int index);
 
+    void on_pushButton_released();
+
 signals:
     void signalPoulateComboBox(const QString&);
     void signalGetPlayersInTeam(const QString&, const QString&);
@@ -137,6 +141,7 @@ private:
     bool containID(int id);
     player* getPlayer(int id);
     void insertPlayersToSelection(QVector<player*> vector, QTableWidget *table);
+    void insertComboBox(Tables table, QSqlTableModel* model);
 
     static MainWindow* m_instance;
     Ui::MainWindow *ui;
@@ -146,6 +151,8 @@ private:
     QVector<player*> m_smallForward;
     QVector<player*> m_powerForward;
     QVector<player*> m_centers;
+    Tables m_curTable;
+    Querys m_curQuery;
 
 };
 
