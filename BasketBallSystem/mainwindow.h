@@ -138,7 +138,7 @@ private slots:
 
 signals:
     void signalPoulateComboBox(const QString&);
-    void signalGetPlayersInTeam(const QString&, const QString&);
+    void signalGetPlayersInTeam(const QString&, const QStringList&);
     void signalSortPlayers();
     void signalDisplayQuery(const QString&);
     void signalDisplayTable(const QString &tableName);

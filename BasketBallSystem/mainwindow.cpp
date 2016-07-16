@@ -39,7 +39,7 @@ void MainWindow::initConnections()
     connect(this, SIGNAL(signalPoulateComboBox(const QString)), DBManager::getInstance(), SLOT(slotDisplayQuery(const QString)));
     connect(DBManager::getInstance(), SIGNAL(signalQueryResult(QSqlQueryModel *)), this, SLOT(slotPopulateComboBox(QSqlQueryModel *)));
     connect(GuiFormManager::getInstance(), SIGNAL(signalChangeForm(GuiForms)), this, SLOT(slotChangeForm(GuiForms)));
-    connect(this, SIGNAL(signalGetPlayersInTeam(QString,QString)), DBManager::getInstance(), SLOT(slotDisplayQueryWithArgs(QString,QStringList)));
+    connect(this, SIGNAL(signalGetPlayersInTeam(QString,QStringList)), DBManager::getInstance(), SLOT(slotDisplayQueryWithArgs(QString,QStringList)));
     connect(this, SIGNAL(signalDisplatQueryWithArgs(QString,QStringList)), DBManager::getInstance(), SLOT(slotDisplayQueryWithArgs(QString,QStringList)));
     connect(DBManager::getInstance(), SIGNAL(signalParameterQueryResult(QSqlQuery*)), this, SLOT(slotReceivePlayearsInTeam(QSqlQuery *)));
     connect(this, SIGNAL(signalSortPlayers()), this, SLOT(slotSortPlayers()));
@@ -293,7 +293,9 @@ void MainWindow::on_MainWindowTeamSelectionSelectBtn_released()
 {
     ui->MainWindowTeamSelectionEditDataBtn->setEnabled(true);
     ui->MainWindowTeamSelectionGameManagmentBtn->setEnabled(true);
-    emit signalGetPlayersInTeam("getPlayersInTeam", ui->MainWindowTeamSelectionComboBox->currentText());
+    QStringList args;
+    args << ui->MainWindowTeamSelectionComboBox->currentText();
+    emit signalGetPlayersInTeam("getPlayersInTeam", args);
 }
 
 void MainWindow::on_MainWindowTeamSelectionEditDataBtn_released()
@@ -575,8 +577,9 @@ void MainWindow::on_MainWindowEditPlayersSave_released()
         }
         DBManager::getInstance()->slotDisplayQueryWithArgs("addRecordTo" + m_curTable, args);
     }
-    emit signalSubmitReq();
     m_tableModel->select();
+    emit signalSubmitReq();
+
     m_isNewRecord = false;
 }
 

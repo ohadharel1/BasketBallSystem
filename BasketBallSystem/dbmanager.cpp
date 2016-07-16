@@ -102,6 +102,7 @@ void DBManager::slotDisplayQuery(const QString queryName)
 
 void DBManager::slotDisplayQueryWithArgs(const QString proc, const QStringList args)
 {
+    //m_db.transaction();
     QString argsForPrepare;
     int i = 0;
     argsForPrepare = " (";
@@ -124,12 +125,13 @@ void DBManager::slotDisplayQueryWithArgs(const QString proc, const QStringList a
     }
     if(this->m_query.exec() == false)
     {
+        //m_db.rollback();
         popupMessageDialog::getInstance()->addText(m_query.lastError().text());
         popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
     }
     else
     {
-        m_db.commit();
+       // m_db.commit();
     }
     emit signalParameterQueryResult(&m_query);
 }
