@@ -21,6 +21,7 @@ player::player(int id, QString firstName, QString surName, QString teamColor, QS
 
 player::~player()
 {
+    qDebug() << "player id: " << m_id << " was deleted";
     delete ui;
 }
 
@@ -101,7 +102,7 @@ int player::id() const
 
 void player::setPosition(const QString &pos)
 {
-    if(pos == "Point gaurd")
+    if(pos == "Point guard")
     {
         m_playerPositions[POINT_GUARD] = true;
     }

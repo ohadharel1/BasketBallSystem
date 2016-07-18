@@ -33,6 +33,9 @@ void GuiFormManager::exitForm()
         case GUI_FORM_GAME_MANAGMENT:
             emit signalGameManagment(false);
             break;
+        case GUI_FORM_EDIT_PLAYERS:
+            emit signalEditData(false);
+            break;
         default:
             break;
     }
@@ -53,6 +56,9 @@ void GuiFormManager::enterForm(GuiForms form)
             break;
         case GUI_FORM_GAME_MANAGMENT:
             emit signalGameManagment(true);
+            break;
+        case GUI_FORM_EDIT_PLAYERS:
+            emit signalEditData(true);
             break;
         default:
             break;

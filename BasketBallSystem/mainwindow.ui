@@ -48,7 +48,7 @@ background-image: url(:/Resources/Resources/basketBallCourtFullBlue1.jpg);
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>20</y>
+      <y>0</y>
       <width>1280</width>
       <height>720</height>
      </rect>
@@ -60,7 +60,7 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
 }</string>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="MainWindowEntrance">
      <property name="styleSheet">
@@ -189,7 +189,7 @@ color: white</string>
      <widget class="QComboBox" name="MainWindowTeamSelectionComboBox">
       <property name="geometry">
        <rect>
-        <x>700</x>
+        <x>630</x>
         <y>140</y>
         <width>211</width>
         <height>41</height>
@@ -198,12 +198,12 @@ color: white</string>
      </widget>
      <widget class="QPushButton" name="MainWindowTeamSelectionSelectBtn">
       <property name="enabled">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>120</y>
+        <x>760</x>
+        <y>400</y>
         <width>131</width>
         <height>71</height>
        </rect>
@@ -219,7 +219,7 @@ color: white</string>
 }
 QPushButton:disabled
 { 
-	background-image: url(:/Resources/Resources/selectBtn.png);
+	background-image: url(:/Resources/Resources/selectgBtn.png);
 border: 0px solid #000000;
 }
 QPushButton:pressed
@@ -257,7 +257,7 @@ border: 0px solid #000000;
      </widget>
      <widget class="QPushButton" name="MainWindowTeamSelectionEditDataBtn">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
@@ -320,8 +320,8 @@ border: 0px solid #000000;
       </property>
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>230</y>
+        <x>460</x>
+        <y>130</y>
         <width>131</width>
         <height>71</height>
        </rect>
@@ -371,6 +371,27 @@ border: 0px solid #000000;
       </property>
       <property name="flat">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="MainWindowTeamSelectionLabel">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>60</y>
+        <width>571</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>אנא בחר קבוצה כדי לעבור למסך &quot;ניהול משחק&quot;</string>
       </property>
      </widget>
     </widget>
@@ -427,7 +448,6 @@ background-color: rgb(0, 0, 0);</string>
         <height>140</height>
        </rect>
       </property>
-      <widget class="QWidget" name="page"/>
      </widget>
      <widget class="QStackedWidget" name="MainWindowGameManagmentCortImageSF">
       <property name="geometry">
@@ -438,8 +458,6 @@ background-color: rgb(0, 0, 0);</string>
         <height>140</height>
        </rect>
       </property>
-      <widget class="QWidget" name="page_2"/>
-      <widget class="QWidget" name="page_3"/>
      </widget>
      <widget class="QPushButton" name="MainWindowGameManagmentCortImageSFB">
       <property name="geometry">
@@ -467,8 +485,6 @@ color: rgb(255, 255, 255);</string>
         <height>140</height>
        </rect>
       </property>
-      <widget class="QWidget" name="page_4"/>
-      <widget class="QWidget" name="page_5"/>
      </widget>
      <widget class="QPushButton" name="MainWindowGameManagmentCortImagePGB">
       <property name="geometry">
@@ -496,8 +512,6 @@ color: rgb(255, 255, 255);</string>
         <height>140</height>
        </rect>
       </property>
-      <widget class="QWidget" name="page_6"/>
-      <widget class="QWidget" name="page_7"/>
      </widget>
      <widget class="QPushButton" name="MainWindowGameManagmentCortImageSGB">
       <property name="geometry">
@@ -525,8 +539,6 @@ color: rgb(255, 255, 255);</string>
         <height>140</height>
        </rect>
       </property>
-      <widget class="QWidget" name="page_8"/>
-      <widget class="QWidget" name="page_9"/>
      </widget>
      <widget class="QPushButton" name="MainWindowGameManagmentCortImagePFB">
       <property name="geometry">

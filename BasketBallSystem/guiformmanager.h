@@ -31,6 +31,7 @@ signals:
     void signalTeamSelection(bool);
     void signalGameManagment(bool);
     void signalPlayerSelection(bool);
+    void signalEditData(bool);
 public slots:
 
 private:

@@ -7,6 +7,7 @@
 #include <QGridLayout>
 #include <QVector>
 #include <QTableWidget>
+#include <QCloseEvent>
 #include "player.h"
 #include "dbmanager.h"
 #include "guiformmanager.h"
@@ -80,6 +81,8 @@ private slots:
     void slotHandleQuery(QSqlQueryModel *model);
     void slotHandleTable(QSqlTableModel*);
     void slotHandleFilePath(const QString &path);
+    void slotTeamSelectionForm(bool);
+    void slotEditDataForm(bool);
 
     void on_MainWindowTeamSelectionSelectBtn_released();
 
@@ -136,6 +139,8 @@ private slots:
 
     void on_MainWindowEditPlayersUploadBtn_released();
 
+    void on_MainWindowTeamSelectionComboBox_activated(int index);
+
 signals:
     void signalPoulateComboBox(const QString&);
     void signalGetPlayersInTeam(const QString&, const QStringList&);
@@ -149,6 +154,7 @@ signals:
 private:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    virtual void closeEvent(QCloseEvent *event);
     void init();
     void initLayOut();
     void initConnections();

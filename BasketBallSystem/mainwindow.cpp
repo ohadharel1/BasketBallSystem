@@ -15,7 +15,25 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    this->deletePlayers();
     delete ui;
+}
+
+void MainWindow::closeEvent (QCloseEvent *event)
+{
+    QMessageBox::StandardButton resBtn = QMessageBox::question( this, "BasketBall System",
+                                                                tr("Are you sure?\n"),
+                                                                QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
+                                                                QMessageBox::Yes);
+    if (resBtn != QMessageBox::Yes)
+    {
+        event->ignore();
+    }
+    else
+    {
+        this->~MainWindow();
+        event->accept();
+    }
 }
 
 void MainWindow::init()
@@ -30,7 +48,6 @@ void MainWindow::initLayOut()
 {
     ui->MainWindowStackedWidget->setCurrentIndex(GUI_FORM_ENTRANCE);
     QTimer::singleShot(3000, this, SLOT(slotTime()));
-    emit signalPoulateComboBox("teamNames");
     ui->MainWindowBottomToolbar->setVisible(false);
 }
 
@@ -51,6 +68,10 @@ void MainWindow::initConnections()
     connect(this, SIGNAL(signalSubmitReq()), DBManager::getInstance(), SLOT(slotHandleRequest()));
     connect(this, SIGNAL(signalProccessCSV(QString)), DBManager::getInstance(), SLOT(slotHandleCSVProccessRequest(QString)));
     connect(&m_fileExplorer, SIGNAL(signalPublishFilePath(QString)), this, SLOT(slotHandleFilePath(QString)));
+    connect(GuiFormManager::getInstance(), SIGNAL(signalTeamSelection(bool)), this, SLOT(slotTeamSelectionForm(bool)));
+    connect(GuiFormManager::getInstance(), SIGNAL(signalEditData(bool)), this, SLOT(slotEditDataForm(bool)));
+
+
 }
 
 void MainWindow::deletePlayers()
@@ -64,11 +85,61 @@ void MainWindow::deletePlayers()
         }
         m_players.removeLast();
     }
-    m_pointGaurds.clear();
-    m_shootingGaurd.clear();
-    m_smallForward.clear();
-    m_powerForward.clear();
-    m_centers.clear();
+    while(m_pointGaurds.size() != 0)
+    {
+        player* p = m_pointGaurds.last();
+        if(p != NULL)
+        {
+            p->playerDelete();
+        }
+        m_pointGaurds.removeLast();
+    }
+    while(m_shootingGaurd.size() != 0)
+    {
+        player* p = m_shootingGaurd.last();
+        if(p != NULL)
+        {
+            p->playerDelete();
+        }
+        m_shootingGaurd.removeLast();
+    }
+    while(m_smallForward.size() != 0)
+    {
+        player* p = m_smallForward.last();
+        if(p != NULL)
+        {
+            p->playerDelete();
+        }
+        m_smallForward.removeLast();
+    }
+    while(m_powerForward.size() != 0)
+    {
+        player* p = m_powerForward.last();
+        if(p != NULL)
+        {
+            p->playerDelete();
+        }
+        m_powerForward.removeLast();
+    }
+    while(m_centers.size() != 0)
+    {
+        player* p = m_centers.last();
+        if(p != NULL)
+        {
+            p->playerDelete();
+        }
+        m_centers.removeLast();
+    }
+    ui->MainWindowPlayerSelectionPowerForwardTable->clear();
+    ui->MainWindowPlayerSelectionShootingGaurdTable->clear();
+    ui->MainWindowPlayerSelectionPointGaurdsTable->clear();
+    ui->MainWindowPlayerSelectionCentersTable->clear();
+    ui->MainWindowPlayerSelectionSmallForwardTable->clear();
+//    m_centers.clear();
+//    m_pointGaurds.clear();
+//    m_powerForward.clear();
+//    m_smallForward.clear();
+//    m_shootingGaurd.clear();
 }
 
 bool MainWindow::containID(int id)
@@ -117,11 +188,11 @@ void MainWindow::insertPlayersToSelection(QVector<player *> vector, QTableWidget
                 table->setRowHeight(row, 170);
                 col = 0;
             }
-            player* p = vector[i]->copyPlayer();
-            table->setCellWidget(row, col, p);
+            //player* p = vector[i]->copyPlayer();
+            table->setCellWidget(row, col, vector[i]);
             col++;
         }
-    }
+    }            
 }
 
 MainWindow* MainWindow::getInstance()
@@ -202,28 +273,34 @@ void MainWindow::slotSortPlayers()
 {
     for(int i = 0; i < m_players.size(); ++i)
     {
+        player* p;
         if(m_players[i]->getPlayerPosition(POINT_GUARD))
         {
-            m_pointGaurds.append(m_players[i]);
+            p = m_players[i]->copyPlayer();
+            m_pointGaurds.append(p);
         }
         if(m_players[i]->getPlayerPosition(SHOOTING_GUARD))
         {
-            m_shootingGaurd.append(m_players[i]);
+            p = m_players[i]->copyPlayer();
+            m_shootingGaurd.append(p);
         }
         if(m_players[i]->getPlayerPosition(SMALL_FORWARD))
         {
-            m_smallForward.append(m_players[i]);
+            p = m_players[i]->copyPlayer();
+            m_smallForward.append(p);
         }
         if(m_players[i]->getPlayerPosition(POWER_FORWARD))
         {
-            m_powerForward.append(m_players[i]);
+            p = m_players[i]->copyPlayer();
+            m_powerForward.append(p);
         }
         if(m_players[i]->getPlayerPosition(CENTER))
         {
-            m_centers.append(m_players[i]);
+            p = m_players[i]->copyPlayer();
+            m_centers.append(p);
         }
     }
-    this->insertPlayersToSelection(m_players, ui->MainWindowPlayerSelectionAllPlayersTable);
+//    this->insertPlayersToSelection(m_players, ui->MainWindowPlayerSelectionAllPlayersTable);
     this->insertPlayersToSelection(m_pointGaurds, ui->MainWindowPlayerSelectionPointGaurdsTable);
     this->insertPlayersToSelection(m_smallForward, ui->MainWindowPlayerSelectionSmallForwardTable);
     this->insertPlayersToSelection(m_powerForward, ui->MainWindowPlayerSelectionPowerForwardTable);
@@ -291,11 +368,11 @@ void MainWindow::slotEntranceForm(bool enter)
 
 void MainWindow::on_MainWindowTeamSelectionSelectBtn_released()
 {
-    ui->MainWindowTeamSelectionEditDataBtn->setEnabled(true);
-    ui->MainWindowTeamSelectionGameManagmentBtn->setEnabled(true);
-    QStringList args;
-    args << ui->MainWindowTeamSelectionComboBox->currentText();
-    emit signalGetPlayersInTeam("getPlayersInTeam", args);
+//    ui->MainWindowTeamSelectionEditDataBtn->setEnabled(true);
+//    ui->MainWindowTeamSelectionGameManagmentBtn->setEnabled(true);
+//    QStringList args;
+//    args << ui->MainWindowTeamSelectionComboBox->currentText();
+//    emit signalGetPlayersInTeam("getPlayersInTeam", args);
 }
 
 void MainWindow::on_MainWindowTeamSelectionEditDataBtn_released()
@@ -305,6 +382,9 @@ void MainWindow::on_MainWindowTeamSelectionEditDataBtn_released()
 
 void MainWindow::on_MainWindowTeamSelectionGameManagmentBtn_released()
 {
+    QStringList args;
+    args << ui->MainWindowTeamSelectionComboBox->currentText();
+    emit signalGetPlayersInTeam("getPlayersInTeam", args);
     GuiFormManager::getInstance()->changeForm(GUI_FORM_GAME_MANAGMENT);
 }
 
@@ -312,6 +392,7 @@ void MainWindow::on_MainWindowTeamSelectionGameManagmentBtn_released()
 void MainWindow::on_MainWindowTeamSelectionComboBox_currentIndexChanged(const QString &arg1)
 {
     Q_UNUSED(arg1);
+//    ui->MainWindowTeamSelectionGameManagmentBtn->setEnabled(true);
 }
 
 void MainWindow::on_MainWindowPlayerSelectionAllBtn_released()
@@ -387,6 +468,7 @@ void MainWindow::on_MainWindowBottomToolbarHomeBtn_released()
 
 void MainWindow::on_MainWindowEditPlayersQCB_currentIndexChanged(int index)
 {
+    m_isNewRecord = false;
     switch (index)
      {
        case Query_1:
@@ -431,99 +513,100 @@ void MainWindow::slotHandleQuery(QSqlQueryModel *model)
 
 void MainWindow::on_MainWindowEditPlayersTCB_currentIndexChanged(int index)
 {
-   switch (index)
-   {
-    case TABLE_AssistanceTrainer:
-       emit(signalDisplayTable("AssistanceTrainer"));
-       m_curTableEnum = TABLE_AssistanceTrainer;
-       m_curTable = "AssistanceTrainer";
-       break;
+    m_isNewRecord = false;
+    switch (index)
+    {
+        case TABLE_AssistanceTrainer:
+            emit(signalDisplayTable("AssistanceTrainer"));
+            m_curTableEnum = TABLE_AssistanceTrainer;
+            m_curTable = "AssistanceTrainer";
+            break;
 
-   case TABLE_Cheerleaders:
-       emit(signalDisplayTable("Cheerleaders"));
-       m_curTableEnum = TABLE_Cheerleaders;
-       m_curTable = "Cheerleaders";
-       break;
+        case TABLE_Cheerleaders:
+            emit(signalDisplayTable("Cheerleaders"));
+            m_curTableEnum = TABLE_Cheerleaders;
+            m_curTable = "Cheerleaders";
+            break;
 
-   case TABLE_Game:
-      emit(signalDisplayTable("Game"));
-       m_curTableEnum = TABLE_Game;
-       m_curTable = "Game";
-      break;
+        case TABLE_Game:
+            emit(signalDisplayTable("Game"));
+            m_curTableEnum = TABLE_Game;
+            m_curTable = "Game";
+            break;
 
-   case TABLE_League:
-      emit(signalDisplayTable("League"));
-       m_curTableEnum = TABLE_League;
-       m_curTable = "League";
-      break;
+        case TABLE_League:
+            emit(signalDisplayTable("League"));
+            m_curTableEnum = TABLE_League;
+            m_curTable = "League";
+            break;
 
-   case TABLE_MainTrainer:
-      emit(signalDisplayTable("MainTrainer"));
-       m_curTableEnum = TABLE_MainTrainer;
-       m_curTable = "MainTrainer";
-      break;
+        case TABLE_MainTrainer:
+            emit(signalDisplayTable("MainTrainer"));
+            m_curTableEnum = TABLE_MainTrainer;
+            m_curTable = "MainTrainer";
+            break;
 
-   case TABLE_Player:
-      emit(signalDisplayTable("Player"));
-       m_curTableEnum = TABLE_Player;
-       m_curTable = "Player";
-      break;
+        case TABLE_Player:
+            emit(signalDisplayTable("Player"));
+            m_curTableEnum = TABLE_Player;
+            m_curTable = "Player";
+            break;
 
-   case TABLE_PlayesIn:
-      emit(signalDisplayTable("PlayesIn"));
-       m_curTableEnum = TABLE_PlayesIn;
-       m_curTable = "PlayesIn";
-      break;
+        case TABLE_PlayesIn:
+            emit(signalDisplayTable("PlayesIn"));
+            m_curTableEnum = TABLE_PlayesIn;
+            m_curTable = "PlayesIn";
+            break;
 
-   case TABLE_Position:
-      emit(signalDisplayTable("Position"));
-       m_curTableEnum = TABLE_PlayesIn;
-       m_curTable = "Position";
-      break;
+        case TABLE_Position:
+            emit(signalDisplayTable("Position"));
+            m_curTableEnum = TABLE_PlayesIn;
+            m_curTable = "Position";
+            break;
 
-   case TABLE_Season:
-      emit(signalDisplayTable("Season"));
-       m_curTableEnum = TABLE_Season;
-       m_curTable = "Season";
-      break;
+        case TABLE_Season:
+            emit(signalDisplayTable("Season"));
+            m_curTableEnum = TABLE_Season;
+            m_curTable = "Season";
+            break;
 
-   case TABLE_SeasonCycle:
-      emit(signalDisplayTable("SeasonCycle"));
-       m_curTableEnum = TABLE_SeasonCycle;
-       m_curTable = "SeasonCycle";
-      break;
+        case TABLE_SeasonCycle:
+            emit(signalDisplayTable("SeasonCycle"));
+            m_curTableEnum = TABLE_SeasonCycle;
+            m_curTable = "SeasonCycle";
+            break;
 
-   case TABLE_SecondaryPosition:
-      emit(signalDisplayTable("SecondaryPosition"));
-       m_curTableEnum = TABLE_SecondaryPosition;
-       m_curTable = "SecondaryPosition";
-      break;
+        case TABLE_SecondaryPosition:
+            emit(signalDisplayTable("SecondaryPosition"));
+            m_curTableEnum = TABLE_SecondaryPosition;
+            m_curTable = "SecondaryPosition";
+            break;
 
-   case TABLE_Statistic:
-      emit(signalDisplayTable("Statistic"));
-       m_curTableEnum = TABLE_Statistic;
-       m_curTable = "Statistic";
-      break;
+        case TABLE_Statistic:
+            emit(signalDisplayTable("Statistic"));
+            m_curTableEnum = TABLE_Statistic;
+            m_curTable = "Statistic";
+            break;
 
-   case TABLE_Team:
-      emit(signalDisplayTable("Team"));
-       m_curTableEnum = TABLE_Team;
-       m_curTable = "Team";
-      break;
+        case TABLE_Team:
+            emit(signalDisplayTable("Team"));
+            m_curTableEnum = TABLE_Team;
+            m_curTable = "Team";
+            break;
 
-   case TABLE_TeamInLeague:
-      emit(signalDisplayTable("TeamInLeague"));
-       m_curTableEnum = TABLE_TeamInLeague;
-       m_curTable = "TeamInLeague";
-      break;
+        case TABLE_TeamInLeague:
+            emit(signalDisplayTable("TeamInLeague"));
+            m_curTableEnum = TABLE_TeamInLeague;
+            m_curTable = "TeamInLeague";
+            break;
 
-   case TABLE_Trainer:
-      emit(signalDisplayTable("Trainer"));
-       m_curTableEnum = TABLE_Trainer;
-       m_curTable = "Trainer";
-      break;
-   default:
-       qDebug() << "wrong table selected";
+        case TABLE_Trainer:
+            emit(signalDisplayTable("Trainer"));
+            m_curTableEnum = TABLE_Trainer;
+            m_curTable = "Trainer";
+            break;
+        default:
+            qDebug() << "wrong table selected";
    }
 }
 void MainWindow::slotHandleTable(QSqlTableModel *model)
@@ -537,59 +620,86 @@ void MainWindow::slotHandleFilePath(const QString &path)
     ui->filePathTextBox->setText(path);
 }
 
+void MainWindow::slotTeamSelectionForm(bool enter)
+{
+    if(enter == true)
+    {
+        emit signalPoulateComboBox("teamNames");
+        ui->MainWindowTeamSelectionGameManagmentBtn->setEnabled(false);
+    }
+}
+
+void MainWindow::slotEditDataForm(bool)
+{
+    m_tableModel = NULL;
+    ui->MainWindowEditPlayersQTV->setModel(m_tableModel);
+}
+
 void MainWindow::on_MainWindowEditPlayersAdd_released()
 {
-    if(m_isNewRecord == false)
+    if(m_tableModel != NULL)
     {
-        m_tableModel->insertRows(m_tableModel->rowCount(), 1);
-        ui->MainWindowEditPlayersQTV->scrollToBottom();
-        m_isNewRecord = true;
+        if(m_isNewRecord == false)
+        {
+            m_tableModel->insertRows(m_tableModel->rowCount(), 1);
+            ui->MainWindowEditPlayersQTV->scrollToBottom();
+            m_isNewRecord = true;
+        }
     }
 }
 
 void MainWindow::on_MainWindowEditPlayersDelete_released()
 {
-    QSqlTableModel *model = DBManager::getInstance()->getTableModel();
-    model->removeRow(this->ui->MainWindowEditPlayersQTV->currentIndex().row());
-    if(model->submitAll())
+    if(m_tableModel != NULL)
     {
-        model->database().commit();
+        QSqlTableModel *model = DBManager::getInstance()->getTableModel();
+        model->removeRow(this->ui->MainWindowEditPlayersQTV->currentIndex().row());
+        if(model->submitAll())
+        {
+            model->database().commit();
+        }
+        else
+        {
+            model->database().rollback();
+             popupMessageDialog::getInstance()->addText(model->lastError().text());
+             popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
+        }
+        model->select();
     }
-    else
-    {
-        model->database().rollback();
-         popupMessageDialog::getInstance()->addText(model->lastError().text());
-         popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
-    }
-    model->select();
 }
 
 void MainWindow::on_MainWindowEditPlayersSave_released()
 {
-    if(m_isNewRecord == true)
+    if(m_tableModel != NULL)
     {
-        QVariant content;
-        QStringList args;
-        for(int i = 0; i < m_tableModel->columnCount(); ++i)
+        if(m_isNewRecord == true)
         {
-            content = m_tableModel->data(m_tableModel->index(m_tableModel->rowCount() - 1, i), Qt::DisplayRole);
-            args << content.toString();
+            QVariant content;
+            QStringList args;
+            for(int i = 0; i < m_tableModel->columnCount(); ++i)
+            {
+                content = m_tableModel->data(m_tableModel->index(m_tableModel->rowCount() - 1, i), Qt::DisplayRole);
+                args << content.toString();
+            }
+            DBManager::getInstance()->slotDisplayQueryWithArgs("addRecordTo" + m_curTable, args);
         }
-        DBManager::getInstance()->slotDisplayQueryWithArgs("addRecordTo" + m_curTable, args);
-    }
-    m_tableModel->select();
-    emit signalSubmitReq();
+        m_tableModel->select();
+        emit signalSubmitReq();
 
-    m_isNewRecord = false;
+        m_isNewRecord = false;
+    }
 }
 
 void MainWindow::on_MainWindowEditPlayersUndo_released()
 {
-    if(m_isNewRecord == true)
+    if(m_tableModel != NULL)
     {
-        m_isNewRecord = false;
+        if(m_isNewRecord == true)
+        {
+            m_isNewRecord = false;
+        }
+        m_tableModel->select();
     }
-    m_tableModel->select();
 }
 
 void MainWindow::on_MainWindowEditPlayersBrowesBtn_released()
@@ -602,4 +712,10 @@ void MainWindow::on_MainWindowEditPlayersUploadBtn_released()
 {
     emit signalProccessCSV(ui->filePathTextBox->text());
     this->on_MainWindowEditPlayersTCB_currentIndexChanged(TABLE_TeamInLeague);
+}
+
+void MainWindow::on_MainWindowTeamSelectionComboBox_activated(int index)
+{
+    Q_UNUSED(index);
+    ui->MainWindowTeamSelectionGameManagmentBtn->setEnabled(true);
 }
