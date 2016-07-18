@@ -60,7 +60,7 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="MainWindowEntrance">
      <property name="styleSheet">
@@ -966,11 +966,6 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
         <height>51</height>
        </rect>
       </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
       <item>
        <property name="text">
         <string>הצג מאמנים ראשיים חדשים</string>
