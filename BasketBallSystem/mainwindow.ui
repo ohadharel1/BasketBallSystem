@@ -60,7 +60,7 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
 }</string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="MainWindowEntrance">
      <property name="styleSheet">
@@ -1036,7 +1036,7 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
       </item>
       <item>
        <property name="text">
-        <string>הצג מאמנים ראשיים חדשים</string>
+        <string>הצג מאמנים ראשיים חדשים שאינם עוזרי מאמן </string>
        </property>
       </item>
       <item>
@@ -1072,6 +1072,11 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
       <item>
        <property name="text">
         <string>הצג את פרטי הקבוצה הביתית שהפרש התוצאה במשחק הוא בין 5-10</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>הצג מאמנים ראשיים חדשים </string>
        </property>
       </item>
      </widget>

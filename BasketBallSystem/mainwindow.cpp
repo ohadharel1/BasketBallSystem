@@ -519,6 +519,11 @@ void MainWindow::on_MainWindowEditPlayersQCB_currentIndexChanged(int index)
       emit(signalDisplayQuery("Query8"));
      break;
 
+    case Query_9:
+      emit(signalDisplayQuery("Query9"));
+     break;
+
+
     case Query_NONE:
         ui->MainWindowEditPlayersQTV->setModel(NULL);
         break;
