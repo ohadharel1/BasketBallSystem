@@ -76,11 +76,22 @@
     <widget class="QLabel" name="popupMessageDialogCSVHeader">
      <property name="geometry">
       <rect>
-       <x>210</x>
+       <x>80</x>
        <y>10</y>
-       <width>231</width>
+       <width>361</width>
        <height>61</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 170, 0);</string>
      </property>
      <property name="text">
       <string>סיכום הגירת נתונים למסד</string>
@@ -98,6 +109,12 @@
        <height>51</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>מתוך</string>
      </property>
@@ -113,6 +130,12 @@
        <width>61</width>
        <height>51</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>0</string>
@@ -130,6 +153,12 @@
        <height>51</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>רשומות, </string>
      </property>
@@ -145,6 +174,12 @@
        <width>61</width>
        <height>51</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>0</string>
@@ -162,6 +197,12 @@
        <height>51</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>הועתקו בהצלחה</string>
      </property>
@@ -172,11 +213,17 @@
     <widget class="QLabel" name="popupMessageDialogCSVLabel4">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>90</y>
+       <x>100</x>
+       <y>80</y>
        <width>331</width>
        <height>61</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>לחץ על &quot;פרטים&quot; לקבלת נתונים נוספים</string>
