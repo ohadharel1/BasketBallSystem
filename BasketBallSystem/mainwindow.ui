@@ -60,7 +60,7 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
 }</string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="MainWindowEntrance">
      <property name="styleSheet">
@@ -995,6 +995,11 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
       </property>
       <item>
        <property name="text">
+        <string>בחר</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>הצג מאמנים ראשיים חדשים</string>
        </property>
       </item>
@@ -1075,6 +1080,11 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
         <height>51</height>
        </rect>
       </property>
+      <item>
+       <property name="text">
+        <string>בחר</string>
+       </property>
+      </item>
       <item>
        <property name="text">
         <string>הצג עוזרי מאמן</string>
@@ -1182,10 +1192,10 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
        </rect>
       </property>
       <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Resources/Resources/addBtn.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string/>
       </property>
       <property name="whatsThis">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Resources/Resources/addBtn.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string/>
       </property>
       <property name="text">
        <string>הוסף רשומה</string>
@@ -1233,10 +1243,10 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
      <widget class="QLabel" name="MainWindowEditPlayersCSVLabel">
       <property name="geometry">
        <rect>
-        <x>520</x>
-        <y>580</y>
+        <x>510</x>
+        <y>570</y>
         <width>371</width>
-        <height>20</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">

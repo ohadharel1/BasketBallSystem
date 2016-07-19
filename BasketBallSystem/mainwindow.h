@@ -28,6 +28,7 @@ enum positionLayout
 
 enum Querys
 {
+    Query_NONE,
     Query_1,
     Query_2,
     Query_3,
@@ -40,6 +41,7 @@ enum Querys
 
 enum Tables
 {
+    TABLE_NONE,
     TABLE_AssistanceTrainer,
     TABLE_Cheerleaders,
     TABLE_Game,

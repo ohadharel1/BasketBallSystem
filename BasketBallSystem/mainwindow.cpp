@@ -8,6 +8,19 @@ MainWindow *MainWindow::m_instance = NULL;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
+    m_players(),
+    m_pointGaurds(),
+    m_shootingGaurd(),
+    m_smallForward(),
+    m_powerForward(),
+    m_centers(),
+    m_curTableEnum(TABLE_NONE),
+    m_curQueryEnum(Query_NONE),
+    m_curTable(),
+    m_curQuery(),
+    m_tableModel(NULL),
+    m_isNewRecord(false),
+    m_fileExplorer(),
     m_animation(new QMovie())
 {
     ui->setupUi(this);
@@ -471,6 +484,7 @@ void MainWindow::on_MainWindowBottomToolbarHomeBtn_released()
 void MainWindow::on_MainWindowEditPlayersQCB_currentIndexChanged(int index)
 {
     m_isNewRecord = false;
+    m_curTableEnum = TABLE_NONE;
     switch (index)
      {
        case Query_1:
@@ -500,6 +514,10 @@ void MainWindow::on_MainWindowEditPlayersQCB_currentIndexChanged(int index)
     case Query_7:
       emit(signalDisplayQuery("Query7"));
      break;
+
+    case Query_NONE:
+        ui->MainWindowEditPlayersQTV->setModel(NULL);
+        break;
     default:
         qDebug() << "bad query number" ;
 
@@ -516,6 +534,7 @@ void MainWindow::slotHandleQuery(QSqlQueryModel *model)
 void MainWindow::on_MainWindowEditPlayersTCB_currentIndexChanged(int index)
 {
     m_isNewRecord = false;
+    m_curQueryEnum = Query_NONE;
     switch (index)
     {
         case TABLE_AssistanceTrainer:
@@ -607,6 +626,11 @@ void MainWindow::on_MainWindowEditPlayersTCB_currentIndexChanged(int index)
             m_curTableEnum = TABLE_Trainer;
             m_curTable = "Trainer";
             break;
+
+        case TABLE_NONE:
+            ui->MainWindowEditPlayersQTV->setModel(NULL);
+            break;
+
         default:
             qDebug() << "wrong table selected";
    }
@@ -660,7 +684,7 @@ void MainWindow::slotGameManagment(bool enter)
 
 void MainWindow::on_MainWindowEditPlayersAdd_released()
 {
-    if(m_tableModel != NULL)
+    if(m_curTableEnum != TABLE_NONE)
     {
         if(m_isNewRecord == false)
         {
@@ -673,7 +697,7 @@ void MainWindow::on_MainWindowEditPlayersAdd_released()
 
 void MainWindow::on_MainWindowEditPlayersDelete_released()
 {
-    if(m_tableModel != NULL)
+    if(m_curTableEnum != TABLE_NONE)
     {
         QSqlTableModel *model = DBManager::getInstance()->getTableModel();
         model->removeRow(this->ui->MainWindowEditPlayersQTV->currentIndex().row());
@@ -693,7 +717,7 @@ void MainWindow::on_MainWindowEditPlayersDelete_released()
 
 void MainWindow::on_MainWindowEditPlayersSave_released()
 {
-    if(m_tableModel != NULL)
+    if(m_curTableEnum != TABLE_NONE)
     {
         if(m_isNewRecord == true)
         {
@@ -715,7 +739,7 @@ void MainWindow::on_MainWindowEditPlayersSave_released()
 
 void MainWindow::on_MainWindowEditPlayersUndo_released()
 {
-    if(m_tableModel != NULL)
+    if(m_curTableEnum != TABLE_NONE)
     {
         if(m_isNewRecord == true)
         {
