@@ -732,7 +732,10 @@ void MainWindow::on_MainWindowEditPlayersSave_released()
             }
             DBManager::getInstance()->slotDisplayQueryWithArgs("addRecordTo" + m_curTable, args, true);
         }
-        emit signalSubmitReq();
+        else
+        {
+            emit signalSubmitReq();
+        }
         m_tableModel->select();
 
         m_isNewRecord = false;

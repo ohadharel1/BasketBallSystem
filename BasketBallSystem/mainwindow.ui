@@ -60,7 +60,7 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
 }</string>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="MainWindowEntrance">
      <property name="styleSheet">
@@ -437,11 +437,17 @@ background-image: url(:/Resources/Resources/halfCourt.png);
      <widget class="QPushButton" name="MainWindowGameManagmentCortImageCB">
       <property name="geometry">
        <rect>
-        <x>440</x>
-        <y>170</y>
-        <width>81</width>
-        <height>21</height>
+        <x>430</x>
+        <y>180</y>
+        <width>110</width>
+        <height>30</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>7</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">color: rgb(0, 0, 0);
@@ -449,7 +455,7 @@ color: rgb(255, 255, 255);
 background-color: rgb(0, 0, 0);</string>
       </property>
       <property name="text">
-       <string>בחר שחקן </string>
+       <string>Center</string>
       </property>
      </widget>
      <widget class="QStackedWidget" name="MainWindowGameManagmentCortImageC">
@@ -475,18 +481,24 @@ background-color: rgb(0, 0, 0);</string>
      <widget class="QPushButton" name="MainWindowGameManagmentCortImageSFB">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>350</y>
-        <width>81</width>
-        <height>21</height>
+        <x>420</x>
+        <y>360</y>
+        <width>110</width>
+        <height>30</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>7</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(0, 0, 0);
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>בחר שחקן </string>
+       <string>Shooting guard</string>
       </property>
      </widget>
      <widget class="QStackedWidget" name="MainWindowGameManagmentCortImagePG">
@@ -502,18 +514,24 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="MainWindowGameManagmentCortImagePGB">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>400</y>
-        <width>81</width>
-        <height>21</height>
+        <x>260</x>
+        <y>410</y>
+        <width>110</width>
+        <height>30</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>7</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(0, 0, 0);
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>בחר שחקן </string>
+       <string>Point guard</string>
       </property>
      </widget>
      <widget class="QStackedWidget" name="MainWindowGameManagmentCortImageSG">
@@ -529,18 +547,24 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="MainWindowGameManagmentCortImageSGB">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>370</y>
-        <width>81</width>
-        <height>21</height>
+        <x>90</x>
+        <y>380</y>
+        <width>110</width>
+        <height>30</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>7</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(0, 0, 0);
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>בחר שחקן</string>
+       <string>Small forward</string>
       </property>
      </widget>
      <widget class="QStackedWidget" name="MainWindowGameManagmentCortImagePF">
@@ -556,18 +580,24 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="MainWindowGameManagmentCortImagePFB">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>170</y>
-        <width>81</width>
-        <height>21</height>
+        <x>70</x>
+        <y>180</y>
+        <width>110</width>
+        <height>30</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>7</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(0, 0, 0);
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>בחר שחקן</string>
+       <string>Power forward</string>
       </property>
      </widget>
      <widget class="QLabel" name="MainWindowGameManagmentAnimation">
@@ -987,11 +1017,17 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
      <widget class="QComboBox" name="MainWindowEditPlayersQCB">
       <property name="geometry">
        <rect>
-        <x>754</x>
+        <x>760</x>
         <y>100</y>
         <width>461</width>
         <height>51</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
       <item>
        <property name="text">
@@ -1081,9 +1117,15 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
        <rect>
         <x>760</x>
         <y>240</y>
-        <width>451</width>
+        <width>461</width>
         <height>51</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
       <item>
        <property name="text">
@@ -1191,10 +1233,18 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
       <property name="geometry">
        <rect>
         <x>760</x>
-        <y>340</y>
-        <width>121</width>
-        <height>41</height>
+        <y>350</y>
+        <width>112</width>
+        <height>34</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
       </property>
       <property name="toolTip">
        <string/>
@@ -1215,6 +1265,14 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
         <height>34</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
        <string>מחק</string>
       </property>
@@ -1228,6 +1286,14 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
         <height>34</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
        <string>שמור</string>
       </property>
@@ -1240,6 +1306,14 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
         <width>112</width>
         <height>34</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
       </property>
       <property name="text">
        <string>בטל</string>
@@ -1285,6 +1359,14 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
         <height>34</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
        <string>אשר</string>
       </property>
@@ -1297,6 +1379,14 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
         <width>112</width>
         <height>34</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
       </property>
       <property name="text">
        <string>סייר</string>

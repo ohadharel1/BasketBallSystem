@@ -33,11 +33,22 @@
     <widget class="QLabel" name="popupMessageDialogErrorLabel">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>140</x>
        <y>20</y>
-       <width>181</width>
+       <width>261</width>
        <height>71</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>18</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 85, 0);</string>
      </property>
      <property name="text">
       <string>התרחשה שגיאה</string>
@@ -182,17 +193,28 @@
 background-image: url(:/Resources/Resources/popupGood.png);
 }</string>
     </property>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="popupMessageDialogGoodPageLabel">
      <property name="geometry">
       <rect>
        <x>180</x>
-       <y>60</y>
-       <width>191</width>
-       <height>91</height>
+       <y>160</y>
+       <width>251</width>
+       <height>41</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>18</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 255, 0);</string>
+     </property>
      <property name="text">
-      <string>הפעולה הצליחה</string>
+      <string> הפעולה הצליחה</string>
      </property>
     </widget>
    </widget>
