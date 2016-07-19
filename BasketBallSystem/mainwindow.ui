@@ -1033,6 +1033,11 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
         <string>הצג ציון של הקבוצות בכל משחק </string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>הצג את פרטי הקבוצה הביתית שהפרש התוצאה במשחק הוא בין 5-10</string>
+       </property>
+      </item>
      </widget>
      <widget class="QLabel" name="MainWindowEditPlayersQL">
       <property name="geometry">

@@ -36,6 +36,7 @@ enum Querys
     Query_5,
     Query_6,
     Query_7,
+     Query_8,
     Query_size
 };
 
