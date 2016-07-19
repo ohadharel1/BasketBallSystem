@@ -1,12 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "popupmessagedialog.h"
+#include <QMovie>
 
 MainWindow *MainWindow::m_instance = NULL;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    m_animation(new QMovie())
 {
     ui->setupUi(this);
     init();
@@ -16,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     this->deletePlayers();
+    delete m_animation;
     delete ui;
 }
 
@@ -70,8 +73,7 @@ void MainWindow::initConnections()
     connect(&m_fileExplorer, SIGNAL(signalPublishFilePath(QString)), this, SLOT(slotHandleFilePath(QString)));
     connect(GuiFormManager::getInstance(), SIGNAL(signalTeamSelection(bool)), this, SLOT(slotTeamSelectionForm(bool)));
     connect(GuiFormManager::getInstance(), SIGNAL(signalEditData(bool)), this, SLOT(slotEditDataForm(bool)));
-
-
+    connect(GuiFormManager::getInstance(), SIGNAL(signalGameManagment(bool)), this, SLOT(slotGameManagment(bool)));
 }
 
 void MainWindow::deletePlayers()
@@ -626,6 +628,13 @@ void MainWindow::slotTeamSelectionForm(bool enter)
     {
         emit signalPoulateComboBox("teamNames");
         ui->MainWindowTeamSelectionGameManagmentBtn->setEnabled(false);
+        m_animation->setFileName(":/Resources/Resources/animated-basketball-image.gif");
+        ui->MainWindowTeamSelectionAnimation->setMovie(m_animation);
+        m_animation->start();
+    }
+    else
+    {
+        m_animation->stop();
     }
 }
 
@@ -633,6 +642,20 @@ void MainWindow::slotEditDataForm(bool)
 {
     m_tableModel = NULL;
     ui->MainWindowEditPlayersQTV->setModel(m_tableModel);
+}
+
+void MainWindow::slotGameManagment(bool enter)
+{
+    if(enter == true)
+    {
+        m_animation->setFileName(":/Resources/Resources/basketball_ref_time_out_lw.gif");
+        ui->MainWindowGameManagmentAnimation->setMovie(m_animation);
+        m_animation->start();
+    }
+    else
+    {
+        m_animation->stop();
+    }
 }
 
 void MainWindow::on_MainWindowEditPlayersAdd_released()

@@ -60,7 +60,7 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
 }</string>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="MainWindowEntrance">
      <property name="styleSheet">
@@ -189,8 +189,8 @@ color: white</string>
      <widget class="QComboBox" name="MainWindowTeamSelectionComboBox">
       <property name="geometry">
        <rect>
-        <x>630</x>
-        <y>140</y>
+        <x>920</x>
+        <y>130</y>
         <width>211</width>
         <height>41</height>
        </rect>
@@ -261,8 +261,8 @@ border: 0px solid #000000;
       </property>
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>130</y>
+        <x>140</x>
+        <y>120</y>
         <width>131</width>
         <height>71</height>
        </rect>
@@ -320,8 +320,8 @@ border: 0px solid #000000;
       </property>
       <property name="geometry">
        <rect>
-        <x>460</x>
-        <y>130</y>
+        <x>700</x>
+        <y>120</y>
         <width>131</width>
         <height>71</height>
        </rect>
@@ -376,8 +376,8 @@ border: 0px solid #000000;
      <widget class="QLabel" name="MainWindowTeamSelectionLabel">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>60</y>
+        <x>670</x>
+        <y>50</y>
         <width>571</width>
         <height>41</height>
        </rect>
@@ -392,6 +392,19 @@ border: 0px solid #000000;
       </property>
       <property name="text">
        <string>אנא בחר קבוצה כדי לעבור למסך &quot;ניהול משחק&quot;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="MainWindowTeamSelectionAnimation">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>270</y>
+        <width>350</width>
+        <height>350</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>
@@ -557,6 +570,19 @@ color: rgb(255, 255, 255);</string>
        <string>בחר שחקן</string>
       </property>
      </widget>
+     <widget class="QLabel" name="MainWindowGameManagmentAnimation">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>300</y>
+        <width>180</width>
+        <height>309</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
      <zorder>MainWindowGameManagmentCortImage</zorder>
      <zorder>MainWindowGameManagmentCortImagePG</zorder>
      <zorder>MainWindowGameManagmentCortImagePGB</zorder>
@@ -568,6 +594,7 @@ color: rgb(255, 255, 255);</string>
      <zorder>MainWindowGameManagmentCortImageSFB</zorder>
      <zorder>MainWindowGameManagmentCortImageSF</zorder>
      <zorder>MainWindowGameManagmentCortImageC</zorder>
+     <zorder>MainWindowGameManagmentAnimation</zorder>
     </widget>
     <widget class="QWidget" name="MainWindowPlayerSelection">
      <property name="styleSheet">
@@ -1282,7 +1309,7 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>10</y>
+       <y>20</y>
        <width>131</width>
        <height>71</height>
       </rect>

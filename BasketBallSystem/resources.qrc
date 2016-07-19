@@ -29,6 +29,8 @@
         <file>Resources/OKBtn.png</file>
         <file>Resources/popupError.png</file>
         <file>Resources/popupInfo.png</file>
+        <file>Resources/animated-basketball-image.gif</file>
+        <file>Resources/basketball_ref_time_out_lw.gif</file>
     </qresource>
     <qresource prefix="/">
         <file>Resources/editBtn.png</file>

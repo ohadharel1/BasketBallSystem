@@ -8,6 +8,7 @@
 #include <QVector>
 #include <QTableWidget>
 #include <QCloseEvent>
+#include <QMovie>
 #include "player.h"
 #include "dbmanager.h"
 #include "guiformmanager.h"
@@ -83,6 +84,7 @@ private slots:
     void slotHandleFilePath(const QString &path);
     void slotTeamSelectionForm(bool);
     void slotEditDataForm(bool);
+    void slotGameManagment(bool);
 
     void on_MainWindowTeamSelectionSelectBtn_released();
 
@@ -178,6 +180,7 @@ private:
     QSqlTableModel *m_tableModel;
     bool m_isNewRecord;
     fileExplorer m_fileExplorer;
+    QMovie *m_animation;
 
 };
 
