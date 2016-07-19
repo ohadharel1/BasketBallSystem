@@ -100,7 +100,7 @@ void DBManager::slotDisplayQuery(const QString queryName)
     emit signalQueryResult(m_queryModel);
 }
 
-void DBManager::slotDisplayQueryWithArgs(const QString proc, const QStringList args)
+void DBManager::slotDisplayQueryWithArgs(const QString proc, const QStringList args, bool doPopup)
 {
     //m_db.transaction();
     QString argsForPrepare;
@@ -123,16 +123,18 @@ void DBManager::slotDisplayQueryWithArgs(const QString proc, const QStringList a
             this->m_query.bindValue(":arg" + QString::number(i), args[i]);
         }
     }
-    if(this->m_query.exec() == false)
+    bool res = this->m_query.exec();
+    if(doPopup == true)
     {
-        //m_db.rollback();
-        popupMessageDialog::getInstance()->addText(m_query.lastError().text());
-        popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
-    }
-    else
-    {
-       // m_db.commit();
-        popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_GOOD);
+        if(res == false)
+        {
+            popupMessageDialog::getInstance()->addText(m_query.lastError().text());
+            popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
+        }
+        else
+        {
+            popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_GOOD);
+        }
     }
     emit signalParameterQueryResult(&m_query);
 }

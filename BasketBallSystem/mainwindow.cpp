@@ -72,8 +72,8 @@ void MainWindow::initConnections()
     connect(this, SIGNAL(signalPoulateComboBox(const QString)), DBManager::getInstance(), SLOT(slotDisplayQuery(const QString)));
     connect(DBManager::getInstance(), SIGNAL(signalQueryResult(QSqlQueryModel *)), this, SLOT(slotPopulateComboBox(QSqlQueryModel *)));
     connect(GuiFormManager::getInstance(), SIGNAL(signalChangeForm(GuiForms)), this, SLOT(slotChangeForm(GuiForms)));
-    connect(this, SIGNAL(signalGetPlayersInTeam(QString,QStringList)), DBManager::getInstance(), SLOT(slotDisplayQueryWithArgs(QString,QStringList)));
-    connect(this, SIGNAL(signalDisplatQueryWithArgs(QString,QStringList)), DBManager::getInstance(), SLOT(slotDisplayQueryWithArgs(QString,QStringList)));
+    connect(this, SIGNAL(signalGetPlayersInTeam(QString,QStringList, bool)), DBManager::getInstance(), SLOT(slotDisplayQueryWithArgs(QString,QStringList, bool)));
+    connect(this, SIGNAL(signalDisplatQueryWithArgs(QString,QStringList, bool)), DBManager::getInstance(), SLOT(slotDisplayQueryWithArgs(QString,QStringList, bool)));
     connect(DBManager::getInstance(), SIGNAL(signalParameterQueryResult(QSqlQuery*)), this, SLOT(slotReceivePlayearsInTeam(QSqlQuery *)));
     connect(this, SIGNAL(signalSortPlayers()), this, SLOT(slotSortPlayers()));
     connect(GuiFormManager::getInstance(), SIGNAL(signalEntrance(bool)), this, SLOT(slotEntranceForm(bool)));
@@ -399,7 +399,7 @@ void MainWindow::on_MainWindowTeamSelectionGameManagmentBtn_released()
 {
     QStringList args;
     args << ui->MainWindowTeamSelectionComboBox->currentText();
-    emit signalGetPlayersInTeam("getPlayersInTeam", args);
+    emit signalGetPlayersInTeam("getPlayersInTeam", args, false);
     GuiFormManager::getInstance()->changeForm(GUI_FORM_GAME_MANAGMENT);
 }
 
@@ -526,14 +526,11 @@ void MainWindow::on_MainWindowEditPlayersQCB_currentIndexChanged(int index)
         qDebug() << "bad query number" ;
 
     }
-
 }
 void MainWindow::slotHandleQuery(QSqlQueryModel *model)
 {
     ui->MainWindowEditPlayersQTV->setModel(model);
 }
-
-
 
 void MainWindow::on_MainWindowEditPlayersTCB_currentIndexChanged(int index)
 {
@@ -708,12 +705,13 @@ void MainWindow::on_MainWindowEditPlayersDelete_released()
         if(model->submitAll())
         {
             model->database().commit();
+            popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_GOOD);
         }
         else
         {
             model->database().rollback();
-             popupMessageDialog::getInstance()->addText(model->lastError().text());
-             popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
+            popupMessageDialog::getInstance()->addText(model->lastError().text());
+            popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
         }
         model->select();
     }
@@ -732,7 +730,7 @@ void MainWindow::on_MainWindowEditPlayersSave_released()
                 content = m_tableModel->data(m_tableModel->index(m_tableModel->rowCount() - 1, i), Qt::DisplayRole);
                 args << content.toString();
             }
-            DBManager::getInstance()->slotDisplayQueryWithArgs("addRecordTo" + m_curTable, args);
+            DBManager::getInstance()->slotDisplayQueryWithArgs("addRecordTo" + m_curTable, args, true);
         }
         emit signalSubmitReq();
         m_tableModel->select();
