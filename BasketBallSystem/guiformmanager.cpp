@@ -97,6 +97,7 @@ GuiForms GuiFormManager::getCurrentForm()
 
 void GuiFormManager::goHome()
 {
+    exitForm();
     m_formStack.clear();
     this->changeForm(GUI_FORM_TEAM_SELECTION);
 }
