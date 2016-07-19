@@ -90,28 +90,9 @@ private slots:
     void slotEditDataForm(bool);
     void slotGameManagment(bool);
 
-    void on_MainWindowTeamSelectionSelectBtn_released();
-
     void on_MainWindowTeamSelectionEditDataBtn_released();
 
     void on_MainWindowTeamSelectionGameManagmentBtn_released();
-
-    void on_MainWindowTeamSelectionComboBox_currentIndexChanged(const QString &arg1);
-
-    void on_MainWindowPlayerSelectionAllBtn_released();
-
-    void on_MainWindowPlayerSelectionPoinGaurdBtn_released();
-
-    void on_MainWindowPlayerSelectionShootingGaurdBtn_released();
-
-    void on_MainWindowPlayerSelectionSmallForwardBtn_released();
-
-    void on_MainWindowPlayerSelectionPowerForwardBtn_released();
-
-    void on_MainWindowPlayerSelectionCenterBtn_released();
-
-
-
 
     void on_MainWindowGameManagmentCortImageSFB_released();
 
@@ -128,8 +109,6 @@ private slots:
     void on_MainWindowBottomToolbarHomeBtn_released();
 
     void on_MainWindowEditPlayersQCB_currentIndexChanged(int index);
-
-
 
     void on_MainWindowEditPlayersTCB_currentIndexChanged(int index);
 

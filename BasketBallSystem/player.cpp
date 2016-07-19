@@ -16,12 +16,12 @@ player::player(int id, QString firstName, QString surName, QString teamColor, QS
 {
     ui->setupUi(this);
     init();
-    qDebug() << "id: " << m_id << "; firstName: " << m_firstName << "; lastName: " << m_surName << "; teamColor: " << m_teamColor;
+//    qDebug() << "id: " << m_id << "; firstName: " << m_firstName << "; lastName: " << m_surName << "; teamColor: " << m_teamColor;
 }
 
 player::~player()
 {
-    qDebug() << "player id: " << m_id << " was deleted";
+//    qDebug() << "player id: " << m_id << " was deleted";
     delete ui;
 }
 
@@ -73,7 +73,7 @@ void player::init()
         }
     }
     m_imagePath = "background-image: url(:/Resources/Resources/" + m_teamColor + "/" + m_face + ".png);";
-    qDebug() << m_imagePath;
+//    qDebug() << m_imagePath;
     ui->playerPushButton->setStyleSheet(m_imagePath);
     ui->PlayerNameLabel->setText(m_firstName + "\n" + m_surName);
     this->setFixedHeight(140);
@@ -124,7 +124,7 @@ void player::setPosition(const QString &pos)
     }
     else
     {
-        qDebug() << "bad argument for possition: " << pos;
+//        qDebug() << "bad argument for possition: " << pos;
     }
 
 }
@@ -133,13 +133,6 @@ bool player::getPlayerPosition(positions pos)
 {
     return m_playerPositions[pos];
 }
-
-//QString player::imagePath() const
-//{
-//    return m_imagePath;
-//}
-
-
 
 void player::on_playerPushButton_released()
 {

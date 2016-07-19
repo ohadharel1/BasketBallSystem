@@ -60,7 +60,7 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
 }</string>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="MainWindowEntrance">
      <property name="styleSheet">
@@ -633,81 +633,6 @@ color: rgb(255, 255, 255);</string>
 background-image: url(:/Resources/Resources/backGroundOrange.png);
 }</string>
      </property>
-     <widget class="QFrame" name="MainWindowPlayerSelectionVLayout">
-      <property name="geometry">
-       <rect>
-        <x>1030</x>
-        <y>10</y>
-        <width>231</width>
-        <height>271</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-image: transparent</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QPushButton" name="MainWindowPlayerSelectionAllBtn">
-         <property name="text">
-          <string>הצג את כל השחקנים</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="MainWindowPlayerSelectionPoinGaurdBtn">
-         <property name="text">
-          <string>הצג רכזים בלבד</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="MainWindowPlayerSelectionShootingGaurdBtn">
-         <property name="text">
-          <string>הצג קלעים בלבד</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="MainWindowPlayerSelectionSmallForwardBtn">
-         <property name="text">
-          <string>הצג סמול- פורוורד בלבד</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="MainWindowPlayerSelectionPowerForwardBtn">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>הצג פאוור- פורוורד בלבד</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="MainWindowPlayerSelectionCenterBtn">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>הצג סנטרים בלבד</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
      <widget class="QStackedWidget" name="MainWindowPlayerSelectionStackedWidget">
       <property name="geometry">
        <rect>
@@ -1005,6 +930,27 @@ background-image: url(:/Resources/Resources/backGroundOrange.png);
         </attribute>
        </widget>
       </widget>
+     </widget>
+     <widget class="QLabel" name="MainWindowTeamSelectionLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>880</x>
+        <y>20</y>
+        <width>231</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>בחר שחקן:</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="MainWindowEditPlayers">

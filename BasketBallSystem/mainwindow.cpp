@@ -150,11 +150,6 @@ void MainWindow::deletePlayers()
     ui->MainWindowPlayerSelectionPointGaurdsTable->clear();
     ui->MainWindowPlayerSelectionCentersTable->clear();
     ui->MainWindowPlayerSelectionSmallForwardTable->clear();
-//    m_centers.clear();
-//    m_pointGaurds.clear();
-//    m_powerForward.clear();
-//    m_smallForward.clear();
-//    m_shootingGaurd.clear();
 }
 
 bool MainWindow::containID(int id)
@@ -203,7 +198,6 @@ void MainWindow::insertPlayersToSelection(QVector<player *> vector, QTableWidget
                 table->setRowHeight(row, 170);
                 col = 0;
             }
-            //player* p = vector[i]->copyPlayer();
             table->setCellWidget(row, col, vector[i]);
             col++;
         }
@@ -280,7 +274,7 @@ void MainWindow::slotReceivePlayearsInTeam(QSqlQuery *query)
             m_players.append(p);
         }
     }
-    qDebug() << "all players: " << m_players;
+//    qDebug() << "all players: " << m_players;
     emit signalSortPlayers();
 }
 
@@ -315,18 +309,12 @@ void MainWindow::slotSortPlayers()
             m_centers.append(p);
         }
     }
-//    this->insertPlayersToSelection(m_players, ui->MainWindowPlayerSelectionAllPlayersTable);
+
     this->insertPlayersToSelection(m_pointGaurds, ui->MainWindowPlayerSelectionPointGaurdsTable);
     this->insertPlayersToSelection(m_smallForward, ui->MainWindowPlayerSelectionSmallForwardTable);
     this->insertPlayersToSelection(m_powerForward, ui->MainWindowPlayerSelectionPowerForwardTable);
     this->insertPlayersToSelection(m_shootingGaurd, ui->MainWindowPlayerSelectionShootingGaurdTable);
     this->insertPlayersToSelection(m_centers, ui->MainWindowPlayerSelectionCentersTable);
-//    qDebug() << "all players: " << m_players;
-//    qDebug() << "point: " << m_pointGaurds;
-//    qDebug() << "shot: " << m_shootingGaurd;
-//    qDebug() << "small: " << m_smallForward;
-//    qDebug() << "power: " << m_powerForward;
-    //    qDebug() << "center: " << m_centers;
 }
 
 void MainWindow::slotHandelePlayerPress(int id)
@@ -381,15 +369,6 @@ void MainWindow::slotEntranceForm(bool enter)
     }
 }
 
-void MainWindow::on_MainWindowTeamSelectionSelectBtn_released()
-{
-//    ui->MainWindowTeamSelectionEditDataBtn->setEnabled(true);
-//    ui->MainWindowTeamSelectionGameManagmentBtn->setEnabled(true);
-//    QStringList args;
-//    args << ui->MainWindowTeamSelectionComboBox->currentText();
-//    emit signalGetPlayersInTeam("getPlayersInTeam", args);
-}
-
 void MainWindow::on_MainWindowTeamSelectionEditDataBtn_released()
 {
    GuiFormManager::getInstance()->changeForm(GUI_FORM_EDIT_PLAYERS);
@@ -403,43 +382,35 @@ void MainWindow::on_MainWindowTeamSelectionGameManagmentBtn_released()
     GuiFormManager::getInstance()->changeForm(GUI_FORM_GAME_MANAGMENT);
 }
 
+//void MainWindow::on_MainWindowPlayerSelectionAllBtn_released()
+//{
+//    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_ALL_PLAYERS);
+//}
 
-void MainWindow::on_MainWindowTeamSelectionComboBox_currentIndexChanged(const QString &arg1)
-{
-    Q_UNUSED(arg1);
-//    ui->MainWindowTeamSelectionGameManagmentBtn->setEnabled(true);
-}
+//void MainWindow::on_MainWindowPlayerSelectionPoinGaurdBtn_released()
+//{
+//    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_POINT_GAURDS);
+//}
 
-void MainWindow::on_MainWindowPlayerSelectionAllBtn_released()
-{
-    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_ALL_PLAYERS);
-}
+//void MainWindow::on_MainWindowPlayerSelectionShootingGaurdBtn_released()
+//{
+//    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_SHOOTING_GAURD);
+//}
 
-void MainWindow::on_MainWindowPlayerSelectionPoinGaurdBtn_released()
-{
-    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_POINT_GAURDS);
-}
+//void MainWindow::on_MainWindowPlayerSelectionSmallForwardBtn_released()
+//{
+//    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_SMALL_FORWARD);
+//}
 
-void MainWindow::on_MainWindowPlayerSelectionShootingGaurdBtn_released()
-{
-    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_SHOOTING_GAURD);
-}
+//void MainWindow::on_MainWindowPlayerSelectionPowerForwardBtn_released()
+//{
+//    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_POWER_FORWARD);
+//}
 
-void MainWindow::on_MainWindowPlayerSelectionSmallForwardBtn_released()
-{
-    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_SMALL_FORWARD);
-}
-
-void MainWindow::on_MainWindowPlayerSelectionPowerForwardBtn_released()
-{
-    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_POWER_FORWARD);
-}
-
-void MainWindow::on_MainWindowPlayerSelectionCenterBtn_released()
-{
-    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_CENTERS);
-}
-
+//void MainWindow::on_MainWindowPlayerSelectionCenterBtn_released()
+//{
+//    ui->MainWindowPlayerSelectionStackedWidget->setCurrentIndex(POSITION_LAYOUT_CENTERS);
+//}
 
 void MainWindow::on_MainWindowGameManagmentCortImageSFB_released()
 {
@@ -767,8 +738,16 @@ void MainWindow::on_MainWindowEditPlayersBrowesBtn_released()
 
 void MainWindow::on_MainWindowEditPlayersUploadBtn_released()
 {
-    emit signalProccessCSV(ui->filePathTextBox->text());
-    this->on_MainWindowEditPlayersTCB_currentIndexChanged(TABLE_TeamInLeague);
+    if(ui->filePathTextBox->text() == NULL)
+    {
+        popupMessageDialog::getInstance()->addText("You must fill in file path");
+        popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
+    }
+    else
+    {
+        emit signalProccessCSV(ui->filePathTextBox->text());
+        this->on_MainWindowEditPlayersTCB_currentIndexChanged(TABLE_TeamInLeague);
+    }
 }
 
 void MainWindow::on_MainWindowTeamSelectionComboBox_activated(int index)
@@ -776,28 +755,3 @@ void MainWindow::on_MainWindowTeamSelectionComboBox_activated(int index)
     Q_UNUSED(index);
     ui->MainWindowTeamSelectionGameManagmentBtn->setEnabled(true);
 }
-
-//void MainWindow::slotHandleRequest()
-//{
-//    this->m_tableModel->database().transaction();
-//    if(this->m_tableModel->submitAll())
-//    {
-//        popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_GOOD);
-//        if(this->m_tableModel->database().commit())
-//        {
-//            this->m_tableModel->select();
-//            popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_GOOD);
-//        }
-//        else
-//        {
-//            popupMessageDialog::getInstance()->addText(m_tableModel->lastError().text());
-//            popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
-//        }
-//    }
-//    else
-//    {
-//        this->m_tableModel->database().rollback();
-//        popupMessageDialog::getInstance()->addText(m_tableModel->lastError().text());
-//        popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
-//    }
-//}

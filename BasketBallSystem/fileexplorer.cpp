@@ -11,7 +11,7 @@ fileExplorer::fileExplorer(QWidget *parent) :
     m_fileModel(new QFileSystemModel(this))
 {
     ui->setupUi(this);
-    qDebug() << QStandardPaths::locate(QStandardPaths::HomeLocation, QString(), QStandardPaths::LocateDirectory);
+//    qDebug() << QStandardPaths::locate(QStandardPaths::HomeLocation, QString(), QStandardPaths::LocateDirectory);
     this->init();
 }
 

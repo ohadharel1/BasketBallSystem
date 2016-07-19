@@ -39,11 +39,13 @@ void DBManager::initDBLink()
 
     if(this->m_db.open())
     {
-        qDebug() << "DB open!!";
+//        qDebug() << "DB open!!";
     }
     else
     {
-        qDebug() << "Error = " << this->m_db.lastError().text();
+        popupMessageDialog::getInstance()->addText(this->m_db.lastError().text());
+        popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
+//        qDebug() << "Error = " << this->m_db.lastError().text();
     }
 }
 
@@ -79,9 +81,9 @@ bool DBManager::processLineFromCSV(QString line)
         m_tableModel->database().rollback();
         QString error = "Database Write Error. The database reported an error: " + this->m_tableModel->lastError().text();
         popupMessageDialog::getInstance()->addText(error);
-        qDebug() << "Database Write Error" <<
-                         "The database reported an error: " <<
-                           this->m_tableModel->lastError().text();
+//        qDebug() << "Database Write Error" <<
+//                         "The database reported an error: " <<
+//                           this->m_tableModel->lastError().text();
     }
     return false;
 }
@@ -179,7 +181,7 @@ void DBManager::slotHandleCSVProccessRequest(const QString &path)
     QFile file(path);
     if(file.open(QIODevice::ReadOnly))
     {
-        qDebug() << "file is open";
+//        qDebug() << "file is open";
         m_tableModel->setTable("TeamInLeague");
         m_tableModel->database().transaction();
         m_tableModel->clear();
@@ -202,6 +204,8 @@ void DBManager::slotHandleCSVProccessRequest(const QString &path)
     }
     else
     {
-        qDebug() << "can't open file";
+        popupMessageDialog::getInstance()->addText("Can't open file");
+        popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
+//        qDebug() << "can't open file";
     }
 }
