@@ -36,6 +36,16 @@ void popupMessageDialog::addText(const QString &text)
 
 void popupMessageDialog::showPopupMessage(popupMessageType type)
 {
+    if(type == POPUP_MESSAGE_GOOD)
+    {
+        ui->popupMessageDialogDetailBtn->setEnabled(false);
+        ui->popupMessageDialogDetailBtn->setVisible(false);
+    }
+    else
+    {
+        ui->popupMessageDialogDetailBtn->setEnabled(true);
+        ui->popupMessageDialogDetailBtn->setVisible(true);
+    }
     ui->popupMessageDialogStackedWidget->setCurrentIndex(type);
     ui->popupMessageDialogDetailBtn->setChecked(false);
     this->show();

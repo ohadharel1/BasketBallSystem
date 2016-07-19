@@ -70,7 +70,7 @@ bool DBManager::processLineFromCSV(QString line)
     m_tableModel->insertRecord(-1, record);
     if(m_tableModel->submitAll())
     {
-        m_tableModel->database().commit();
+        m_tableModel->database().commit();        
         return true;
 
     }
@@ -132,6 +132,7 @@ void DBManager::slotDisplayQueryWithArgs(const QString proc, const QStringList a
     else
     {
        // m_db.commit();
+        popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_GOOD);
     }
     emit signalParameterQueryResult(&m_query);
 }
@@ -149,8 +150,17 @@ void DBManager::slotHandleRequest()
     this->m_tableModel->database().transaction();
     if(this->m_tableModel->submitAll())
     {
-        this->m_tableModel->database().commit();
-        this->m_tableModel->select();
+        popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_GOOD);
+        if(this->m_tableModel->database().commit())
+        {
+            this->m_tableModel->select();
+            popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_GOOD);
+        }
+        else
+        {
+            popupMessageDialog::getInstance()->addText(m_tableModel->lastError().text());
+            popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
+        }
     }
     else
     {

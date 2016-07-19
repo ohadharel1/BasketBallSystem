@@ -730,8 +730,8 @@ void MainWindow::on_MainWindowEditPlayersSave_released()
             }
             DBManager::getInstance()->slotDisplayQueryWithArgs("addRecordTo" + m_curTable, args);
         }
-        m_tableModel->select();
         emit signalSubmitReq();
+        m_tableModel->select();
 
         m_isNewRecord = false;
     }
@@ -766,3 +766,28 @@ void MainWindow::on_MainWindowTeamSelectionComboBox_activated(int index)
     Q_UNUSED(index);
     ui->MainWindowTeamSelectionGameManagmentBtn->setEnabled(true);
 }
+
+//void MainWindow::slotHandleRequest()
+//{
+//    this->m_tableModel->database().transaction();
+//    if(this->m_tableModel->submitAll())
+//    {
+//        popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_GOOD);
+//        if(this->m_tableModel->database().commit())
+//        {
+//            this->m_tableModel->select();
+//            popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_GOOD);
+//        }
+//        else
+//        {
+//            popupMessageDialog::getInstance()->addText(m_tableModel->lastError().text());
+//            popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
+//        }
+//    }
+//    else
+//    {
+//        this->m_tableModel->database().rollback();
+//        popupMessageDialog::getInstance()->addText(m_tableModel->lastError().text());
+//        popupMessageDialog::getInstance()->showPopupMessage(POPUP_MESSAGE_ERROR);
+//    }
+//}
